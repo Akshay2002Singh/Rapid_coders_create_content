@@ -20,6 +20,7 @@
 }
 
 #logo-brand h1 {
+    color: rgb(255, 91, 253);
     font-size: 30px;
     font-weight: bold;
     display: flex;
@@ -48,6 +49,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 0px 5px;
 }
 .foot_link_text{
     color: cyan;
@@ -57,4 +59,25 @@
 .foot_link_text:hover{
     cursor: pointer;
     color: white;
+}
+
+@media (max-width: 500px){
+    #logo-brand {
+        margin: 0px 10px;
+    }
+    
+    #logo-brand h1 {
+        font-size: 15px;
+    }
+    
+    #logo-brand img {
+        width: 50px;
+        height: 50px;
+    }
+    .footer_links{
+        display: none;
+    }
+    #footer_social{
+        margin-right: 10px;
+    }
 }

@@ -6,46 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="footer.css">
     <style>
-        /* nav button */
-        .nav_btn {
-            border: none;
-            color: #fff;
-            background-image: linear-gradient(30deg, #ff0000, #ffa844);
-            border-radius: 20px;
-            background-size: 100% auto;
-            font-family: inherit;
-            font-size: 17px;
-            padding: 0.3em 1em;
-        }
-
-        .nav_btn:hover {
-            background-position: right center;
-            background-size: 200% auto;
-            -webkit-animation: pulse 2s infinite;
-            animation: pulse512 1.5s infinite;
-        }
-
-        @keyframes pulse512 {
-            0% {
-                box-shadow: 0 0 0 0 #05bada66;
-            }
-
-            70% {
-                box-shadow: 0 0 0 10px rgb(218 103 68 / 0%);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgb(218 103 68 / 0%);
-            }
-        }
-
         body {
             background-color: rgb(11, 11, 11);
         }
 
         /* common css */
-        h1 {
+        .main_heading {
             padding: 10px 0px;
             color: rgb(255, 36, 255);
             text-align: center;
@@ -165,66 +133,6 @@
             transform: scale(0.95);
         }
 
-        /* footer */
-        #f_main_container {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            height: 90px;
-            background-color: rgb(0, 0, 0);
-            border-top: 3px solid rgb(84, 84, 84);
-        }
-
-        #foot_container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        #logo-brand {
-            display: flex;
-            margin: 4px 80px;
-        }
-
-        #logo-brand h1 {
-            font-size: 30px;
-            font-weight: bold;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        #logo-brand img {
-            width: 70px;
-            height: 70px;
-            margin: 0px 10px;
-        }
-
-        #footer_social {
-            display: flex;
-            margin-right: 100px;
-        }
-        #footer_social svg{
-            margin: 29px 4px;
-        }
-        #footer_social svg:hover{
-            cursor: pointer;
-        }
-        .footer_links{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .foot_link_text{
-            color: cyan;
-            padding: 1px 0px;
-            font-size: 17px;
-        }
-        .foot_link_text:hover{
-            cursor: pointer;
-            color: white;
-        }
     </style>
     <title>Document</title>
 </head>
@@ -258,7 +166,7 @@
         </div>
     </nav>
     <!-- heading -->
-    <h1>PROJECTS</h1>
+    <h1 class="main_heading">PROJECTS</h1>
     <!-- PROJECTS -->
     <div class="project_container">
         <div class="card">
@@ -376,11 +284,6 @@
                     <img src="watermark.png" alt="logo">
                     <h1>Rapid Coders</h1>
                 </div>
-            </div>
-            <div class="footer_links">
-                <h3 class="foot_link_text">Projects</h3>
-                <h3 class="foot_link_text">Articles</h3>
-                <h3 class="foot_link_text">Elements</h3>
             </div>
             <div class="footer_links">
                 <h3 class="foot_link_text">Projects</h3>
