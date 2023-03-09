@@ -31,13 +31,16 @@
             border-bottom: 1px solid white;
             overflow-y: auto;
             height: 80vh;
+            font-family: 'Open Sans', sans-serif, Arial, Helvetica, sans-serif;
+            word-spacing:0.5mm;
+            letter-spacing: 0.2mm;
         }
 
         #suggestions_box>a {
             display: block;
-            padding: 10px 15px;
+            padding: 10px 20px 0px 20px;
             text-decoration: none;
-            font-size: 22px;
+            font-size: 20px;
             /* color: rgb(249, 255, 69); */
             color: rgb(107, 255, 122);
         }
@@ -99,6 +102,13 @@
 
         #content_box>li {
             color: white;
+        }
+        #content_box pre {
+            border-radius: 3px;
+            padding: 5px 10px 10px 10px;
+            margin: 5px 0px;
+            background-color: rgb(56, 56, 56);
+            overflow: auto;
         }
 
         /* these are inserted by js */
@@ -284,9 +294,10 @@ for repo in repos:
             <img src="4.png" alt="">
             <h3>Get the no.of commits in a repository.</h3>
             <div>
-                To get the no. of commits in the repository,we make a request to
-                <strong>https://api.github.com/repos/Akshay2002Singh/Bootstrap_Website/contributors</strong>.
-                This again returns a json object.We can access the no.of commits by using the key "contributions".
+                To get the no. of commits in the repository,we make a request to:
+                <pre>https://api.github.com/repos/Akshay2002Singh/Bootstrap_Website/contributors</pre>
+                This again returns a json object.We can access the no.of commits by using the key "contributions". 
+                
             </div>
             <pre class="language-python"><code>
 commits_url="https://api.github.com/repos/Akshay2002Singh/Engineers-Library/contributors"
