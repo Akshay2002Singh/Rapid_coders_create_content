@@ -5,15 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./../nav.css">
-    <link rel="stylesheet" href="./../footer.css">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="footer.css">
     <!-- for code block  -->
-    <link rel="stylesheet" href="./../prism.css">
-    <script src="./../prism.js"></script>
-    <!-- font  -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="prism.css">
+    <script src="prism.js"></script>
     <style>
         body {
             background-color: rgb(10, 10, 10);
@@ -31,84 +27,61 @@
             border-bottom: 1px solid white;
             overflow-y: auto;
             height: 80vh;
-            font-family: 'Open Sans', sans-serif, Arial, Helvetica, sans-serif;
-            word-spacing:0.5mm;
-            letter-spacing: 0.2mm;
         }
 
         #suggestions_box>a {
             display: block;
-            padding: 10px 20px 0px 20px;
+            padding: 10px 15px;
             text-decoration: none;
-            font-size: 20px;
+            font-size: 22px;
             /* color: rgb(249, 255, 69); */
             color: rgb(107, 255, 122);
         }
 
-        /* article css  */
         #content_box {
             color: rgb(255, 255, 255);
             padding: 35px 30px;
             overflow: hidden;
-            font-family: 'Open Sans', sans-serif, Arial, Helvetica, sans-serif;
-            line-height: 1.5;
-            word-spacing:0.5mm;
-            letter-spacing: 0.2mm;
-        }
-
-        #content_box a {
-            color: wheat;
-            text-decoration:none;
-            border-bottom: 1px solid wheat;
         }
 
         #content_box>h1 {
             padding: 10px 0px;
-            font-size: 45px;
+            font-size: 40px;
         }
 
         #content_box>h2 {
             padding: 8px 0px;
-            font-size: 32px;
+            font-size: 30px;
         }
 
         #content_box>h3 {
             padding: 6px 0px;
-            font-size: 28px;
+            font-size: 25px;
         }
 
         #content_box>div {
             line-height: 28px;
             padding: 4px 0px;
-            font-size: 18px;
+            font-size: 20px;
         }
 
         #content_box>span {
             font-size: 20px;
         }
-
         #content_box>img {
             padding: 10px 0px;
             max-width: 100%;
             display: block;
             margin: auto;
         }
-
         #content_box>ol,
         #content_box>ul {
             padding: 5px 0px;
-            font-size: 20px;
+            font-size: 22px;
         }
 
         #content_box>li {
             color: white;
-        }
-        #content_box pre {
-            border-radius: 3px;
-            padding: 5px 10px 10px 10px;
-            margin: 5px 0px;
-            background-color: rgb(56, 56, 56);
-            overflow: auto;
         }
 
         /* these are inserted by js */
@@ -117,24 +90,16 @@
             min-width: 300px;
             font-size: 15px;
         }
-
         .code-toolbar>pre {
             font-size: 15px;
         }
-        .code-toolbar>pre>code {
-            width: 100%;
-            display: block;
-            overflow-x: auto;
-        }
-
-        .toolbar-item {
+        .toolbar-item{
             padding-top: 12px;
             padding-right: 10px;
         }
-
         /* js inserted classes end  */
-        @media (max-width: 800px) {
-            #suggestions_box {
+        @media (max-width: 800px){
+            #suggestions_box{
                 display: none;
             }
         }
@@ -199,181 +164,154 @@
             <a href="http://">python gui</a>
         </div>
         <div id="content_box">
-            <h1>How to use the Github API?</h1>
+            <h1>Introduction to HTML</h1>
             <div>
-                Github provides its API <a href="https://api.github.com/">https://api.github.com/</a> to access a user's details like username, github avatar, followers, following, bio and details about repositories such as name, number of contributions and  languages etc. Visit the official documentation page at <a href="https://docs.github.com/en/rest?apiVersion=2022-11-28">
-                    https://docs.github.com/en/rest?apiVersion=2022-11-28</a>In this article,we are going to look at the various endpoints with the help of a Python Program.The no of accesses to the API are limited at 60 per hour. If you want to increase the no. of accesses,
-                you may generate an API Key from your Github Dashboard.In this article,we have used the API witout any
-                key.Now,
-                lets get started.
+            HTML is a web styling language which allows us to make webpages by including various
+            elements like plain text,buttons,hyperlinks,images,videos and much more.In HTML,we use tags
+            to display various forms of media and information.In this HTML series,we are going to learn about these tags from scratch.
             </div>
-            <ul style="list-style-position: inside;">
-                <h3>Jump to specific sections</h3>
-                <li>
-                    <a href="#">Setting Up the API</a>
-                </li>
-                <li>
-                    <a href="#">Access Specific fields</a>
-                </li>
-                <li>
-                    <a href="#">Get the names of each followers.</a>
-                </li>
-                <li>
-                    <a href="#">Get the names and description of all repositories.</a>
-                </li>
-                <li>
-                    <a href="#">Get the no. of commits in a repository.</a>
-                </li>
-                <li>
-                    <a href="#">Get all the languages used in a repository.</a>
-                </li>
-            </ul>
-            <h3>Make your first request</h3>
-            <div>The requests library is used to make GET requests to an endpoint.</div>
-            <pre class="language-python"><code>
-import requests
-request_url="https://api.github.com/users/Akshay2002Singh"
-x=requests.get(request_url)
-data=x.json()
-print(data)
-</code></pre>
-            <img src="1.png" alt="">
-            <div>Here,we are having a request_string=<strong> https://api.github.com/users/[-Put github username
-                    here-]"</strong>.
-                Then,we made a request to the requested url using the requests.get() method to get the data.Next,
-                convert the data into json.
-            </div>
-            <h3>Access specific fields</h3>
+        <ul style="list-style-position: inside;">
+            <h3>Jump to specific sections</h3>
+        <li>
+            <a href="#">What is a tag?</a>
+        </li>
+        <li>
+            <a href="#">what is the &lt;head&gt; tag?</a>
+        </li>
+        <li>
+            <a href="#">The body tag.</a>
+        </li>
+        <li>
+            <a href="#">The heading tags.</a>
+        </li>
+        <li>
+            <a href="#">The paragraph tag.</a>
+        </li>
+        </ul>
+            <h3>What is a tag?</h3>
             <div>
-                To access the bio,we access the json object with key as "bio".We can also get the avatar link with the
-                key "avatar_url".
-                You can open the link in the browser to view or download the avatar image.
-                We can also get the date of creation of Github account using key "created_at".
-            </div>
-            <pre class="language-python"><code>
-## To get the bio
-print("Bio is : ",data["bio"])
-print()
-print()
-
-## To get the avatar link
-print("Avatar link is : ",data["avatar_url"])
-print()
-print()
-
-## To get the date of creation of Profile
-print("Date of creation : ",data["created_at"])
-</code></pre>
-            <img src="2.png" alt="">
-            <h3>Get the names of all followers.</h3>
+        In HTML,every information is displayed using tags.Each tag starts with an &lt;
+        tag_name and then &gt;.Most of the HTML tags need to have a closing tag as well.
+        To close a tag,we use &lt; /(forward slash) tag_name and then &gt;
+        The opening and the closing tag defines the boundaries of an HTML element.
+        The information present within the enclosing tags will be rendered on the web page.
+        Every html document starts with &lt; !DOCTYPE html &gt;tag.
+        This is to tell the browser that the document is writen in html.After that,we use the
+        HTML tag to start our HTML document like this:
+    </div>
+            <pre class="language-html">
+                <code>
+    &lt;!DOCTYPE html&gt;
+    &lt;html lang="en"&gt;
+    &lt;/html&gt;
+                </code>
+            </pre>
             <div>
-                We can get a list of all followers by using the endpoint <strong>https://api.github.com/users/[-Put
-                    github username here-]/followers</strong>.
-                This returns a json array of objects.We iterate through the array and print the name of each followers
-                follows.
+                Here,lang="en" means that the language of the webpage is English.It makes it easier
+                for the browsers and search engines to display the information.Every other tag must
+                be enclosed with the &lt;html&gt; tag
             </div>
-            <pre class="language-python"><code>
-# To get the names and profile links of followers
-followers_url="https://api.github.com/users/Akshay2002Singh/followers"
-f=requests.get(followers_url)
-followers=f.json()
-for follower in followers:
-    print(follower["login"])
-</code></pre>
-            <img src="3.png" alt="">
-            <h3>Get the names and description of all repositories.</h3>
-            <div>To get this,we will use the endpoint <strong>https//api.github.com/users/[-Put github username
-                    here-]/repos</strong>.This returns a
-                json array of objects.We iterate through the array and print the name of each repository along with
-                their descriptions.
-            </div>
-            <pre class="language-python"><code>
-## To get the name and description of repos
-repos_url="https://api.github.com/users/Akshay2002Singh/repos"
-r=requests.get(repos_url)
-repos=r.json()
-for repo in repos:
-    print("Repo : ",repo["name"])
-    print("Description : ",repo["description"])
-</code></pre>
-            <img src="4.png" alt="">
-            <h3>Get the no.of commits in a repository.</h3>
+            <h3>The &lt;head&gt; tag</h3>
             <div>
-                To get the no. of commits in the repository,we make a request to:
-                <pre>https://api.github.com/repos/Akshay2002Singh/Bootstrap_Website/contributors</pre>
-                This again returns a json object.We can access the no.of commits by using the key "contributions". 
-                
+                The head tag includes the meta tags,title tags and the link tags.
+                The meta tag is used to describe the page,specify the character set or to specify the viewport
+                information.The viwport is used to make the page responsive for other screen sizes.The title tag is used to define the title of the webpage.
+                The link tag is used to link external stylesheets.
+                We define the head tag as follows:
             </div>
-            <pre class="language-python"><code>
-commits_url="https://api.github.com/repos/Akshay2002Singh/Engineers-Library/contributors"
-c=requests.get(commits_url)
-commits=c.json()
-print(commits[0]["contributions"])
-</code></pre>
-            <img src="5.png" alt="">
-            <h3>Get all the languages used in a repository.</h3>
+            <pre class="language-html">
+                <code>
+    &lt;!DOCTYPE html&gt;
+    &lt;html lang="en"&gt;
+    &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;/head&gt;
+    &lt;/html&gt; 
+                </code>
+            </pre>
+            <img src="title.png" alt="">
             <div>
-                To get the names of languages used,we make a request to the endpoint
-                <strong>https://api.github.com/repos/[-Put github username here-]/[-Repo Name goes
-                    here-]/languages</strong>.
-                This return a json object containing all the languages.
+                The title is displayed at the top left.
+                <!-- Don't worry if any of this didn't make sense right now. -->
             </div>
-            <pre class="language-python"><code>
-lang_url="https://api.github.com/repos/Akshay2002Singh/Engineers-Library/languages"
-l=requests.get(lang_url)
-languages=l.json()
-for language in languages:
-    print(language)
-</code></pre>
-            <img src="6.png" alt="">
-            <h2>Final Code</h2>
-            <pre class="language-python"><code>
-import requests
-request_url="https://api.github.com/users/Akshay2002Singh"
-x=requests.get(request_url)
-data=x.json()
-                    
-# ## To get the bio
-print("Bio is : ",data["bio"])
-print()
-print()
-                    
-# ## To get the avatar link
-print("Avatar link is : ",data["avatar_url"])
-print()
-print()
-                    
-# ## To get the date of creation of Profile
-print("Date of creation : ",data["created_at"])
-                    
-# To get the names and profile links of followers
-followers_url="https://api.github.com/users/Akshay2002Singh/followers"
-f=requests.get(followers_url)
-followers=f.json()
-for follower in followers:
-    print(follower["login"])
-                    
-## To get the name and description of repos
-repos_url="https://api.github.com/users/Akshay2002Singh/repos"
-r=requests.get(repos_url)
-repos=r.json()
-for repo in repos:
-    print("Repo : ",repo["name"])
-    print("Description : ",repo["description"])
-
-## To get the no. of commits in a repository
-commits_url="https://api.github.com/repos/Akshay2002Singh/Engineers-Library/contributors"
-c=requests.get(commits_url)
-commits=c.json()
-print(commits[0]["contributions"])
-                    
-## To get the languages in a repository
-lang_url="https://api.github.com/repos/Akshay2002Singh/Engineers-Library/languages"
-l=requests.get(lang_url)
-languages=l.json()
-for language in languages:
-    print(language)
-</code></pre>
+            <h3>The &lt;body&gt; tag</h3>
+            <div>
+                The main content of a webpage is enclosed within the body tag.
+                It contains all the other tags to show content on the web page.
+            </div>
+            <pre class="language-html">
+                <code>
+    &lt;!DOCTYPE html&gt;
+    &lt;html lang="en"&gt;
+    &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    This is the body of my first HTML page.
+    &lt;/body&gt;
+    &lt;/html&gt; 
+                </code>
+            </pre>
+            <img src="body.png" alt="">
+            <h3>The heading tags</h3>
+            <div>
+                The heading tags are used to display the information in a larger font size.
+                It is used to display headings in order to gain user attention.The heading tags are &lt;h1&gt;
+                &lt;h2&gt;,&lt;h3&gt;.... till &lt;h6&gt;.The &lt;h1&gt; tag has the largest font size,&lt;h2&gt; tag has 
+                second largest font size and so on.&lt;h6&gt; tag has the smallest font size.
+                the heading tags must have a closing tag.
+                The below code shows how these tags are used.
+            </div>
+            <pre class="language-html">
+                <code>
+    &lt;!DOCTYPE html&gt;
+    &lt;html lang="en"&gt;
+    &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;h1&gt;This is an h1 tag.&lt;/h1&gt;
+    &lt;h2&gt;This is an h2 tag.&lt;/h2&gt;
+    &lt;h3&gt;This is an h3 tag.&lt;/h3&gt;
+    &lt;h4&gt;This is an h4 tag.&lt;/h4&gt;
+    &lt;h5&gt;This is an h5 tag.&lt;/h5&gt;
+    &lt;h6&gt;This is an h6 tag.&lt;/h6&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;      
+                </code>
+            </pre>
+            <img src="heading.png" alt="">
+            <h3>The paragraph tag</h3>
+            <div>
+             The paragraph tag is used to display large information in a paragraph format.
+            </div>
+            <pre class="language-html">
+                <code>
+    &lt;!DOCTYPE html&gt;
+    &lt;html lang="en"&gt;
+    &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;p&gt;
+    Hello everyone! My name is Elite Akshay and I'm passionate about teaching coding and engineering subjects to help people build a strong foundation in these fields.
+    My goal is to share the wealth of knowledge with others and help people to develop skills by which they can earn money. Here I'll be breaking down complex concepts
+    into easy-to-understand pieces to help you learn and practice what you've learned.
+    &lt;/p&gt;
+    &lt;/body&gt;
+    &lt;/html&gt; 
+                </code>
+            </pre>
+            <img src="paragraph.png" alt="">
+            <div>Here,is your first HTML page ready.</div>
             <!-- content end here  -->
         </div>
     </div>
@@ -383,7 +321,7 @@ for language in languages:
             <!-- for logo and brand -->
             <div id="foot_container">
                 <div id="logo-brand">
-                    <img src="./../watermark.png" alt="logo">
+                    <img src="watermark.png" alt="logo">
                     <h1>Rapid Coders</h1>
                 </div>
             </div>
