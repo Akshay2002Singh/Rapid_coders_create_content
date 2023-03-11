@@ -73,7 +73,7 @@
 }
 
 .navbar a:hover{
-    background-color: purple;
+    color: wheat;
     /* color: var(--purplr); */
 }
 
