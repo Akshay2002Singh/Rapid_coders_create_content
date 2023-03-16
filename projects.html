@@ -29,11 +29,10 @@
             /* justify-content: space-between; */
             justify-content: center;
         }
-
         /* card css  */
         .card {
             width: 302px;
-            height: 402px;
+            height: 382px;
             background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
             border-radius: 20px;
             transition: all .3s;
@@ -44,22 +43,18 @@
         .card2 {
             margin: 1px 1px;
             width: 300px;
-            height: 400px;
+            height: 380px;
             background-color: #1a1a1a;
             border-radius: 20px;
             transition: all .2s;
             color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 1em;
-            padding: 4px 8px;
+            padding: 4px 15px;
         }
 
         .card2:hover {
             transform: scale(0.98);
             border-radius: 20px;
+            cursor: pointer;
         }
 
         .card:hover {
@@ -68,10 +63,11 @@
 
         /* inside card  */
         .card_image {
-            max-width: 90%;
+            max-width: 95%;
             border-radius: 10px;
             border: 2px dashed cyan;
             overflow: hidden;
+            margin: 10px auto;
         }
 
         .card_image img {
@@ -79,6 +75,9 @@
             height: 100%;
         }
 
+        .card2 h2 {
+            padding-top: 10px;
+        }
         /* card button  */
         .cssbuttons-io-button {
             background: #A370F0;
@@ -98,6 +97,7 @@
             position: relative;
             height: 2.8em;
             padding-right: 3.3em;
+            margin: auto;
         }
 
         .cssbuttons-io-button .icon {
@@ -132,7 +132,27 @@
         .cssbuttons-io-button:active .icon {
             transform: scale(0.95);
         }
+        /* tag  */
+        .tag_container {
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: black;
+        }
 
+        .tag_heading {
+            font-size: 16px;
+            color: white;
+        }
+
+        .tag {
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 3px 10px;
+            margin-right: 3px;
+            margin-top: 10px;
+            background-color: white;
+            display: inline-block;
+        }
     </style>
     <title>Document</title>
 </head>
@@ -176,102 +196,23 @@
                         alt=""></div>
                 <!-- <h2>Youtube Downloader</h2> -->
                 <h2>Youtube Downloader</h2>
-                <h4>Youtube Downloader is a GUI made using python and it has capability to Downloader Youtube videos
-                    and playlists in mp3 as well as mp4 format.</h6>
-                    <button class="cssbuttons-io-button"> Build Now
-                        <div class="icon">
-                            <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0 0h24v24H0z" fill="none"></path>
-                                <path
-                                    d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-                                    fill="currentColor"></path>
-                            </svg>
-                        </div>
-                    </button>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card2">
-                <div class="card_image"><img
-                        src="https://camo.githubusercontent.com/500a52f4310760664aadc40b99c93c3c0841450aacb6a225799f2906f0b0fafe/68747470733a2f2f616b736861793230303273696e67682e6769746875622e696f2f416b736861793230303253696e67682f6173736574732f666162696f2d6c756361732d61547047535066616c7a592d756e73706c6173682e6a7067"
-                        alt=""></div>
-                <h2>Youtube Downloader</h3>
-                    <h4>Youtube Downloader is a GUI made using python and it has capability to Downloader Youtube videos
-                        and playlists in mp3 as well as mp4 format.</h6>
-                        <button class="cssbuttons-io-button"> Build Now
-                            <div class="icon">
-                                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M0 0h24v24H0z" fill="none"></path>
-                                    <path
-                                        d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-                                        fill="currentColor"></path>
-                                </svg>
-                            </div>
-                        </button>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card2">
-                <div class="card_image"><img
-                        src="https://camo.githubusercontent.com/500a52f4310760664aadc40b99c93c3c0841450aacb6a225799f2906f0b0fafe/68747470733a2f2f616b736861793230303273696e67682e6769746875622e696f2f416b736861793230303253696e67682f6173736574732f666162696f2d6c756361732d61547047535066616c7a592d756e73706c6173682e6a7067"
-                        alt=""></div>
-                <h2>Youtube Downloader</h3>
-                    <h4>Youtube Downloader is a GUI made using python and it has capability to Downloader Youtube videos
-                        and playlists in mp3 as well as mp4 format.</h6>
-                        <button class="cssbuttons-io-button"> Build Now
-                            <div class="icon">
-                                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M0 0h24v24H0z" fill="none"></path>
-                                    <path
-                                        d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-                                        fill="currentColor"></path>
-                                </svg>
-                            </div>
-                        </button>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card2">
-                <div class="card_image"><img
-                        src="https://camo.githubusercontent.com/500a52f4310760664aadc40b99c93c3c0841450aacb6a225799f2906f0b0fafe/68747470733a2f2f616b736861793230303273696e67682e6769746875622e696f2f416b736861793230303253696e67682f6173736574732f666162696f2d6c756361732d61547047535066616c7a592d756e73706c6173682e6a7067"
-                        alt=""></div>
-                <h2>Youtube Downloader</h3>
-                    <h4>Youtube Downloader is a GUI made using python and it has capability to Downloader Youtube videos
-                        and playlists in mp3 as well as mp4 format.</h6>
-                        <button class="cssbuttons-io-button"> Build Now
-                            <div class="icon">
-                                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M0 0h24v24H0z" fill="none"></path>
-                                    <path
-                                        d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-                                        fill="currentColor"></path>
-                                </svg>
-                            </div>
-                        </button>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card2">
-                <div class="card_image"><img
-                        src="https://camo.githubusercontent.com/500a52f4310760664aadc40b99c93c3c0841450aacb6a225799f2906f0b0fafe/68747470733a2f2f616b736861793230303273696e67682e6769746875622e696f2f416b736861793230303253696e67682f6173736574732f666162696f2d6c756361732d61547047535066616c7a592d756e73706c6173682e6a7067"
-                        alt=""></div>
-                <h2>Youtube Downloader</h3>
-                    <h4>Youtube Downloader is a GUI made using python and it has capability to Downloader Youtube videos
-                        and playlists in mp3 as well as mp4 format.</h6>
-                        <button class="cssbuttons-io-button"> Build Now
-                            <div class="icon">
-                                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M0 0h24v24H0z" fill="none"></path>
-                                    <path
-                                        d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-                                        fill="currentColor"></path>
-                                </svg>
-                            </div>
-                        </button>
+                <div class="tag_container">
+                    <span class="tag_heading">Tags:</span>
+                    <span class="tag">git</span>
+                    <span class="tag">GitHub</span>
+                    <span class="tag">version_control</span>
+                    <span class="tag">python</span>
+                </div>
+                <button class="cssbuttons-io-button"> Build Now
+                    <div class="icon">
+                        <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 0h24v24H0z" fill="none"></path>
+                            <path
+                                d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </div>
+                </button>
             </div>
         </div>
     </div>
