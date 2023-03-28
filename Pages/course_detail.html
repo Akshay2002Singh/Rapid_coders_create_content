@@ -9,81 +9,85 @@
     <link rel="stylesheet" href="../footer.css">
     <style>
         body {
-            background-color: rgb(11, 11, 11);
-            box-sizing: border-box;
+            background-color: rgb(10, 10, 10);
         }
 
-        /* common css */
-        .main_heading {
-            padding: 10px 0px;
-            color: rgb(255, 36, 255);
-            text-align: center;
-            font-size: 3.5rem;
-        }
-
-        .article_api_container {
-            width: 90%;
+        #main_container {
             margin: auto;
+            width: 50%;
             display: flex;
             flex-direction: row;
-            flex-wrap: wrap;
-            /* justify-content: space-between; */
-            justify-content: center;
+            justify-content: space-around;
         }
 
-        .article_api_container>a {
-            display: block;
-            width: 100%;
+        #content_box {
+            margin: auto;
+            width: 85%;
+            min-width: 300px;
+            color: rgb(255, 255, 255);
+            padding: 35px 30px;
+            overflow: hidden;
+            font-family: 'Open Sans', sans-serif, Arial, Helvetica, sans-serif;
+            line-height: 1.5;
+            word-spacing: 0.5mm;
+            letter-spacing: 0.2mm;
+        }
+
+        #content_box a {
+            color: wheat;
             text-decoration: none;
-            color: black;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            /* background-color: rebeccapurple; */
+            border-bottom: 1px solid wheat;
         }
 
-        /* card css  */
-        .article_api_card_container {
-            width: 100%;
-            border-radius: 10px;
-            background-color: cyan;
-            /* background-color: rgb(107, 255, 122); */
-            padding: 10px;
-            border: 2px solid black;
+        #content_box>h1 {
+            padding: 10px 0px;
+            font-size: 45px;
         }
 
-        .article_api_card_container:hover {
-            cursor: pointer;
-            /* background-color: cyan;
-            transition-duration: 0.8s; */
+        #content_box>h2 {
+            padding: 8px 0px;
+            font-size: 32px;
         }
 
-        .article_api_card_heading {
-            font-size: 30px;
+        #content_box>h3 {
+            padding: 6px 0px;
+            font-size: 28px;
         }
 
-        .article_api_tag_container {
-            margin: 0px 5px;
-            font-size: 13px;
+        #content_box>div {
+            line-height: 28px;
+            padding: 4px 0px;
+            font-size: 18px;
         }
 
-        .article_api_tag_heading {
-            font-size: 16px;
+        #content_box>span {
+            font-size: 20px;
         }
 
-        .article_api_tag {
-            border: 1px solid black;
-            border-radius: 5px;
-            padding: 3px 10px;
-            margin-right: 3px;
-            margin-top: 10px;
-            display: inline-block;
-            background-color: white;
+        #content_box>img {
+            padding: 10px 0px;
+            max-width: 100%;
+            display: block;
+            margin: auto;
         }
 
-        .article_api_views_container {
-            margin: 0px 5px;
-            margin-top: 5px;
-            font-size: 15px;
+        #content_box>ol,
+        #content_box>ul {
+            padding: 5px 0px;
+            font-size: 20px;
+            margin-left: 25px;
+        }
+
+        #content_box>li {
+            color: white;
+        }
+
+        #content_box pre {
+            border-radius: 3px;
+            padding: 5px 10px 10px 10px;
+            margin: 5px 0px;
+            background-color: rgb(56, 56, 56);
+            overflow: auto;
         }
     </style>
     <title>Document</title>
@@ -118,32 +122,14 @@
         </div>
     </nav>
 
-    <!-- heading -->
-    <h1 class="main_heading">APIs</h1>
-    <!-- apis -->
-    <div class="article_api_container">
-        <!-- start  -->
-        <a href="/article/{{x.api_link}}">
-            <div class="article_api_card_container">
-                <h1 class="article_api_card_heading">
-                    GitHub Api Explore
-                </h1>
-                <div class="article_api_tag_container">
-                    <span class="article_api_tag_heading">Tags:</span>
-                    <span class="article_api_tag">html</span>
-                    <span class="article_api_tag">CSS</span>
-                    <span class="article_api_tag">html</span>
-                    <span class="article_api_tag">html</span>
-                    <span class="article_api_tag">html</span>
-                    <span class="article_api_tag">html</span>
-                </div>
-                <div class="article_api_views_container">
-                    <span class="article_api_view_heading ">Views:</span>
-                    <span class="article_api_views">285</span>
-                </div>
-            </div>
-        </a>
-        <!-- end  -->
+    <div id="content_box">
+        <h1>HTML</h1>
+        <ol>
+            <li><a href="">HTML</a></li>
+            <li><a href="">Github API</a></li>
+            <li><a href="">HTML</a></li>
+        </ol>
+        <!-- content end here  -->
     </div>
 
     <footer>

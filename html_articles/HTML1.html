@@ -68,12 +68,14 @@
         #content_box>span {
             font-size: 20px;
         }
+
         #content_box>img {
             padding: 10px 0px;
             max-width: 100%;
             display: block;
             margin: auto;
         }
+
         #content_box>ol,
         #content_box>ul {
             padding: 5px 0px;
@@ -90,16 +92,19 @@
             min-width: 300px;
             font-size: 15px;
         }
+
         .code-toolbar>pre {
             font-size: 15px;
         }
-        .toolbar-item{
+
+        .toolbar-item {
             padding-top: 12px;
             padding-right: 10px;
         }
+
         /* js inserted classes end  */
-        @media (max-width: 800px){
-            #suggestions_box{
+        @media (max-width: 800px) {
+            #suggestions_box {
                 display: none;
             }
         }
@@ -166,45 +171,46 @@
         <div id="content_box">
             <h1>Introduction to HTML</h1>
             <div>
-            HTML is a web styling language which allows us to make webpages by including various
-            elements like plain text,buttons,hyperlinks,images,videos and much more.In HTML,we use tags
-            to display various forms of media and information.In this HTML series,we are going to learn about these tags from scratch.
+                HTML is a web styling language which allows us to make webpages by including various
+                elements like plain text,buttons,hyperlinks,images,videos and much more.In HTML,we use tags
+                to display various forms of media and information.In this HTML series,we are going to learn about these
+                tags from scratch.
             </div>
-        <ul style="list-style-position: inside;">
-            <h3>Jump to specific sections</h3>
-        <li>
-            <a href="#">What is a tag?</a>
-        </li>
-        <li>
-            <a href="#">what is the &lt;head&gt; tag?</a>
-        </li>
-        <li>
-            <a href="#">The body tag.</a>
-        </li>
-        <li>
-            <a href="#">The heading tags.</a>
-        </li>
-        <li>
-            <a href="#">The paragraph tag.</a>
-        </li>
-        </ul>
+            <ul style="list-style-position: inside;">
+                <h3>Jump to specific sections</h3>
+                <li>
+                    <a href="#">What is a tag?</a>
+                </li>
+                <li>
+                    <a href="#">what is the &lt;head&gt; tag?</a>
+                </li>
+                <li>
+                    <a href="#">The body tag.</a>
+                </li>
+                <li>
+                    <a href="#">The heading tags.</a>
+                </li>
+                <li>
+                    <a href="#">The paragraph tag.</a>
+                </li>
+            </ul>
             <h3>What is a tag?</h3>
             <div>
-        In HTML,every information is displayed using tags.Each tag starts with an &lt;
-        tag_name and then &gt;.Most of the HTML tags need to have a closing tag as well.
-        To close a tag,we use &lt; /(forward slash) tag_name and then &gt;
-        The opening and the closing tag defines the boundaries of an HTML element.
-        The information present within the enclosing tags will be rendered on the web page.
-        Every html document starts with &lt; !DOCTYPE html &gt;tag.
-        This is to tell the browser that the document is writen in html.After that,we use the
-        HTML tag to start our HTML document like this:
-    </div>
+                In HTML,every information is displayed using tags.Each tag starts with an &lt;
+                tag_name and then &gt;.Most of the HTML tags need to have a closing tag as well.
+                To close a tag,we use &lt; /(forward slash) tag_name and then &gt;
+                The opening and the closing tag defines the boundaries of an HTML element.
+                The information present within the enclosing tags will be rendered on the web page.
+                Every html document starts with &lt; !DOCTYPE html &gt;tag.
+                This is to tell the browser that the document is writen in html.After that,we use the
+                HTML tag to start our HTML document like this:
+            </div>
             <pre class="language-html">
                 <code>
-    &lt;!DOCTYPE html&gt;
-    &lt;html lang="en"&gt;
-    &lt;/html&gt;
-                </code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;/html&gt;
+            </code>
             </pre>
             <div>
                 Here,lang="en" means that the language of the webpage is English.It makes it easier
@@ -215,20 +221,21 @@
             <div>
                 The head tag includes the meta tags,title tags and the link tags.
                 The meta tag is used to describe the page,specify the character set or to specify the viewport
-                information.The viwport is used to make the page responsive for other screen sizes.The title tag is used to define the title of the webpage.
+                information.The viwport is used to make the page responsive for other screen sizes.The title tag is used
+                to define the title of the webpage.
                 The link tag is used to link external stylesheets.
                 We define the head tag as follows:
             </div>
             <pre class="language-html">
                 <code>
-    &lt;!DOCTYPE html&gt;
-    &lt;html lang="en"&gt;
-    &lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;/head&gt;
-    &lt;/html&gt; 
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;/head&gt;
+&lt;/html&gt; 
                 </code>
             </pre>
             <img src="title.png" alt="">
@@ -243,17 +250,17 @@
             </div>
             <pre class="language-html">
                 <code>
-    &lt;!DOCTYPE html&gt;
-    &lt;html lang="en"&gt;
-    &lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-    This is the body of my first HTML page.
-    &lt;/body&gt;
-    &lt;/html&gt; 
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+This is the body of my first HTML page.
+&lt;/body&gt;
+&lt;/html&gt; 
                 </code>
             </pre>
             <img src="body.png" alt="">
@@ -261,55 +268,55 @@
             <div>
                 The heading tags are used to display the information in a larger font size.
                 It is used to display headings in order to gain user attention.The heading tags are &lt;h1&gt;
-                &lt;h2&gt;,&lt;h3&gt;.... till &lt;h6&gt;.The &lt;h1&gt; tag has the largest font size,&lt;h2&gt; tag has 
+                &lt;h2&gt;,&lt;h3&gt;.... till &lt;h6&gt;.The &lt;h1&gt; tag has the largest font size,&lt;h2&gt; tag
+                has
                 second largest font size and so on.&lt;h6&gt; tag has the smallest font size.
                 the heading tags must have a closing tag.
                 The below code shows how these tags are used.
             </div>
             <pre class="language-html">
                 <code>
-    &lt;!DOCTYPE html&gt;
-    &lt;html lang="en"&gt;
-    &lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-    &lt;h1&gt;This is an h1 tag.&lt;/h1&gt;
-    &lt;h2&gt;This is an h2 tag.&lt;/h2&gt;
-    &lt;h3&gt;This is an h3 tag.&lt;/h3&gt;
-    &lt;h4&gt;This is an h4 tag.&lt;/h4&gt;
-    &lt;h5&gt;This is an h5 tag.&lt;/h5&gt;
-    &lt;h6&gt;This is an h6 tag.&lt;/h6&gt;
-    &lt;/body&gt;
-    &lt;/html&gt;      
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;This is an h1 tag.&lt;/h1&gt;
+&lt;h2&gt;This is an h2 tag.&lt;/h2&gt;
+&lt;h3&gt;This is an h3 tag.&lt;/h3&gt;
+&lt;h4&gt;This is an h4 tag.&lt;/h4&gt;
+&lt;h5&gt;This is an h5 tag.&lt;/h5&gt;
+&lt;h6&gt;This is an h6 tag.&lt;/h6&gt;
+&lt;/body&gt;
+&lt;/html&gt;      
                 </code>
             </pre>
             <img src="heading.png" alt="">
             <h3>The paragraph tag</h3>
             <div>
-             The paragraph tag is used to display large information in a paragraph format.
+                The paragraph tag is used to display large information in a paragraph format.
             </div>
             <pre class="language-html">
                 <code>
-    &lt;!DOCTYPE html&gt;
-    &lt;html lang="en"&gt;
-    &lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-    &lt;p&gt;
-    Hello everyone! My name is Elite Akshay and I'm passionate about teaching coding and engineering subjects to help people build a strong foundation in these fields.
-    My goal is to share the wealth of knowledge with others and help people to develop skills by which they can earn money. Here I'll be breaking down complex concepts
-    into easy-to-understand pieces to help you learn and practice what you've learned.
-    &lt;/p&gt;
-    &lt;/body&gt;
-    &lt;/html&gt; 
-                </code>
-            </pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;
+Hello everyone! My name is Elite Akshay and I'm passionate about teaching coding and engineering subjectsto help people build a strong foundation in these fields.
+My goal is to share the wealth of knowledge with others and help people to develop skills by which they canearn money. Here I'll be breaking down complex concepts
+into easy-to-understand pieces to help you learn and practice what you've learned.
+&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt; 
+</code></pre>
             <img src="paragraph.png" alt="">
             <div>Here,is your first HTML page ready.</div>
             <!-- content end here  -->

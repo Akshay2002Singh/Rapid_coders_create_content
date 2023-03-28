@@ -29,8 +29,9 @@
             /* justify-content: space-between; */
             justify-content: center;
         }
+
         /* card css  */
-        .card {
+        .project_card {
             width: 302px;
             height: 382px;
             background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
@@ -40,7 +41,7 @@
             /* padding: 1px 1px; */
         }
 
-        .card2 {
+        .project_card2 {
             margin: 1px 1px;
             width: 300px;
             height: 380px;
@@ -51,18 +52,18 @@
             padding: 4px 15px;
         }
 
-        .card2:hover {
+        .project_card2:hover {
             transform: scale(0.98);
             border-radius: 20px;
-            cursor: pointer;
+            cursor: default;
         }
 
-        .card:hover {
+        .project_card:hover {
             box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
         }
 
         /* inside card  */
-        .card_image {
+        .project_card_image {
             max-width: 95%;
             border-radius: 10px;
             border: 2px dashed cyan;
@@ -70,16 +71,25 @@
             margin: 10px auto;
         }
 
-        .card_image img {
+        .project_card_image img {
             width: 100%;
             height: 100%;
         }
 
-        .card2 h2 {
-            padding-top: 10px;
+        .project_card2 h2 {
+            padding-top: 5px;
+            text-align: center;
         }
+
         /* card button  */
+        .project_card2 a{
+            text-decoration: none;
+            display: block;
+            width: 160px;
+            margin: auto;
+        }
         .cssbuttons-io-button {
+            width: 100%;
             background: #A370F0;
             color: white;
             font-family: inherit;
@@ -98,6 +108,10 @@
             height: 2.8em;
             padding-right: 3.3em;
             margin: auto;
+        }
+
+        .cssbuttons-io-button:hover{
+            cursor: pointer;
         }
 
         .cssbuttons-io-button .icon {
@@ -132,19 +146,22 @@
         .cssbuttons-io-button:active .icon {
             transform: scale(0.95);
         }
+
         /* tag  */
-        .tag_container {
+        .project_tag_container {
             margin-bottom: 12px;
+            height: 35px;
+            overflow: hidden;
             font-size: 13px;
             color: black;
         }
 
-        .tag_heading {
+        .project_tag_heading {
             font-size: 16px;
             color: white;
         }
 
-        .tag {
+        .project_tag {
             border: 1px solid black;
             border-radius: 5px;
             padding: 3px 10px;
@@ -153,6 +170,29 @@
             background-color: white;
             display: inline-block;
         }
+
+        @media (max-width: 800px) {
+            .project_card {
+            width: 282px;
+            height: 352px;
+        }
+
+        .project_card2 {
+            width: 280px;
+            height: 350px;
+        }
+
+        /* card button  */
+        .project_card2 a{
+            width: 130px;
+        }
+        .cssbuttons-io-button {
+            font-size: 14px;
+            padding-right: 0px;
+        }
+
+        }
+
     </style>
     <title>Document</title>
 </head>
@@ -189,30 +229,31 @@
     <h1 class="main_heading">PROJECTS</h1>
     <!-- PROJECTS -->
     <div class="project_container">
-        <div class="card">
-            <div class="card2">
-                <div class="card_image"><img
+        <div class="project_card">
+            <div class="project_card2">
+                <div class="project_card_image"><img
                         src="https://camo.githubusercontent.com/500a52f4310760664aadc40b99c93c3c0841450aacb6a225799f2906f0b0fafe/68747470733a2f2f616b736861793230303273696e67682e6769746875622e696f2f416b736861793230303253696e67682f6173736574732f666162696f2d6c756361732d61547047535066616c7a592d756e73706c6173682e6a7067"
                         alt=""></div>
-                <!-- <h2>Youtube Downloader</h2> -->
-                <h2>Youtube Downloader</h2>
-                <div class="tag_container">
-                    <span class="tag_heading">Tags:</span>
-                    <span class="tag">git</span>
-                    <span class="tag">GitHub</span>
-                    <span class="tag">version_control</span>
-                    <span class="tag">python</span>
+                <h2>Youtube Downloader using python</h2>
+                <div class="project_tag_container">
+                    <span class="project_tag_heading">Tags:</span>
+                    <span class="project_tag">git</span>
+                    <span class="project_tag">GitHub</span>
+                    <span class="project_tag">version_control</span>
+                    <span class="project_tag">python</span>
                 </div>
-                <button class="cssbuttons-io-button"> Build Now
-                    <div class="icon">
-                        <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0 0h24v24H0z" fill="none"></path>
-                            <path
-                                d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-                                fill="currentColor"></path>
-                        </svg>
-                    </div>
-                </button>
+                <a href="http://">
+                    <button class="cssbuttons-io-button"> Build Now
+                        <div class="icon">
+                            <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                <path
+                                    d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                    fill="currentColor"></path>
+                            </svg>
+                        </div>
+                    </button>
+                </a>
             </div>
         </div>
     </div>

@@ -27,12 +27,11 @@
             font-size: 3.5rem;
         }
 
-        .m_auto {
-            margin: auto;
-        }
-
-        /* more button  */
+        /* more button css  */
         .more_btn {
+            width: 200px;
+            text-decoration: none;
+            color: black;
             cursor: pointer;
             font-weight: 700;
             font-family: Helvetica, "sans-serif";
@@ -47,11 +46,12 @@
             display: -webkit-box;
             display: -ms-flexbox;
             display: flex;
+            justify-content: center;
             -webkit-box-align: center;
             -ms-flex-align: center;
             align-items: center;
             font-size: 15px;
-            margin-bottom: 15px;
+            margin: 15px auto;
         }
 
         .more_btn:hover {
@@ -94,21 +94,31 @@
             justify-content: center;
         }
 
+        .course_container a {
+            color: white;
+            text-decoration: none;
+            margin: 15px 15px;
+            border-radius: 20px;
+            /* background-color: red; */
+        }
+
         /* card css  */
         .course_card {
-            width: 302px;
-            height: 342px;
+            width: 304px;
+            height: 324px;
             background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
             border-radius: 20px;
             transition: all .3s;
-            margin: 25px 15px;
+            padding-top: 1px;
+            padding-left: 1px;
+            /* margin: 25px 15px; */
             /* padding: 1px 1px; */
         }
 
         .course_card2 {
             margin: 1px 1px;
             width: 300px;
-            height: 340px;
+            height: 320px;
             background-color: #1a1a1a;
             border-radius: 20px;
             transition: all .2s;
@@ -129,24 +139,65 @@
         /* inside card  */
         .course_card_image {
             max-width: 95%;
+            max-height: 200px;
             border-radius: 10px;
-            border: 2px dashed cyan;
+            /* border: 2px dotted cyan; */
             overflow: hidden;
             margin: 10px auto;
+            padding: 5px;
         }
 
         .course_card_image img {
             width: 100%;
-            height: 100%;
+            /* width: 250px; */
+            /* height: 100%; */
+            max-height: 170px;
+            object-fit: contain;
         }
 
         .course_card2 h2 {
             padding: 10px 0px;
+            text-align: center;
+        }
+
+        @media (max-width: 800px) {
+            .course_card {
+                width: 244px;
+                height: 284px;
+            }
+
+            .course_card2 {
+                width: 240px;
+                height: 280px;
+            }
+
+            /* inside card  */
+            .course_card_image {
+                max-width: 95%;
+                max-height: 150px;
+                border-radius: 10px;
+                /* border: 2px dotted cyan; */
+                overflow: hidden;
+                margin: 10px auto;
+                padding: 5px;
+            }
+
+            .course_card_image img {
+                width: 100%;
+                /* width: 250px; */
+                /* height: 100%; */
+                max-height: 170px;
+                object-fit: contain;
+            }
+
+            .course_card2 h2 {
+                padding: 0px 0px;
+            }
         }
 
         /* course section end */
 
-        /* project section start */
+        /* project section start  */
         .project_container {
             width: 90%;
             margin: auto;
@@ -158,9 +209,9 @@
         }
 
         /* card css  */
-        .card {
+        .project_card {
             width: 302px;
-            height: 402px;
+            height: 382px;
             background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
             border-radius: 20px;
             transition: all .3s;
@@ -168,10 +219,10 @@
             /* padding: 1px 1px; */
         }
 
-        .card2 {
+        .project_card2 {
             margin: 1px 1px;
             width: 300px;
-            height: 400px;
+            height: 380px;
             background-color: #1a1a1a;
             border-radius: 20px;
             transition: all .2s;
@@ -179,18 +230,18 @@
             padding: 4px 15px;
         }
 
-        .card2:hover {
+        .project_card2:hover {
             transform: scale(0.98);
             border-radius: 20px;
-            cursor: pointer;
+            cursor: default;
         }
 
-        .card:hover {
+        .project_card:hover {
             box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
         }
 
         /* inside card  */
-        .card_image {
+        .project_card_image {
             max-width: 95%;
             border-radius: 10px;
             border: 2px dashed cyan;
@@ -198,64 +249,98 @@
             margin: 10px auto;
         }
 
-        .card_image img {
+        .project_card_image img {
             width: 100%;
             height: 100%;
         }
 
-        .card2 h2 {
-            padding: 10px 0px;
+        .project_card2 h2 {
+            padding-top: 5px;
+            text-align: center;
         }
 
-        /* project section end */
-
-        /* api and article section start */
-        .api_container {
-            width: 90%;
+        /* card button  */
+        .project_card2 a {
+            text-decoration: none;
+            display: block;
+            width: 160px;
             margin: auto;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            /* justify-content: space-between; */
-            justify-content: center;
-            margin-top: 15px;
         }
 
-        /* card css  */
-        .api_card_container {
+        .cssbuttons-io-button {
             width: 100%;
-            border-radius: 10px;
-            background-color: rgb(107, 255, 122);
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 2px solid black;
+            background: #A370F0;
+            color: white;
+            font-family: inherit;
+            padding: 0.35em;
+            padding-left: 1.2em;
+            font-size: 17px;
+            font-weight: 500;
+            border-radius: 0.9em;
+            border: none;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            box-shadow: inset 0 0 1.6em -0.6em #714da6;
+            overflow: hidden;
+            position: relative;
+            height: 2.8em;
+            padding-right: 3.3em;
+            margin: auto;
         }
 
-        .api_card_container:hover {
+        .cssbuttons-io-button:hover {
             cursor: pointer;
-            background-color: cyan;
-            transition-duration: 0.8s;
         }
 
-        .api_card_heading {
-            font-size: 30px;
+        .cssbuttons-io-button .icon {
+            background: cyan;
+            margin-left: 1em;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 2.0em;
+            width: 2.2em;
+            border-radius: 0.7em;
+            box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
+            right: 0.3em;
+            transition: all 0.3s;
         }
 
-        .api_card_description {
-            font-size: 18px;
-            margin-top: 5px;
+        .cssbuttons-io-button:hover .icon {
+            width: calc(100% - 0.6em);
         }
 
-        .api_tag_container {
-            margin: 0px 5px;
+        .cssbuttons-io-button .icon svg {
+            width: 1.1em;
+            transition: transform 0.3s;
+            color: #7b52b9;
+        }
+
+        .cssbuttons-io-button:hover .icon svg {
+            transform: translateX(0.1em);
+        }
+
+        .cssbuttons-io-button:active .icon {
+            transform: scale(0.95);
+        }
+
+        /* tag  */
+        .project_tag_container {
+            margin-bottom: 12px;
+            height: 35px;
+            overflow: hidden;
             font-size: 13px;
+            color: black;
         }
 
-        .api_tag_heading {
+        .project_tag_heading {
             font-size: 16px;
+            color: white;
         }
 
-        .api_tag {
+        .project_tag {
             border: 1px solid black;
             border-radius: 5px;
             padding: 3px 10px;
@@ -263,16 +348,163 @@
             margin-top: 10px;
             background-color: white;
             display: inline-block;
-            color: black;
         }
 
-        .api_views_container {
+        @media (max-width: 800px) {
+            .project_card {
+                width: 282px;
+                height: 352px;
+            }
+
+            .project_card2 {
+                width: 280px;
+                height: 350px;
+            }
+
+            /* card button  */
+            .project_card2 a {
+                width: 130px;
+            }
+
+            .cssbuttons-io-button {
+                font-size: 14px;
+                padding-right: 0px;
+            }
+
+        }
+
+        /* project section end  */
+
+        /* article_api section start  */
+        .article_api_container {
+            width: 90%;
+            margin: auto;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            /* justify-content: space-between; */
+            justify-content: center;
+        }
+
+        .article_api_container>a {
+            display: block;
+            width: 100%;
+            text-decoration: none;
+            color: black;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            /* background-color: rebeccapurple; */
+        }
+
+        /* card css  */
+        .article_api_card_container {
+            width: 100%;
+            border-radius: 10px;
+            background-color: cyan;
+            /* background-color: rgb(107, 255, 122); */
+            padding: 10px;
+            border: 2px solid black;
+        }
+
+        .article_api_card_container:hover {
+            cursor: pointer;
+            /* background-color: cyan;
+            transition-duration: 0.8s; */
+        }
+
+        .article_api_card_heading {
+            font-size: 30px;
+        }
+
+        .article_api_tag_container {
+            margin: 0px 5px;
+            font-size: 13px;
+        }
+
+        .article_api_tag_heading {
+            font-size: 16px;
+        }
+
+        .article_api_tag {
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 3px 10px;
+            margin-right: 3px;
+            margin-top: 10px;
+            display: inline-block;
+            background-color: white;
+        }
+
+        .article_api_views_container {
             margin: 0px 5px;
             margin-top: 5px;
             font-size: 15px;
         }
 
-        /* api and article section end */
+        /* article_api section end  */
+
+
+        @media (max-width: 800px) {
+            .course_card {
+                width: 244px;
+                height: 284px;
+            }
+
+            .course_card2 {
+                width: 240px;
+                height: 280px;
+            }
+
+            /* inside card  */
+            .course_card_image {
+                max-width: 95%;
+                max-height: 150px;
+                border-radius: 10px;
+                /* border: 2px dotted cyan; */
+                overflow: hidden;
+                margin: 10px auto;
+                padding: 5px;
+            }
+
+            .course_card_image img {
+                width: 100%;
+                /* width: 250px; */
+                /* height: 100%; */
+                max-height: 170px;
+                object-fit: contain;
+            }
+
+            .course_card2 h2 {
+                padding: 0px 0px;
+            }
+
+            /* projects  */
+            .card {
+                width: 282px;
+                height: 352px;
+            }
+
+            .card2 {
+                width: 280px;
+                height: 350px;
+            }
+
+            /* card button  */
+            .card2 a {
+                width: 130px;
+            }
+
+            .cssbuttons-io-button {
+                font-size: 14px;
+                padding-right: 0px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .main_heading {
+                font-size: 2.5rem;
+            }
+        }
     </style>
     <title>Document</title>
 </head>
@@ -307,22 +539,27 @@
     </nav>
 
     <!-- course section start  -->
-    <div id="project_wrapper">
+    <div id="course_wrapper">
         <!-- heading -->
         <h1 class="main_heading">Courses</h1>
         <!-- courses -->
         <div class="course_container">
-            <div class="course_card">
-                <div class="course_card2">
-                    <div class="course_card_image"><img
-                            src="https://camo.githubusercontent.com/500a52f4310760664aadc40b99c93c3c0841450aacb6a225799f2906f0b0fafe/68747470733a2f2f616b736861793230303273696e67682e6769746875622e696f2f416b736861793230303253696e67682f6173736574732f666162696f2d6c756361732d61547047535066616c7a592d756e73706c6173682e6a7067"
-                            alt=""></div>
-                    <!-- <h2>Youtube Downloader</h2> -->
-                    <h2>Youtube Downloader</h2>
+            <!-- start  -->
+            <a href="{{x.title}}">
+                <div class="course_card">
+                    <div class="course_card2">
+                        <div class="course_card_image"><img
+                                src="https://camo.githubusercontent.com/500a52f4310760664aadc40b99c93c3c0841450aacb6a225799f2906f0b0fafe/68747470733a2f2f616b736861793230303273696e67682e6769746875622e696f2f416b736861793230303253696e67682f6173736574732f666162696f2d6c756361732d61547047535066616c7a592d756e73706c6173682e6a7067"
+                                alt=""></div>
+                        <h2>Youtube Downloader</h2>
+                    </div>
                 </div>
-            </div>
+            </a>
+            <!-- end -->
         </div>
-        <button class="more_btn m_auto">
+
+
+        <a href="" class="more_btn m_auto">
             <span>More Courses</span>
             <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
@@ -330,7 +567,7 @@
                     d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z"
                     fill="black"></path>
             </svg>
-        </button>
+        </a>
     </div>
     <!-- course section end  -->
 
@@ -340,57 +577,36 @@
         <h1 class="main_heading">PROJECTS</h1>
         <!-- PROJECTS -->
         <div class="project_container">
-            <div class="card">
-                <div class="card2">
-                    <div class="card_image"><img
+            <div class="project_card">
+                <div class="project_card2">
+                    <div class="project_card_image"><img
                             src="https://camo.githubusercontent.com/500a52f4310760664aadc40b99c93c3c0841450aacb6a225799f2906f0b0fafe/68747470733a2f2f616b736861793230303273696e67682e6769746875622e696f2f416b736861793230303253696e67682f6173736574732f666162696f2d6c756361732d61547047535066616c7a592d756e73706c6173682e6a7067"
                             alt=""></div>
-                    <!-- <h2>Youtube Downloader</h2> -->
-                    <h2>Youtube Downloader</h2>
-
-                    <div class="api_tag_container">
-                        <span class="api_tag_heading">Tags:</span>
-                        <span class="api_tag">git</span>
-                        <span class="api_tag">GitHub</span>
-                        <span class="api_tag">version_control</span>
-                        <span class="api_tag">python</span>
+                    <h2>Youtube Downloader using python</h2>
+                    <div class="project_tag_container">
+                        <span class="project_tag_heading">Tags:</span>
+                        <span class="project_tag">git</span>
+                        <span class="project_tag">GitHub</span>
+                        <span class="project_tag">version_control</span>
+                        <span class="project_tag">python</span>
                     </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card2">
-                    <div class="card_image"><img
-                            src="https://camo.githubusercontent.com/500a52f4310760664aadc40b99c93c3c0841450aacb6a225799f2906f0b0fafe/68747470733a2f2f616b736861793230303273696e67682e6769746875622e696f2f416b736861793230303253696e67682f6173736574732f666162696f2d6c756361732d61547047535066616c7a592d756e73706c6173682e6a7067"
-                            alt=""></div>
-                    <h2>Youtube Downloader</h3>
-                        <div class="api_tag_container">
-                            <span class="api_tag_heading">Tags:</span>
-                            <span class="api_tag">git</span>
-                            <span class="api_tag">GitHub</span>
-                            <span class="api_tag">version_control</span>
-                            <span class="api_tag">python</span>
-                        </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card2">
-                    <div class="card_image"><img
-                            src="https://camo.githubusercontent.com/500a52f4310760664aadc40b99c93c3c0841450aacb6a225799f2906f0b0fafe/68747470733a2f2f616b736861793230303273696e67682e6769746875622e696f2f416b736861793230303253696e67682f6173736574732f666162696f2d6c756361732d61547047535066616c7a592d756e73706c6173682e6a7067"
-                            alt=""></div>
-                    <h2>Youtube Downloader Youtube Downloader Youtube Downloader</h3>
-                        <div class="api_tag_container">
-                            <span class="api_tag_heading">Tags:</span>
-                            <span class="api_tag">git</span>
-                            <span class="api_tag">GitHub</span>
-                            <span class="api_tag">version_control</span>
-                            <span class="api_tag">python</span>
-                        </div>
+                    <a href="http://">
+                        <button class="cssbuttons-io-button"> Build Now
+                            <div class="icon">
+                                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                        d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                        fill="currentColor"></path>
+                                </svg>
+                            </div>
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
-        <button class="more_btn m_auto">
+
+        <a href="xyz" class="more_btn m_auto">
             <span>More Projects</span>
             <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
@@ -398,39 +614,40 @@
                     d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z"
                     fill="black"></path>
             </svg>
-        </button>
+        </a>
     </div>
     <!-- project section end  -->
 
     <!--article section start -->
-    <div id="api_wrapper">
+    <div id="article_wrapper">
         <h1 class="main_heading">Latest Articles</h1>
         <!-- articles -->
-        <div class="api_container">
+        <div class="article_api_container">
             <!-- start  -->
-            <div class="api_card_container"
-                onclick="location.href = 'https://stackoverflow.com/questions/16562577/how-can-i-make-a-button-redirect-my-page-to-another-page';">
-                <h1 class="api_card_heading">
-                    GitHub Api
-                </h1>
-                <div class="api_card_description">
-                    GitHub Provides its api to fetch users public data. We can get name of repos, description of repos,
-                    languages used, number of commits, number of contributors, followers, following and much more.
+            <a href="/article/{{x.api_link}}">
+                <div class="article_api_card_container">
+                    <h1 class="article_api_card_heading">
+                        GitHub Api Explore
+                    </h1>
+                    <div class="article_api_tag_container">
+                        <span class="article_api_tag_heading">Tags:</span>
+                        <span class="article_api_tag">html</span>
+                        <span class="article_api_tag">CSS</span>
+                        <span class="article_api_tag">html</span>
+                        <span class="article_api_tag">html</span>
+                        <span class="article_api_tag">html</span>
+                        <span class="article_api_tag">html</span>
+                    </div>
+                    <div class="article_api_views_container">
+                        <span class="article_api_view_heading ">Views:</span>
+                        <span class="article_api_views">285</span>
+                    </div>
                 </div>
-                <div class="api_tag_container">
-                    <span class="api_tag_heading">Tags:</span>
-                    <span class="api_tag">git</span>
-                    <span class="api_tag">GitHub</span>
-                    <span class="api_tag">version_control</span>
-                    <span class="api_tag">python</span>
-                </div>
-                <div class="api_views_container">
-                    <span class="api_view_heading ">Views:</span>
-                    <span class="api_views">285</span>
-                </div>
-            </div>
+            </a>
+            <!-- end  -->
         </div>
-        <button class="more_btn m_auto">
+
+        <a href="xyz" class="more_btn m_auto">
             <span>More Articles</span>
             <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
@@ -438,7 +655,7 @@
                     d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z"
                     fill="black"></path>
             </svg>
-        </button>
+        </a>
     </div>
     <!--article section end -->
 
@@ -446,31 +663,32 @@
     <div id="api_wrapper">
         <h1 class="main_heading">Latest APIs</h1>
         <!-- APIs -->
-        <div class="api_container">
+        <div class="article_api_container">
             <!-- start  -->
-            <div class="api_card_container"
-                onclick="location.href = 'https://stackoverflow.com/questions/16562577/how-can-i-make-a-button-redirect-my-page-to-another-page';">
-                <h1 class="api_card_heading">
-                    GitHub Api
-                </h1>
-                <div class="api_card_description">
-                    GitHub Provides its api to fetch users public data. We can get name of repos, description of repos,
-                    languages used, number of commits, number of contributors, followers, following and much more.
+            <a href="/article/{{x.api_link}}">
+                <div class="article_api_card_container">
+                    <h1 class="article_api_card_heading">
+                        GitHub Api Explore
+                    </h1>
+                    <div class="article_api_tag_container">
+                        <span class="article_api_tag_heading">Tags:</span>
+                        <span class="article_api_tag">html</span>
+                        <span class="article_api_tag">CSS</span>
+                        <span class="article_api_tag">html</span>
+                        <span class="article_api_tag">html</span>
+                        <span class="article_api_tag">html</span>
+                        <span class="article_api_tag">html</span>
+                    </div>
+                    <div class="article_api_views_container">
+                        <span class="article_api_view_heading ">Views:</span>
+                        <span class="article_api_views">285</span>
+                    </div>
                 </div>
-                <div class="api_tag_container">
-                    <span class="api_tag_heading">Tags:</span>
-                    <span class="api_tag">git</span>
-                    <span class="api_tag">GitHub</span>
-                    <span class="api_tag">version_control</span>
-                    <span class="api_tag">python</span>
-                </div>
-                <div class="api_views_container">
-                    <span class="api_view_heading ">Views:</span>
-                    <span class="api_views">285</span>
-                </div>
-            </div>
+            </a>
+            <!-- end  -->
         </div>
-        <button class="more_btn m_auto">
+
+        <a href="http://" class="more_btn m_auto">
             <span>More APIs</span>
             <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
@@ -478,7 +696,7 @@
                     d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z"
                     fill="black"></path>
             </svg>
-        </button>
+        </a>
     </div>
     <!--api section end -->
     <footer>

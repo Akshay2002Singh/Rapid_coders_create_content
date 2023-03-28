@@ -21,7 +21,7 @@
             font-size: 3.5rem;
         }
 
-        .project_container {
+        .article_api_container {
             width: 90%;
             margin: auto;
             display: flex;
@@ -31,37 +31,46 @@
             justify-content: center;
         }
 
+        .article_api_container>a {
+            display: block;
+            width: 100%;
+            text-decoration: none;
+            color: black;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            /* background-color: rebeccapurple; */
+        }
+
         /* card css  */
-        .card_container {
+        .article_api_card_container {
             width: 100%;
             border-radius: 10px;
             background-color: cyan;
             /* background-color: rgb(107, 255, 122); */
             padding: 10px;
-            margin-bottom: 20px;
             border: 2px solid black;
         }
 
-        .card_container:hover {
+        .article_api_card_container:hover {
             cursor: pointer;
             /* background-color: cyan;
             transition-duration: 0.8s; */
         }
 
-        .card_heading {
+        .article_api_card_heading {
             font-size: 30px;
         }
 
-        .tag_container {
+        .article_api_tag_container {
             margin: 0px 5px;
             font-size: 13px;
         }
 
-        .tag_heading {
+        .article_api_tag_heading {
             font-size: 16px;
         }
 
-        .tag {
+        .article_api_tag {
             border: 1px solid black;
             border-radius: 5px;
             padding: 3px 10px;
@@ -71,7 +80,7 @@
             background-color: white;
         }
 
-        .views_container {
+        .article_api_views_container {
             margin: 0px 5px;
             margin-top: 5px;
             font-size: 15px;
@@ -110,149 +119,29 @@
     </nav>
     <!-- heading -->
     <h1 class="main_heading">Articles</h1>
-    <!-- PROJECTS -->
-    <div class="project_container">
+    <!-- articles -->
+    <div class="article_api_container">
         <!-- start  -->
-        <div class="card_container" onclick="location.href = 'https://stackoverflow.com/questions/16562577/how-can-i-make-a-button-redirect-my-page-to-another-page';">
-            <h1 class="card_heading">
-                GitHub Api Explore
-            </h1>
-            <div class="tag_container">
-                <span class="tag_heading">Tags:</span>
-                <span class="tag">html</span>
-                <span class="tag">CSS</span>
-                <span class="tag">Javascript</span>
-                <span class="tag">git</span>
-                <span class="tag">GitHub</span>
-                <span class="tag">version_control</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
+        <a href="/article/{{x.api_link}}">
+            <div class="article_api_card_container">
+                <h1 class="article_api_card_heading">
+                    GitHub Api Explore
+                </h1>
+                <div class="article_api_tag_container">
+                    <span class="article_api_tag_heading">Tags:</span>
+                    <span class="article_api_tag">html</span>
+                    <span class="article_api_tag">CSS</span>
+                    <span class="article_api_tag">html</span>
+                    <span class="article_api_tag">html</span>
+                    <span class="article_api_tag">html</span>
+                    <span class="article_api_tag">html</span>
+                </div>
+                <div class="article_api_views_container">
+                    <span class="article_api_view_heading ">Views:</span>
+                    <span class="article_api_views">285</span>
+                </div>
             </div>
-            <div class="views_container">
-                <span class="view_heading ">Views:</span>
-                <span class="views">285</span>
-            </div>
-        </div>
-        <div class="card_container" onclick="location.href = 'https://stackoverflow.com/questions/16562577/how-can-i-make-a-button-redirect-my-page-to-another-page';">
-            <h1 class="card_heading">
-                GitHub Api Explore
-            </h1>
-            <div class="tag_container">
-                <span class="tag_heading">Tags:</span>
-                <span class="tag">html</span>
-                <span class="tag">CSS</span>
-                <span class="tag">Javascript</span>
-                <span class="tag">git</span>
-                <span class="tag">GitHub</span>
-                <span class="tag">version_control</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-            </div>
-            <div class="views_container">
-                <span class="view_heading ">Views:</span>
-                <span class="views">285</span>
-            </div>
-        </div>
-        <div class="card_container" onclick="location.href = 'https://stackoverflow.com/questions/16562577/how-can-i-make-a-button-redirect-my-page-to-another-page';">
-            <h1 class="card_heading">
-                GitHub Api Explore
-            </h1>
-            <div class="tag_container">
-                <span class="tag_heading">Tags:</span>
-                <span class="tag">html</span>
-                <span class="tag">CSS</span>
-                <span class="tag">Javascript</span>
-                <span class="tag">git</span>
-                <span class="tag">GitHub</span>
-                <span class="tag">version_control</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-            </div>
-            <div class="views_container">
-                <span class="view_heading ">Views:</span>
-                <span class="views">285</span>
-            </div>
-        </div>
-        <div class="card_container" onclick="location.href = 'https://stackoverflow.com/questions/16562577/how-can-i-make-a-button-redirect-my-page-to-another-page';">
-            <h1 class="card_heading">
-                GitHub Api Explore
-            </h1>
-            <div class="tag_container">
-                <span class="tag_heading">Tags:</span>
-                <span class="tag">html</span>
-                <span class="tag">CSS</span>
-                <span class="tag">Javascript</span>
-                <span class="tag">git</span>
-                <span class="tag">GitHub</span>
-                <span class="tag">version_control</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-            </div>
-            <div class="views_container">
-                <span class="view_heading ">Views:</span>
-                <span class="views">285</span>
-            </div>
-        </div>
-        <div class="card_container" onclick="location.href = 'https://stackoverflow.com/questions/16562577/how-can-i-make-a-button-redirect-my-page-to-another-page';">
-            <h1 class="card_heading">
-                GitHub Api Explore
-            </h1>
-            <div class="tag_container">
-                <span class="tag_heading">Tags:</span>
-                <span class="tag">html</span>
-                <span class="tag">CSS</span>
-                <span class="tag">Javascript</span>
-                <span class="tag">git</span>
-                <span class="tag">GitHub</span>
-                <span class="tag">version_control</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-                <span class="tag">html</span>
-            </div>
-            <div class="views_container">
-                <span class="view_heading ">Views:</span>
-                <span class="views">285</span>
-            </div>
-        </div>
+        </a>
         <!-- end  -->
     </div>
 
