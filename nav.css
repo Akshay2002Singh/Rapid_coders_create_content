@@ -171,7 +171,11 @@
     }
 
     .navbar a{
-        padding: 5px 58px;
+        display: inline-block;
+        width: 160px;
+        height: 30px;
+        text-align: center;
+
     }
 
     .logo{
