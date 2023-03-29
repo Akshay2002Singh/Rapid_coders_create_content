@@ -41,6 +41,7 @@
 .login{
     order: 3;
     display: flex;
+    display: none;
 }
 .login button{
     list-style: none;
@@ -166,7 +167,12 @@
         margin-bottom: 1.8rem;
         font-size: 1.1rem;
         font-weight: 500;
-        /* margin: auto; */
+        margin: auto;
+        /* margin-bottom: 5px; */
+    }
+
+    .navbar a{
+        padding: 5px 58px;
     }
 
     .logo{
