@@ -20,7 +20,7 @@
 }
 
 #logo-brand h1 {
-    color: rgb(255, 91, 253);
+    color: rgb(110, 87, 224);
     font-size: 30px;
     font-weight: bold;
     display: flex;
@@ -52,7 +52,7 @@
     padding: 0px 5px;
 }
 .foot_link_text{
-    color: cyan;
+    color: white;
     padding: 1px 0px;
     font-size: 17px;
 }

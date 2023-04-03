@@ -19,14 +19,17 @@
         /* common css */
         .main_heading {
             padding: 10px 0px;
-            color: rgb(255, 36, 255);
+            /* color: rgb(110, 87, 224); */
+            color: wheat;
             text-align: center;
             font-size: 3.5rem;
         }
 
         .project_container {
-            width: 90%;
+            width: 90%; 
+            max-width: 1300px;
             margin: auto;
+            margin-bottom: 10px;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
@@ -35,15 +38,6 @@
         }
 
         /* card css  */
-        .project_card {
-            width: 302px;
-            height: 382px;
-            background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
-            border-radius: 20px;
-            transition: all .3s;
-            margin: 25px 15px;
-            /* padding: 1px 1px; */
-        }
 
         .project_card2 {
             margin: 1px 1px;
@@ -52,8 +46,9 @@
             background-color: #1a1a1a;
             border-radius: 20px;
             transition: all .2s;
+            border: 2px solid rgb(110, 87, 224);
             color: white;
-            padding: 4px 15px;
+            overflow: hidden;
         }
 
         .project_card2:hover {
@@ -62,29 +57,22 @@
             cursor: default;
         }
 
-        .project_card:hover {
-            box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
-        }
-
         /* inside card  */
         .project_card_image {
-            max-width: 95%;
+            width: 100%;
             max-height: 200px;
             border-radius: 10px;
             overflow: hidden;
-            margin: 10px auto;
-            padding: 5px;
         }
 
         .project_card_image img {
             width: 100%;
-            height: 100%;
-            max-height: 170px;
-            object-fit: contain;
+            object-fit: cover;
         }
 
         .project_card2 h2 {
-            /* padding-top: 5px; */
+            padding: 0px 15px;
+            padding-top: 5px;
             text-align: center;
             font-weight: normal;
             letter-spacing: 0.2mm;
@@ -101,7 +89,7 @@
         .cssbuttons-io-button {
             width: 100%;
             background: #A370F0;
-            color: white;
+            color: rgb(255, 255, 255);
             font-family: inherit;
             padding: 0.35em;
             padding-left: 1.2em;
@@ -125,7 +113,8 @@
         }
 
         .cssbuttons-io-button .icon {
-            background: cyan;
+            /* background: rgb(110, 87, 224); */
+            background-color: rgb(46, 43, 43);
             margin-left: 1em;
             position: absolute;
             display: flex;
@@ -146,7 +135,7 @@
         .cssbuttons-io-button .icon svg {
             width: 1.1em;
             transition: transform 0.3s;
-            color: #7b52b9;
+            /* color: #7b52b9; */
         }
 
         .cssbuttons-io-button:hover .icon svg {
@@ -159,6 +148,7 @@
 
         /* tag  */
         .project_tag_container {
+            padding: 0px 15px;
             margin-bottom: 12px;
             height: 35px;
             overflow: hidden;
@@ -182,11 +172,6 @@
         }
 
         @media (max-width: 800px) {
-            .project_card {
-                width: 282px;
-                height: 362px;
-            }
-
             .project_card2 {
                 width: 280px;
                 height: 360px;
@@ -198,7 +183,7 @@
             }
 
             .project_card_image img {
-                max-height: 140px;
+                max-height: 170px;
             }
 
             /* card button  */
@@ -210,7 +195,6 @@
                 font-size: 14px;
                 padding-right: 0px;
             }
-
         }
     </style>
     <title>Projects</title>
@@ -248,32 +232,29 @@
     <h1 class="main_heading">PROJECTS</h1>
     <!-- PROJECTS -->
     <div class="project_container">
-        <div class="project_card">
-            <div class="project_card2">
-                <div class="project_card_image"><img
-                        src="https://camo.githubusercontent.com/500a52f4310760664aadc40b99c93c3c0841450aacb6a225799f2906f0b0fafe/68747470733a2f2f616b736861793230303273696e67682e6769746875622e696f2f416b736861793230303253696e67682f6173736574732f666162696f2d6c756361732d61547047535066616c7a592d756e73706c6173682e6a7067"
-                        alt=""></div>
-                <h2>Youtube Downloader using python</h2>
-                <div class="project_tag_container">
-                    <span class="project_tag_heading">Tags:</span>
-                    <span class="project_tag">git</span>
-                    <span class="project_tag">GitHub</span>
-                    <span class="project_tag">version_control</span>
-                    <span class="project_tag">python</span>
-                </div>
-                <a href="http://">
-                    <button class="cssbuttons-io-button"> Build Now
-                        <div class="icon">
-                            <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0 0h24v24H0z" fill="none"></path>
-                                <path
-                                    d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-                                    fill="currentColor"></path>
-                            </svg>
-                        </div>
-                    </button>
-                </a>
+        <div class="project_card2">
+            <div class="project_card_image"><img
+                    src="https://camo.githubusercontent.com/500a52f4310760664aadc40b99c93c3c0841450aacb6a225799f2906f0b0fafe/68747470733a2f2f616b736861793230303273696e67682e6769746875622e696f2f416b736861793230303253696e67682f6173736574732f666162696f2d6c756361732d61547047535066616c7a592d756e73706c6173682e6a7067"
+                    alt=""></div>
+            <h2>Youtube Downloader using python</h2>
+            <div class="project_tag_container">
+                <span class="project_tag_heading">Tags:</span>
+                <span class="project_tag">git</span>
+                <span class="project_tag">GitHub</span>
+                <span class="project_tag">version_control</span>
+                <span class="project_tag">python</span>
             </div>
+            <a href="http://">
+                <button class="cssbuttons-io-button"> Build Now
+                    <div class="icon">
+                        <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </div>
+                </button>
+            </a>
         </div>
     </div>
 

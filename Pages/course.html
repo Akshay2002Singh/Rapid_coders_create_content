@@ -16,7 +16,8 @@
         /* common css */
         .main_heading {
             padding-top: 15px;
-            color: rgb(255, 36, 255);
+            color: rgb(110, 87, 224);
+            /* color: rgb(110, 87, 224); */
             text-align: center;
             font-size: 3.5rem;
         }
@@ -24,7 +25,9 @@
         /* course section start */
         .course_container {
             width: 90%;
+            max-width: 1300px;
             margin: auto;
+            margin-bottom: 10px;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
@@ -42,17 +45,6 @@
         }
 
         /* card css  */
-        .course_card {
-            width: 304px;
-            height: 324px;
-            background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
-            border-radius: 20px;
-            transition: all .3s;
-            padding-top: 1px;
-            padding-left: 1px;
-            /* margin: 25px 15px; */
-            /* padding: 1px 1px; */
-        }
 
         .course_card2 {
             margin: 1px 1px;
@@ -62,7 +54,8 @@
             border-radius: 20px;
             transition: all .2s;
             color: white;
-            padding: 4px 15px;
+            overflow: hidden;
+            border: 2px solid rgb(110, 87, 224);
         }
 
         .course_card2:hover {
@@ -77,33 +70,26 @@
 
         /* inside card  */
         .course_card_image {
-            max-width: 95%;
-            max-height: 200px;
+            width: 100%;
+            height: 200px;
             border-radius: 10px;
             overflow: hidden;
-            margin: 10px auto;
-            padding: 5px;
         }
 
         .course_card_image img {
             width: 100%;
-            height: 100%;
-            max-height: 170px;
-            object-fit: contain;
+            max-height: 200px;
+            object-fit: cover;
         }
 
         .course_card2 h2 {
-            padding: 10px 0px;
+            padding: 10px 15px;
             text-align: center;
             font-weight: normal;
             letter-spacing: 0.2mm;
         }
 
         @media (max-width: 800px) {
-            .course_card {
-                width: 244px;
-                height: 264px;
-            }
 
             .course_card2 {
                 width: 240px;
@@ -116,18 +102,13 @@
             }
 
             .course_card_image img {
-                width: 100%;
-                height: 100%;
                 max-height: 140px;
-                object-fit: contain;
             }
 
             .course_card2 h2 {
-                padding: 0px 0px;
+                padding: 0px 5px;
             }
         }
-
-        /* course section end */
 
         /* course section end */
     </style>
@@ -168,46 +149,38 @@
     <div class="course_container">
         <!-- start  -->
         <a href="{{x.title}}">
-            <div class="course_card">
-                <div class="course_card2">
-                    <div class="course_card_image"><img
-                            src="https://camo.githubusercontent.com/500a52f4310760664aadc40b99c93c3c0841450aacb6a225799f2906f0b0fafe/68747470733a2f2f616b736861793230303273696e67682e6769746875622e696f2f416b736861793230303253696e67682f6173736574732f666162696f2d6c756361732d61547047535066616c7a592d756e73706c6173682e6a7067"
-                            alt=""></div>
-                    <h2>Youtube Downloader</h2>
-                </div>
+            <div class="course_card2">
+                <div class="course_card_image"><img
+                        src="https://camo.githubusercontent.com/500a52f4310760664aadc40b99c93c3c0841450aacb6a225799f2906f0b0fafe/68747470733a2f2f616b736861793230303273696e67682e6769746875622e696f2f416b736861793230303253696e67682f6173736574732f666162696f2d6c756361732d61547047535066616c7a592d756e73706c6173682e6a7067"
+                        alt=""></div>
+                <h2>Youtube Downloader</h2>
             </div>
         </a>
 
         <a href="{{x.title}}">
-            <div class="course_card">
-                <div class="course_card2">
-                    <div class="course_card_image"><img
-                            src="https://images.unsplash.com/photo-1637140079462-cfef556040a3?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&ixid=MnwxfDB8MXxyYW5kb218MHx8UmFpbnx8fHx8fDE2ODAwMjUzMjY&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=250"
-                            alt=""></div>
-                    <h2>Youtube Downloader</h2>
-                </div>
+            <div class="course_card2">
+                <div class="course_card_image"><img
+                        src="https://images.unsplash.com/photo-1637140079462-cfef556040a3?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&ixid=MnwxfDB8MXxyYW5kb218MHx8UmFpbnx8fHx8fDE2ODAwMjUzMjY&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=250"
+                        alt=""></div>
+                <h2>Youtube Downloader</h2>
             </div>
         </a>
 
         <a href="{{x.title}}">
-            <div class="course_card">
-                <div class="course_card2">
-                    <div class="course_card_image"><img
-                            src="https://camo.githubusercontent.com/500a52f4310760664aadc40b99c93c3c0841450aacb6a225799f2906f0b0fafe/68747470733a2f2f616b736861793230303273696e67682e6769746875622e696f2f416b736861793230303253696e67682f6173736574732f666162696f2d6c756361732d61547047535066616c7a592d756e73706c6173682e6a7067"
-                            alt=""></div>
-                    <h2>Youtube Downloader</h2>
-                </div>
+            <div class="course_card2">
+                <div class="course_card_image"><img
+                        src="https://camo.githubusercontent.com/500a52f4310760664aadc40b99c93c3c0841450aacb6a225799f2906f0b0fafe/68747470733a2f2f616b736861793230303273696e67682e6769746875622e696f2f416b736861793230303253696e67682f6173736574732f666162696f2d6c756361732d61547047535066616c7a592d756e73706c6173682e6a7067"
+                        alt=""></div>
+                <h2>Youtube Downloader</h2>
             </div>
         </a>
 
         <a href="{{x.title}}">
-            <div class="course_card">
-                <div class="course_card2">
-                    <div class="course_card_image"><img
-                            src="https://camo.githubusercontent.com/500a52f4310760664aadc40b99c93c3c0841450aacb6a225799f2906f0b0fafe/68747470733a2f2f616b736861793230303273696e67682e6769746875622e696f2f416b736861793230303253696e67682f6173736574732f666162696f2d6c756361732d61547047535066616c7a592d756e73706c6173682e6a7067"
-                            alt=""></div>
-                    <h2>Youtube Downloader</h2>
-                </div>
+            <div class="course_card2">
+                <div class="course_card_image"><img
+                        src="https://camo.githubusercontent.com/500a52f4310760664aadc40b99c93c3c0841450aacb6a225799f2906f0b0fafe/68747470733a2f2f616b736861793230303273696e67682e6769746875622e696f2f416b736861793230303253696e67682f6173736574732f666162696f2d6c756361732d61547047535066616c7a592d756e73706c6173682e6a7067"
+                        alt=""></div>
+                <h2>Youtube Downloader</h2>
             </div>
         </a>
 

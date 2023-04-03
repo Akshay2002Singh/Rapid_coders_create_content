@@ -22,7 +22,8 @@
         /* common css */
         .main_heading {
             padding-top: 10px;
-            color: rgb(255, 36, 255);
+            /* color: rgb(110, 87, 224); */
+            color: white;
             text-align: center;
             font-size: 3.5rem;
         }
@@ -41,7 +42,7 @@
             /* border-radius: 100px; */
             border-radius: 10px;
             /* background: wheat */
-            background: #cfef00;
+            background-color: rgb(182, 168, 255);
             border: 1px solid transparent;
             display: -webkit-box;
             display: -ms-flexbox;
@@ -55,7 +56,7 @@
         }
 
         .more_btn:hover {
-            background: #c4e201;
+            background: rgb(201, 192, 255);
         }
 
         .more_btn>svg {
@@ -84,9 +85,12 @@
         }
 
         /* course section start */
+        
         .course_container {
             width: 90%;
+            max-width: 1300px;
             margin: auto;
+            margin-bottom: 10px;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
@@ -104,17 +108,6 @@
         }
 
         /* card css  */
-        .course_card {
-            width: 304px;
-            height: 324px;
-            background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
-            border-radius: 20px;
-            transition: all .3s;
-            padding-top: 1px;
-            padding-left: 1px;
-            /* margin: 25px 15px; */
-            /* padding: 1px 1px; */
-        }
 
         .course_card2 {
             margin: 1px 1px;
@@ -124,7 +117,8 @@
             border-radius: 20px;
             transition: all .2s;
             color: white;
-            padding: 4px 15px;
+            overflow: hidden;
+            border: 2px solid rgb(110, 87, 224);
         }
 
         .course_card2:hover {
@@ -139,34 +133,26 @@
 
         /* inside card  */
         .course_card_image {
-            max-width: 95%;
-            max-height: 200px;
+            width: 100%;
+            height: 200px;
             border-radius: 10px;
             overflow: hidden;
-            margin: 10px auto;
-            padding: 5px;
         }
 
         .course_card_image img {
             width: 100%;
-            height: 100%;
-            max-height: 170px;
-            object-fit: contain;
+            max-height: 200px;
+            object-fit: cover;
         }
 
         .course_card2 h2 {
-            padding: 10px 0px;
+            padding: 10px 15px;
             text-align: center;
-            
             font-weight: normal;
             letter-spacing: 0.2mm;
         }
 
         @media (max-width: 800px) {
-            .course_card {
-                width: 244px;
-                height: 264px;
-            }
 
             .course_card2 {
                 width: 240px;
@@ -179,15 +165,11 @@
             }
 
             .course_card_image img {
-                width: 100%;
-                height: 100%;
                 max-height: 140px;
-                object-fit: contain;
             }
 
             .course_card2 h2 {
-                padding: 0px 0px;
-                
+                padding: 0px 5px;
             }
         }
 
@@ -196,8 +178,10 @@
 
         /* project section start  */
         .project_container {
-            width: 90%;
+            width: 90%; 
+            max-width: 1300px;
             margin: auto;
+            margin-bottom: 10px;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
@@ -206,15 +190,6 @@
         }
 
         /* card css  */
-        .project_card {
-            width: 302px;
-            height: 382px;
-            background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
-            border-radius: 20px;
-            transition: all .3s;
-            margin: 25px 15px;
-            /* padding: 1px 1px; */
-        }
 
         .project_card2 {
             margin: 1px 1px;
@@ -223,8 +198,9 @@
             background-color: #1a1a1a;
             border-radius: 20px;
             transition: all .2s;
+            border: 2px solid rgb(110, 87, 224);
             color: white;
-            padding: 4px 15px;
+            overflow: hidden;
         }
 
         .project_card2:hover {
@@ -233,28 +209,22 @@
             cursor: default;
         }
 
-        .project_card:hover {
-            box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
-        }
-
         /* inside card  */
         .project_card_image {
-            max-width: 95%;
+            width: 100%;
             max-height: 200px;
             border-radius: 10px;
             overflow: hidden;
-            margin: 10px auto;
-            padding: 5px;
         }
 
         .project_card_image img {
             width: 100%;
-            height: 100%;
-            max-height: 170px;
-            object-fit: contain;
+            object-fit: cover;
         }
 
         .project_card2 h2 {
+            padding: 0px 15px;
+            padding-top: 5px;
             text-align: center;
             font-weight: normal;
             letter-spacing: 0.2mm;
@@ -271,7 +241,7 @@
         .cssbuttons-io-button {
             width: 100%;
             background: #A370F0;
-            color: white;
+            color: rgb(255, 255, 255);
             font-family: inherit;
             padding: 0.35em;
             padding-left: 1.2em;
@@ -295,7 +265,8 @@
         }
 
         .cssbuttons-io-button .icon {
-            background: cyan;
+            /* background: rgb(110, 87, 224); */
+            background-color: rgb(46, 43, 43);
             margin-left: 1em;
             position: absolute;
             display: flex;
@@ -316,7 +287,7 @@
         .cssbuttons-io-button .icon svg {
             width: 1.1em;
             transition: transform 0.3s;
-            color: #7b52b9;
+            /* color: #7b52b9; */
         }
 
         .cssbuttons-io-button:hover .icon svg {
@@ -329,6 +300,7 @@
 
         /* tag  */
         .project_tag_container {
+            padding: 0px 15px;
             margin-bottom: 12px;
             height: 35px;
             overflow: hidden;
@@ -352,11 +324,6 @@
         }
 
         @media (max-width: 800px) {
-            .project_card {
-                width: 282px;
-                height: 362px;
-            }
-
             .project_card2 {
                 width: 280px;
                 height: 360px;
@@ -368,7 +335,7 @@
             }
 
             .project_card_image img {
-                max-height: 140px;
+                max-height: 170px;
             }
 
             /* card button  */
@@ -380,7 +347,6 @@
                 font-size: 14px;
                 padding-right: 0px;
             }
-
         }
 
         /* project section end  */
@@ -400,18 +366,18 @@
             display: block;
             width: 100%;
             text-decoration: none;
-            color: black;
+            color: white;
             margin-bottom: 20px;
             border-radius: 10px;
             overflow: hidden;
-            background-color: rebeccapurple;
+            /* background-color: rebeccapurple; */
         }
 
         /* card css  */
         .article_api_card_container {
             width: 100%;
             border-radius: 10px;
-            background-color: cyan;
+            background-color: rgb(110, 87, 224,0.6);
             /* background-color: rgb(107, 255, 122); */
             padding: 10px;
             border: 2px solid black;
@@ -443,6 +409,7 @@
             margin-right: 3px;
             margin-top: 10px;
             display: inline-block;
+            color: black;
             background-color: white;
         }
 
