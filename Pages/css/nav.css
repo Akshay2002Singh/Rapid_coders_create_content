@@ -16,8 +16,7 @@
 }
 
 .container{
-    max-width: 1200px;
-    width: 90%;
+    max-width: 96%;
     margin: auto;
 }
 
@@ -35,27 +34,39 @@
 .navbar-container{
     display: flex;
     justify-content: space-between;
-    height: 64px;
+    height: 50px;
     align-items: center;
 }
+
+#iconContainer{
+    width: 25px;
+    height: 25px;
+    margin: 0px 12px 0px;
+    padding: 0px;
+}
+.search_icon {
+    box-sizing: border-box;
+    fill: white;
+    font-size: 25px;
+  }
 .login{
     order: 3;
     display: flex;
-    display: none;
+    align-items: center;
 }
 .login button{
     list-style: none;
     margin: 0px 3px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
+.logo{
+    order: 1;
+    font-size: 2.0rem;
+}
 .menu-items{
     order: 2;
     display: flex;
-}
-.logo{
-    order: 1;
-    font-size: 2.3rem;
 }
 
 .menu-items li{
@@ -75,7 +86,6 @@
 
 .navbar a:hover{
     color: wheat;
-    /* color: var(--purplr); */
 }
 
 /* @media (max-width: 1050px){
@@ -84,7 +94,7 @@
 }
 } */
 
-@media (max-width: 850px){
+@media (max-width: 1050px){
     .navbar{
         opacity: 0.95;
     }
@@ -188,7 +198,6 @@
         position: absolute;
         top: 15px;
         right: 2px;
-        font-size: 2rem;
     }
 
     .navbar-container input[type="checkbox"]:checked ~ .menu-items{
@@ -220,31 +229,76 @@
     border: none;
     color: #fff;
     background-image: linear-gradient(30deg, #ff0000, #ffa844);
-    border-radius: 20px;
+    border-radius: 5px;
     background-size: 100% auto;
     font-family: inherit;
-    font-size: 17px;
+    font-size: 12px;
     padding: 0.3em 1em;
 }
 
 .nav_btn:hover {
     background-position: right center;
     background-size: 200% auto;
-    -webkit-animation: pulse 2s infinite;
-    animation: pulse512 1.5s infinite;
 }
 
-@keyframes pulse512 {
-    0% {
-        box-shadow: 0 0 0 0 #05bada66;
-    }
+/* change theme switch */
+/* The switch - the box around the slider */
+.switch {
+    font-size: 12px;
+    position: relative;
+    display: inline-block;
+    width: 3.5em;
+    height: 2em;
+    /* display: none; */
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    --background: #28096b;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--background);
+    -webkit-transition: .5s;
+    transition: .5s;
+    border-radius: 30px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 1.4em;
+    width: 1.4em;
+    border-radius: 50%;
+    left: 10%;
+    bottom: 15%;
+    -webkit-box-shadow: inset 8px -4px 0px 0px #fff000;
+            box-shadow: inset 8px -4px 0px 0px #fff000;
+    background: var(--background);
+    -webkit-transition: .5s;
+    transition: .5s;
+  }
+  
+  input:checked + .slider {
+    background-color: #522ba7;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(100%);
+        -ms-transform: translateX(100%);
+            transform: translateX(100%);
+    -webkit-box-shadow: inset 15px -4px 0px 15px #fff000;
+            box-shadow: inset 15px -4px 0px 15px #fff000;
+  }
 
-    70% {
-        box-shadow: 0 0 0 10px rgb(218 103 68 / 0%);
-    }
-
-    100% {
-        box-shadow: 0 0 0 0 rgb(218 103 68 / 0%);
-    }
-}
 /* nav css end  */
