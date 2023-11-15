@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+}
 /* footer */
 #f_main_container {
     display: flex;
@@ -38,7 +42,7 @@
     display: flex;
     margin-right: 100px;
 }
-#footer_social svg{
+#footer_social a{
     margin: 29px 4px;
 }
 #footer_social svg:hover{
