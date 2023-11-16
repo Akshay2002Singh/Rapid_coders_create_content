@@ -41,7 +41,7 @@
 #iconContainer{
     width: 25px;
     height: 25px;
-    margin: 0px 12px 0px;
+    margin: 0px 5px 0px;
     padding: 0px;
 }
 .search_icon {
@@ -88,15 +88,10 @@
     color: wheat;
 }
 
-/* @media (max-width: 1050px){
-.logo{
-    font-size:20px;
-}
-} */
 
 @media (max-width: 1050px){
     .navbar{
-        opacity: 0.95;
+        opacity: 0.85;
     }
 
     .navbar-container input[type="checkbox"],
@@ -107,7 +102,7 @@
     .navbar-container{
         display: block;
         position: relative;
-        height: 64px;
+        height: 60px;
     }
 
     .navbar-container input[type="checkbox"]{
@@ -162,7 +157,7 @@
         /* background: #fff; */
         background: rgb(0, 0, 0);
         height: 100vh;
-        max-width: 300px;
+        max-width: 250px;
         transform: translate(-150%);
         display: flex;
         flex-direction: column;
@@ -228,17 +223,14 @@
 .nav_btn {
     border: none;
     color: #fff;
-    background-image: linear-gradient(30deg, #ff0000, #ffa844);
+    background-color: rgb(32, 32, 32);
     border-radius: 5px;
-    background-size: 100% auto;
     font-family: inherit;
-    font-size: 12px;
-    padding: 0.3em 1em;
+    padding: 5px 12px;
 }
 
 .nav_btn:hover {
-    background-position: right center;
-    background-size: 200% auto;
+    opacity: 0.80;
 }
 
 /* change theme switch */
