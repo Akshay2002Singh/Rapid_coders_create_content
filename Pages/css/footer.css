@@ -1,15 +1,12 @@
-*{
-    box-sizing: border-box;
-    margin: 0px;
-}
 /* footer */
 #f_main_container {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     height: 90px;
-    background-color: rgb(0, 0, 0);
-    border-top: 3px solid rgb(84, 84, 84);
+    background-color: var(--background1);
+    /* border-top: 3px solid var(--black2); */
+    opacity: 0.9;
 }
 
 #foot_container {
@@ -24,7 +21,7 @@
 }
 
 #logo-brand h1 {
-    color: rgb(110, 87, 224);
+    color: var(--nav_heading);
     font-size: 30px;
     font-weight: bold;
     display: flex;
@@ -56,13 +53,13 @@
     padding: 0px 5px;
 }
 .foot_link_text{
-    color: white;
+    color: var(--text1);
     padding: 1px 0px;
     font-size: 17px;
 }
 .foot_link_text:hover{
     cursor: pointer;
-    color: white;
+    color: var(--nav_link_hover);
 }
 
 @media (max-width: 500px){

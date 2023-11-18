@@ -1,6 +1,5 @@
 body {
-    background-color: rgb(11, 11, 11);
-    box-sizing: border-box;
+    background-color: var(--background2);
 }
 
 /* common css */
@@ -8,7 +7,7 @@ body {
     font-family: 'Roboto', sans-serif;
     letter-spacing: 0.3mm;
     padding-top: 15px;
-    color: wheat;
+    color: var(--heading1);
     text-align: center;
     font-size: 55px;
 }
@@ -27,7 +26,7 @@ body {
     display: block;
     width: 100%;
     text-decoration: none;
-    color: white;
+    color: var(--text1);
     margin-bottom: 20px;
     border-radius: 10px;
     overflow: hidden;
@@ -38,10 +37,9 @@ body {
 .article_api_card_container {
     width: 100%;
     border-radius: 10px;
-    background-color: rgba(45,45,52,0.6);
-    /* background-color: rgb(107, 255, 122); */
+    background-color: var(--card_background);
     padding: 10px;
-    border: 2px solid rgb(110, 87, 224,0.6);
+    border: 2px solid var(--card_border);
 }
 
 .article_api_card_container:hover {
@@ -50,7 +48,6 @@ body {
 
 .article_api_card_heading {
     font-family: 'Roboto', sans-serif;
-    /* letter-spacing: 0.2mm; */
     font-weight: 100;
     font-size: 30px;
 }
@@ -68,14 +65,13 @@ body {
 .article_api_tag {
     letter-spacing: 0.3mm;
     font-family: 'Roboto', sans-serif;
-    /* border: 1px solid wheat; */
     border-radius: 5px;
     padding: 3px 10px;
     margin-right: 3px;
     margin-top: 10px;
     display: inline-block;
-    color: white;
-    background-color: rgb(0, 0, 0);
+    color: var(--text1);
+    background-color: var(--background1);
 }
 
 .article_api_views_container {

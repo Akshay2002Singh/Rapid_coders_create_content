@@ -9,6 +9,7 @@
     <!-- for code block  -->
     <link rel="stylesheet" href="../libraries/prism.css">
     <script src="../libraries/prism.js"></script>
+    <link rel="stylesheet" href="./css/dark_theme.css">
     <!-- font  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -79,9 +80,7 @@
                 <li>four</li>
                 <li>five</li>
             </ul>
-            <pre class="language-python">
-                <code>
-import socket
+<pre class="language-python"><code>import socket
 from time import sleep
 from IPy import IP
 import fontstyle
@@ -117,16 +116,13 @@ def scan(temp_ip):
 if __name__=="__main__":
     head = fontstyle.apply("\nELITE PORT SCANNER","Italic/BLUE")
     print(head)
-    targets = input('\n[+] Enter Target/s To Scan (split multiple targets with ,) : ')
+    targets = input('\n[+] Enter Target/s To Scan it is fastest serach  (split multiple targets with ,) : ')
     if ',' in targets:
         for ip in targets.split(','):
             scan(ip.strip(' '))
     else:
         scan(targets)
-
-
-                </code>
-            </pre>
+</code></pre>
             <!-- content end here  -->
         </div>
     </div>

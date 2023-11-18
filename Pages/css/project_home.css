@@ -1,6 +1,5 @@
 body {
-    background-color: rgb(11, 11, 11);
-    box-sizing: border-box;
+    background-color: var(--background2);
 }
 
 /* common css */
@@ -8,7 +7,7 @@ body {
     font-family: 'Roboto', sans-serif;
     letter-spacing: 0.3mm;
     padding-top: 15px;
-    color: wheat;
+    color: var(--heading1);
     text-align: center;
     font-size: 55px;
 }
@@ -31,11 +30,11 @@ body {
     margin: 1px 1px;
     width: 300px;
     height: 380px;
-    background-color: #1a1a1a;
+    background-color: var(--card_background);
     border-radius: 20px;
     transition: all .2s;
-    border: 2px solid rgb(110, 87, 224);
-    color: white;
+    border: 2px solid var(--card_border);
+    color: var(--text1);
     overflow: hidden;
 }
 
@@ -79,8 +78,8 @@ body {
 
 .cssbuttons-io-button {
     width: 100%;
-    background: #A370F0;
-    color: rgb(255, 255, 255);
+    background: var(--built_now_background);
+    color: var(--built_now_text);
     font-family: inherit;
     padding: 0.35em;
     padding-left: 1.2em;
@@ -91,7 +90,6 @@ body {
     letter-spacing: 0.05em;
     display: flex;
     align-items: center;
-    box-shadow: inset 0 0 1.6em -0.6em #714da6;
     overflow: hidden;
     position: relative;
     height: 2.8em;
@@ -104,8 +102,7 @@ body {
 }
 
 .cssbuttons-io-button .icon {
-    /* background: rgb(110, 87, 224); */
-    background-color: rgb(46, 43, 43);
+    background-color: var(--built_now_icon_background);
     margin-left: 1em;
     position: absolute;
     display: flex;
@@ -114,7 +111,6 @@ body {
     height: 2.0em;
     width: 2.2em;
     border-radius: 0.7em;
-    box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
     right: 0.3em;
     transition: all 0.3s;
 }
@@ -146,21 +142,20 @@ body {
     height: 35px;
     overflow: hidden;
     font-size: 13px;
-    color: black;
 }
 
 .project_tag_heading {
     font-size: 16px;
-    color: white;
 }
 
 .project_tag {
-    border: 1px solid black;
+    border: 1px solid var(--tag_border);
     border-radius: 5px;
     padding: 3px 10px;
     margin-right: 3px;
     margin-top: 10px;
-    background-color: white;
+    background-color: var(--background1);
+    color: var(--text1);
     display: inline-block;
 }
 

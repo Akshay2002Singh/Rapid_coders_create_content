@@ -1,6 +1,5 @@
 body {
-    background-color: rgb(10, 10, 10);
-    box-sizing: border-box;
+    background-color: var(--background2);
 }
 
 #main_container {
@@ -15,7 +14,7 @@ body {
     margin: auto;
     width: 85%;
     min-width: 300px;
-    color: rgb(255, 255, 255);
+    color: var(--text1);
     padding: 35px 30px;
     overflow: hidden;
     font-family: 'Open Sans', sans-serif, Arial, Helvetica, sans-serif;
@@ -25,9 +24,9 @@ body {
 }
 
 #content_box a {
-    color: wheat;
+    color: var(--heading1);
     text-decoration:none;
-    border-bottom: 1px solid wheat;
+    border-bottom: 1px dashed var(--heading1);
 }
 
 #content_box>h1 {
@@ -55,13 +54,6 @@ body {
     font-size: 20px;
 }
 
-/* #content_box>img {
-    padding: 10px 0px;
-    max-width: 100%;
-    display: block;
-    margin: auto;
-} */
-
 #content_box>ol,
 #content_box>ul {
     padding: 5px 0px;
@@ -70,13 +62,13 @@ body {
 }
 
 #content_box>li {
-    color: white;
+    color: var(--text1);
 }
 
 #content_box pre {
     border-radius: 3px;
     padding: 5px 10px 10px 10px;
     margin: 5px 0px;
-    background-color: rgb(56, 56, 56);
+    background-color: var(--code_background);
     overflow: auto;
 }

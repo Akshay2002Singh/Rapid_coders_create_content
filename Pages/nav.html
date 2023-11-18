@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/nav.css">
+    <link rel="stylesheet" href="./css/dark_theme.css">
     <title>Nav</title>
 </head>
 
@@ -19,7 +20,7 @@
             </div>
             <ul class="login">
                 <label class="switch">
-                    <input type="checkbox">
+                    <input type="checkbox" id="switch_checkbox" onchange="change_theme()">
                     <span class="slider"></span>
                 </label>
                 <a href="" id="iconContainer">
@@ -47,6 +48,8 @@
             </ul>
         </div>
     </nav>
+
+    <script src="script.js"></script>
 </body>
 
 </html>

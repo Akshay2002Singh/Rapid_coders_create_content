@@ -1,0 +1,33 @@
+:root{
+  /* changed properties start  */
+    --background1 : rgb(255, 255, 255);
+    --background2 : rgb(240, 240, 240);
+    --text1 : black;
+    --heading1 : purple;
+    --heading2 : rgb(16, 15, 15);
+    /* cards  */
+    --card_background : #6e57e02e;
+    --card_border : rgb(110, 87, 224);
+    --nav_link_hover : rgb(44, 40, 40);
+  /* changed properties end  */
+    --output_text : white;
+    /* general variables */
+    --nav_heading : rgb(110, 87, 224);
+    --code_background : rgb(56, 56, 56);
+    /* elements specific variables */
+    /* mare button of home  */
+    --more_button : rgb(182, 168, 255);
+    --more_button_hover : rgb(201, 192, 255);
+    --built_now_background : #A370F0;
+    --built_now_text : white;
+    --built_now_icon_background : rgb(46, 43, 43);
+    --tag_border : black;
+    /* contact page variables */
+    --contact_image_background : #6e57e0;
+    --contact_page_icons : rgb(196, 35, 255);
+    --contact_page_input_border : purple;
+    --contact_page_input_background : hsl(253, 54%, 88%);
+    --contact_page_input_lable : black;
+    --contact_page_input_text : black;
+    --contact_page_form_send : rgb(140, 168, 250);
+  }
