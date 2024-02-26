@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="course.css">
+    <title>Create course</title>
+</head>
+
+<body>
+    <div id="content_box">
+        <!-- course title  -->
+        <h1>PYTHON PROGRAMMING FOR AKTU</h1>
+        <!-- write your body of course here  -->
+        <!-- course body start -->
+        <p>
+            Before starting Python we should know why to learn Python when there are thousands of programming languages.
+            Python is a programming language that is used to develop websites, software, data analysis, and much more.
+            It is a general-purpose programming language.
+        </p>
+
+        <ol>
+            <li>Unit 1:</li>
+            <ul>
+                <li><a href="introduction-to-python">Introduction to Python</a></li>
+                <li><a href="programming-cycle-of-python">The Programming Cycle for Python</a></li>
+                <li><a href="varibles-and-datatypes-in-python">Varibles and Datatypes in Python</a></li>
+                <li><a href="input-and-output-in-python">Input and Output in Python</a></li>
+                <li><a href="operators-in-python">Operators in Python</a></li>
+                <li><a href="precedence-of-operators-python">Precedence of Operators in Python</a></li>
+                <li><a href="typecasting-in-python">Typecasting in Python</a></li>
+            </ul>
+            <li>Unit 2:</li>
+            <ul>
+                <li><a href="if-else-in-python">If Else in Python</a></li>
+                <li><a href="loops-in-python">Loops in Python</a></li>
+                <li><a href="break-continue-and-pass-in-python">Break, Continue and Pass in Python</a></li>
+            </ul>
+            <li>Unit 3:</li>
+            <ul>
+                <li><a href="functions-in-python">Functions in Python</a></li>
+                <li><a href="default-arguments-and-keyword-arguments-in-python">Default Arguments and Keyword
+                        Arguments in Python</a></li>
+                <li><a href="strings-in-python">Strings in python</a></li>
+                <li><a href="lists-in-python">Lists in Python</a></li>
+                <li><a href="tuple-in-python">Tuple in Python</a></li>
+                <li><a href="dictionary-in-python">Dictionary in Python</a></li>
+                <li><a href="set-in-python">Sets in Python</a></li>
+                <li><a href="list-comprehension-in-python">List Comprehension in Python</a></li>
+                <li><a href="unpacking-sequences-in-python">Unpacking Sequences in Python</a></li>
+                <li><a href="higher-order-functions-in-python">Higher order functions in Python</a></li>
+                <li><a href="lambda-functions-in-python">Lambda functions in Python</a></li>
+            </ul>
+            <li>Unit 4:</li>
+            <ul>
+                <li><a href="sieve-of-eratosthenes-algorithm-in-python">Sieve of Eratosthenes Algorithm</a></li>
+            </ul>
+            <li>Unit 5:</li>
+            <ul>
+                <li><a href="linear-search-in-python">Linear Search in Python</a></li>
+                <li><a href="binary-search-in-python">Binary Search in Python</a></li>
+                <li><a href="selection-sort-in-python">Selection Sort</a></li>
+                <li><a href="bubble-sort-in-python">Bubble Sort</a></li>
+                <li><a href="insertion-sort-in-python">Insertion Sort</a></li>
+                <li><a href="merge-sort-in-python">Merge Sort</a></li>
+            </ul>
+        </ol>
+
+        <!-- course body ends -->
+    </div>
+    <hr>
+    <div id="guide">
+        <h3>Tags that can be used</h3>
+        <ul>
+            <li>h1, h2, h3 -> for headings.</li>
+            <li>div -> for each paragraph.</li>
+            <li>span -> for bold</li>
+            <li>a -> for links</li>
+            <li>ol and ul -> for lists</li>
+            <li>li -> for points</li>
+            <li>pre -> for content which should be presented as specified. Ex - long links, terminal commans, git commands</li>
+        </ul>
+    </div>
+    <hr>
+    <div id="course_links">
+        <h3>Links</h3>
+        <textarea placeholder="Your article links will be auto generated" id="course_links_input" rows="10" disabled></textarea>
+    </div>
+    
+    <script>
+        const all_anchor_tags = document.getElementsByTagName('a')
+        let all_links = []
+        for(let i =0; i<all_anchor_tags.length; ++i){
+            let link = all_anchor_tags[i].href.split('/').reverse()[0]
+            all_links.push(link)
+        }
+        if(all_links.length)
+        document.getElementById("course_links_input").value = JSON.stringify(all_links)
+    </script>
+</body>
+</html>
