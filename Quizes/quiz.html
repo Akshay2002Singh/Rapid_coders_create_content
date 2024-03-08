@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./quiz.css">
+    <link rel="stylesheet" href="../libraries/prism.css">
+    <title>Quiz</title>
+</head>
+
+<body>
+    <div id="main_container">
+        <div id="suggestions_box">
+
+        </div>
+        <div id="content_box">
+            <!-- <h1>{{title}}</h1> -->
+            <h1>Quiz 1</h1>
+        </div>
+    </div>
+
+    <hr>
+    <div id="guide">
+        <h3>Tags that can be used</h3>
+        <ul>
+            <li>h1, h2, h3 -> for headings.</li>
+            <li>div -> for each paragraph.</li>
+            <li>span -> for bold</li>
+            <li>img -> for image</li>
+            <li>a -> for links</li>
+            <li>ol and ul -> for lists</li>
+            <li>li -> for points</li>
+            <li>pre -> for content which should be presented as specified. Ex - long links, terminal commans, git
+                commands</li>
+            <li>pre with code -> for inserting code in article. Consider below example:</li>
+            <pre>
+
+    &lt;pre class="language-python"&gt;&lt;code&gt;
+        print("Hello Rapid Coders")
+    &lt;/code&gt;&lt;/pre&gt;
+            </pre>
+        </ul>
+    </div>
+
+    <script src="../libraries/prism.js"></script>
+    <script>
+        const all_questions = [
+            {
+                question : "print type(type(int))",
+                options : {
+                    A : "type \'int\'",
+                    B : "type \'type\'",
+                    C : "Error",
+                    D : "0"
+                },
+                correct_options : ['B']
+            },
+            {
+                question : "Name the error that doesn't cause program to stop/end, but the output is not the desired result or is incorrect.",
+                options : {
+                    A : "Syntax error",
+                    B : "Runtime error",
+                    C : "Logical error",
+                    D : "All of the above"
+                },
+                correct_options : ['C']
+            }
+        ]
+        function render_quiz(){
+            const main_container = document.getElementById("content_box")
+            all_questions.forEach((element,index) => {
+                const question_number = index+1;
+                let temp_question = ''
+                // insert question 
+                temp_question += `
+                <div id='question_${question_number}_container'>
+                <h3>Question ${question_number}: ${element.question}</h3>
+                `
+                // insert options 
+                for (const key in element.options) {
+                    temp_question += `
+                    <div class="option_container">
+                        <input type="checkbox" id="${question_number}${key}" class="option_of_question_${question_number}" >
+                        <label for="${question_number}${key}">${element.options[key]}</label>
+                    </div>
+                    `
+                }
+                // insert check btn and closing tag 
+                temp_question += `
+                <button onclick="check_question(${question_number})" id="check_btn_question_${question_number}">Check</button>
+                </div>
+            `
+            // add question to container 
+            main_container.innerHTML += temp_question
+            })
+        }
+        function check_question(question_number){
+            // change background of user selected options to red, untick it and make them read only
+            const all_options = document.getElementsByClassName(`option_of_question_${question_number}`)
+            for(let i=0; i< all_options.length; ++i){
+                all_options[i].addEventListener('click', (event) => event.preventDefault())
+                if(all_options[i].checked){
+                    all_options[i].checked = false
+                    all_options[i].parentElement.style.background = 'red' 
+                }
+            }
+            // tick correct answer and change background to green 
+            (all_questions[question_number-1].correct_options).forEach(element => {
+                document.getElementById(`${question_number}${element}`).checked = true;
+                document.getElementById(`${question_number}${element}`).parentElement.style.background = 'green'
+            });
+            // disable check btn 
+            document.getElementById(`check_btn_question_${question_number}`).disabled = true
+        }
+        render_quiz()
+        
+    </script>
+</body>
+
+</html>
