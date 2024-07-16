@@ -86,7 +86,7 @@
             if (content.length === 1) {
                 document.querySelector('.delete-btn').style.display = 'none';
             } else {
-                document.querySelectorAll('.delete-btn').forEach(element => element.style.display = 'block');
+                document.querySelectorAll('.delete-btn').forEach(element => element.style.display = 'inline-flex');
             }
             Prism.highlightAll();
         }
@@ -105,11 +105,11 @@
                 Prism.highlightElement(codeBox.querySelector('code'));
                 editBox.style.display = 'none';
                 doneBtn.style.display = 'none';
-                editBtn.style.display = ' inline-flex';
+                editBtn.style.display = 'inline-flex';
             } else {
                 // Switch to edit mode
                 editBox.style.display = 'block';
-                doneBtn.style.display = ' inline-flex';
+                doneBtn.style.display = 'inline-flex';
                 editBtn.style.display = 'none';
             }
         }
