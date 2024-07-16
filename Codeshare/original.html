@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../libraries/prism.css">
+    <title>Code Share</title>
+</head>
+
+<body>
+    <h1 id="heading">Share Code</h1>
+    <div id="text-blocks-container">
+        <div class="text-block">
+            <div class="tools_container">
+                <div class="dropdown">
+                    <select id="languages">
+                        <option value="plaintext" selected>Plain Text</option>
+                        <option value="python">Python</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="java">Java</option>
+                        <option value="ruby">Ruby</option>
+                        <option value="php">PHP</option>
+                        <option value="cplusplus">C++</option>
+                        <option value="csharp">C#</option>
+                        <option value="swift">Swift</option>
+                        <option value="typescript">TypeScript</option>
+                        <option value="go">Go</option>
+                        <option value="rust">Rust</option>
+                        <option value="kotlin">Kotlin</option>
+                        <option value="dart">Dart</option>
+                        <option value="scala">Scala</option>
+                    </select>
+                </div>
+                <div class="tools">
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20px"
+                        width="20px" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="none" d="M0 0h24v24H0z"></path>
+                        <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path>
+                    </svg>
+                    <span>
+                        Delete
+                    </span>
+                </div>
+                <div class="tools">
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20px"
+                        width="20px" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="none" d="M0 0h24v24H0z"></path>
+                        <path
+                            d="M3 10h11v2H3v-2zm0-2h11V6H3v2zm0 8h7v-2H3v2zm15.01-3.13.71-.71a.996.996 0 0 1 1.41 0l.71.71c.39.39.39 1.02 0 1.41l-.71.71-2.12-2.12zm-.71.71-5.3 5.3V21h2.12l5.3-5.3-2.12-2.12z">
+                        </path>
+                    </svg>
+                    <span>
+                        Edit
+                    </span>
+                </div>
+            </div>
+            <pre oninput="update_code(event)" contenteditable="true" class="edit_box">
+                def binary_search(arr,key):
+                low=0
+            </pre>
+            <pre class="language-python code_box"><code>
+                def binary_search(arr,key):
+                low=0
+            </code></pre>
+        </div>
+    </div>
+    <button id="new_btn">
+        <span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="none" d="M0 0h24v24H0z"></path>
+                <path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path>
+            </svg>
+        </span>
+    </button>
+
+    <script src="../libraries/prism.js"></script>
+    <script>
+        let content = [];
+        // function to update code using prism after changes
+        function update_code(event) {
+            const editablePre = event.target;
+            // Get the content of the editable pre tag
+            const content = editablePre.innerText;
+            // Get the code tag inside tempDiv
+            const codeBlock = editablePre.nextElementSibling.querySelector('code');
+            // Update the content of the code tag
+            codeBlock.textContent = content;
+            // Re-apply Prism syntax highlighting
+            Prism.highlightElement(codeBlock);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../libraries/prism.css">
+    <title>Code Share</title>
+</head>
+
+<body>
+    <h1 id="heading">Share Code</h1>
+    <div id="text-blocks-container"></div>
+    <button id="new_btn">
+        <span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="none" d="M0 0h24v24H0z"></path>
+                <path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path>
+            </svg>
+        </span>
+    </button>
+
+    <script src="../libraries/prism.js"></script>
+    <script>
+        // array of objects with keys content and language
+        let content = [
+            { content: 'def binary_search(arr,key):\n    low=0', language: 'python' }
+        ];
+
+        // function to render text blocks using content array
+        function renderTextBlocks() {
+            const container = document.getElementById('text-blocks-container');
+            container.innerHTML = '';
+            content.forEach((block, index) => {
+                const textBlock = document.createElement('div');
+                textBlock.className = 'text-block';
+                textBlock.innerHTML = `
+                    <div class="tools_container">
+                        <div class="dropdown">
+                            <select onchange="changeLanguage(event, ${index})" id="languages">
+                                <option value="plaintext" ${block.language === 'plaintext' ? 'selected' : ''}>Plain Text</option>
+                                <option value="python" ${block.language === 'python' ? 'selected' : ''}>Python</option>
+                                <option value="javascript" ${block.language === 'javascript' ? 'selected' : ''}>JavaScript</option>
+                                <option value="java" ${block.language === 'java' ? 'selected' : ''}>Java</option>
+                                <option value="ruby" ${block.language === 'ruby' ? 'selected' : ''}>Ruby</option>
+                                <option value="php" ${block.language === 'php' ? 'selected' : ''}>PHP</option>
+                                <option value="cplusplus" ${block.language === 'cplusplus' ? 'selected' : ''}>C++</option>
+                                <option value="csharp" ${block.language === 'csharp' ? 'selected' : ''}>C#</option>
+                                <option value="swift" ${block.language === 'swift' ? 'selected' : ''}>Swift</option>
+                                <option value="typescript" ${block.language === 'typescript' ? 'selected' : ''}>TypeScript</option>
+                                <option value="go" ${block.language === 'go' ? 'selected' : ''}>Go</option>
+                                <option value="rust" ${block.language === 'rust' ? 'selected' : ''}>Rust</option>
+                                <option value="kotlin" ${block.language === 'kotlin' ? 'selected' : ''}>Kotlin</option>
+                                <option value="dart" ${block.language === 'dart' ? 'selected' : ''}>Dart</option>
+                                <option value="scala" ${block.language === 'scala' ? 'selected' : ''}>Scala</option>
+                            </select>
+                        </div>
+                        <div class="tools delete-btn" onclick="deleteBlock(${index})">
+                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="none" d="M0 0h24v24H0z"></path>
+                                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path>
+                            </svg>
+                            <span>Delete</span>
+                        </div>
+                        <div class="tools">
+                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="none" d="M0 0h24v24H0z"></path>
+                                <path d="M3 10h11v2H3v-2zm0-2h11V6H3v2zm0 8h7v-2H3v2zm15.01-3.13.71-.71a.996.996 0 0 1 1.41 0l.71.71c.39.39.39 1.02 0 1.41l-.71.71-2.12-2.12zm-.71.71-5.3 5.3V21h2.12l5.3-5.3-2.12-2.12z"></path>
+                            </svg>
+                            <span>Edit</span>
+                        </div>
+                    </div>
+                    <pre oninput="update_code(event, ${index})" contenteditable="true" class="edit_box">${block.content}</pre>
+                    <pre class="language-${block.language} code_box"><code>${block.content}</code></pre>
+                `;
+                container.appendChild(textBlock);
+            });
+            // show delete btn only if number of text blocks are more than 1
+            if (content.length === 1) {
+                document.querySelector('.delete-btn').style.display = 'none';
+            } else {
+                document.querySelectorAll('.delete-btn').forEach(element => elment.style.display = 'block');
+            }
+        }
+
+        // function to update preview when text is edited
+        function update_code(event, index) {
+            const editablePre = event.target;
+            const content = editablePre.innerText;
+            const codeBlock = editablePre.nextElementSibling.querySelector('code');
+            codeBlock.textContent = content;
+            Prism.highlightElement(codeBlock);
+            content[index].content = content;
+        }
+
+        // function to modify highlights when language is changed
+        function changeLanguage(event, index) {
+            const selectedLanguage = event.target.value;
+            content[index].language = selectedLanguage;
+            renderTextBlocks();
+        }
+
+        // function to delete blocks
+        function deleteBlock(index) {
+            if (content.length > 1) {
+                content.splice(index, 1);
+                renderTextBlocks();
+            }
+        }
+
+        // To add new text block
+        document.getElementById('new_btn').addEventListener('click', () => {
+            const lastLanguage = content.length > 0 ? content[content.length - 1].language : 'plaintext';
+            content.push({ content: '', language: lastLanguage });
+            renderTextBlocks();
+        });
+
+        // first time render textBlocks using content
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initial render
+            renderTextBlocks();
+        });
+    </script>
+</body>
+
+</html>
