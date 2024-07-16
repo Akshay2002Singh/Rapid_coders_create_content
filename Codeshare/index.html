@@ -63,15 +63,21 @@
                             </svg>
                             <span>Delete</span>
                         </div>
-                        <div class="tools">
+                        <div class="tools edit-btn" onclick="toggleEditMode(${index})">
                             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
                                 <path fill="none" d="M0 0h24v24H0z"></path>
                                 <path d="M3 10h11v2H3v-2zm0-2h11V6H3v2zm0 8h7v-2H3v2zm15.01-3.13.71-.71a.996.996 0 0 1 1.41 0l.71.71c.39.39.39 1.02 0 1.41l-.71.71-2.12-2.12zm-.71.71-5.3 5.3V21h2.12l5.3-5.3-2.12-2.12z"></path>
                             </svg>
                             <span>Edit</span>
                         </div>
+                        <div class="tools  done-btn" onclick="toggleEditMode(${index}, true)" style="display: none;">
+                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="none" d="M0 0h24v24H0V0z"></path><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"></path>
+                            </svg>
+                            <span>Done</span>
+                        </div>
                     </div>
-                    <pre oninput="update_code(event, ${index})" contenteditable="true" class="edit_box">${block.content}</pre>
+                    <pre oninput="update_code(event, ${index})" contenteditable="true" class="edit_box"  style="display: none;">${block.content}</pre>
                     <pre class="language-${block.language} code_box"><code>${block.content}</code></pre>
                 `;
                 container.appendChild(textBlock);
@@ -80,7 +86,31 @@
             if (content.length === 1) {
                 document.querySelector('.delete-btn').style.display = 'none';
             } else {
-                document.querySelectorAll('.delete-btn').forEach(element => elment.style.display = 'block');
+                document.querySelectorAll('.delete-btn').forEach(element => element.style.display = 'block');
+            }
+            Prism.highlightAll();
+        }
+
+        // handle edit and done functionality
+        function toggleEditMode(index, done = false) {
+            const editBtn = document.querySelector(`.text-block:nth-child(${index + 1}) .edit-btn`);
+            const doneBtn = document.querySelector(`.text-block:nth-child(${index + 1}) .done-btn`);
+            const editBox = document.querySelector(`.text-block:nth-child(${index + 1}) .edit_box`);
+            const codeBox = document.querySelector(`.text-block:nth-child(${index + 1}) .code_box`);
+
+            if (done) {
+                // Update content and switch to display mode
+                content[index].content = editBox.innerText;
+                codeBox.querySelector('code').textContent = editBox.innerText;
+                Prism.highlightElement(codeBox.querySelector('code'));
+                editBox.style.display = 'none';
+                doneBtn.style.display = 'none';
+                editBtn.style.display = ' inline-flex';
+            } else {
+                // Switch to edit mode
+                editBox.style.display = 'block';
+                doneBtn.style.display = ' inline-flex';
+                editBtn.style.display = 'none';
             }
         }
 

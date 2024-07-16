@@ -70,6 +70,10 @@ body {
     cursor: pointer;
 }
 
+.tools>svg{
+    margin-right: 3px;
+}
+
 .edit_box{
     background-color: var(--background1);
     padding: 12px 20px;
