@@ -25,6 +25,12 @@
     --contact_page_form_send: royalblue;
 }
 
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
 body {
     background-color: var(--background1);
     color: var(--text1);
@@ -48,22 +54,21 @@ body {
 .title {
     color: var(--heading1);
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .converter {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .converter h2 {
     color: var(--heading2);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .input {
     width: 100%;
     padding: 10px;
-    margin-bottom: 10px;
     border: 1px solid var(--card_border);
     border-radius: 4px;
     background-color: var(--contact_page_input_background);
@@ -73,10 +78,11 @@ body {
 .button {
     width: 100%;
     padding: 10px;
+    margin-top: 10px;
     background-color: var(--more_button);
     border: none;
     border-radius: 4px;
-    color: var(--text1);
+    font-size: 16px;
     cursor: pointer;
 }
 
@@ -90,4 +96,5 @@ body {
     padding: 10px;
     border-radius: 4px;
     text-align: center;
+    margin-top: 16px;
 }
