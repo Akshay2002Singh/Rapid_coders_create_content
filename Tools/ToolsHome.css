@@ -1,0 +1,138 @@
+:root{
+    /* general variables */
+    --nav_heading : rgb(110, 87, 224);
+    --nav_link_hover : wheat;
+    --background1 : rgb(0, 0, 0);
+    --background2 : rgb(17, 17, 17);
+    --text1 : rgb(205, 205, 205);
+    --output_text : white;
+    --heading1 : wheat;
+    --heading2 : white;
+    --code_background : rgb(56, 56, 56);
+    /* elements specific variables */
+    /* mare button of home  */
+    --more_button : rgb(182, 168, 255);
+    --more_button_hover : rgb(201, 192, 255);
+    /* cards  */
+    --card_background : rgba(45,45,52,0.6);
+    --card_border : rgb(110, 87, 224);
+    --built_now_background : #A370F0;
+    --built_now_text : white;
+    --built_now_icon_background : rgb(46, 43, 43);
+    --tag_border : black;
+    /* contact page variables */
+    --contact_image_background : #6e57e0;
+    --contact_page_icons : rgb(196, 35, 255);
+    --contact_page_input_border : purple;
+    --contact_page_input_background : hsl(250, 29%, 16%);
+    --contact_page_input_lable : white;
+    --contact_page_input_text : wheat;
+    --contact_page_form_send : royalblue;
+  }
+
+  *{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+  }
+
+body {
+    background-color: var(--background2);
+}
+
+/* common css */
+.main_heading {
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.3mm;
+    padding-top: 15px;
+    color: var(--heading1);
+    text-align: center;
+    font-size: 55px;
+}
+
+/* course section start */
+.course_container {
+    width: 90%;
+    max-width: 1300px;
+    margin: auto;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+    justify-content: center;
+}
+
+.course_container a {
+    color: var(--text1);
+    text-decoration: none;
+    margin: 15px 15px;
+    border-radius: 20px;
+    overflow: hidden;
+    /* background-color: red; */
+}
+
+/* card css  */
+
+.course_card2 {
+    margin: 1px 1px;
+    width: 240px;
+    height: 260px;
+    background-color: var(--card_background);
+    border-radius: 20px;
+    transition: all .2s;
+    color: var(--text1);
+    overflow: hidden;
+    border: 2px solid var(--card_border);
+}
+
+.course_card2:hover {
+    transform: scale(0.98);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+
+/* inside card  */
+.course_card_image {
+    width: 100%;
+    height: 180px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.course_card_image img {
+    width: 100%;
+    max-height: 170px;
+    object-fit: fill;
+}
+
+.course_card2 h2 {
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.3mm;
+    padding: 5px 8px;
+    text-align: center;
+    font-weight: normal;
+    letter-spacing: 0.2mm;
+    line-height: 1.3;
+}
+
+/* @media (max-width: 800px) {
+
+    .course_card2 {
+        width: 240px;
+        height: 260px;
+    }
+
+    .course_card_image {
+        max-height: 160px;
+    }
+
+    .course_card_image img {
+        max-height: 140px;
+    }
+
+    .course_card2 h2 {
+        padding: 0px 5px;
+    }
+} */
