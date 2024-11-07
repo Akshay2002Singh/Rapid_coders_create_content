@@ -1,0 +1,93 @@
+:root {
+    --nav_heading: rgb(110, 87, 224);
+    --nav_link_hover: wheat;
+    --background1: rgb(0, 0, 0);
+    --background2: rgb(17, 17, 17);
+    --text1: rgb(205, 205, 205);
+    --output_text: white;
+    --heading1: wheat;
+    --heading2: white;
+    --code_background: rgb(56, 56, 56);
+    --more_button: rgb(182, 168, 255);
+    --more_button_hover: rgb(201, 192, 255);
+    --card_background: rgba(45, 45, 52, 0.6);
+    --card_border: rgb(110, 87, 224);
+    --built_now_background: #A370F0;
+    --built_now_text: white;
+    --built_now_icon_background: rgb(46, 43, 43);
+    --tag_border: black;
+    --contact_image_background: #6e57e0;
+    --contact_page_icons: rgb(196, 35, 255);
+    --contact_page_input_border: purple;
+    --contact_page_input_background: hsl(250, 29%, 16%);
+    --contact_page_input_lable: white;
+    --contact_page_input_text: wheat;
+    --contact_page_form_send: royalblue;
+}
+
+body {
+    background-color: var(--background1);
+    color: var(--text1);
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: var(--background2);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    width: 100%;
+}
+
+.title {
+    color: var(--heading1);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.converter {
+    margin-bottom: 20px;
+}
+
+.converter h2 {
+    color: var(--heading2);
+    margin-bottom: 10px;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--card_border);
+    border-radius: 4px;
+    background-color: var(--contact_page_input_background);
+    color: var(--contact_page_input_text);
+}
+
+.button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--more_button);
+    border: none;
+    border-radius: 4px;
+    color: var(--text1);
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--more_button_hover);
+}
+
+.output {
+    color: var(--output_text);
+    background-color: var(--code_background);
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+}

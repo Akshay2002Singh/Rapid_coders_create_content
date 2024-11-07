@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timestamp Converter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Timestamp Converter</h1>
+        
+        <div class="converter">
+            <h2>Convert Unix to Date-Time</h2>
+            <input type="number" id="unixInput" placeholder="Enter Unix Timestamp" class="input">
+            <button onclick="convertUnixToDateTime()" class="button">Convert</button>
+            <p id="dateTimeOutput" class="output"></p>
+        </div>
+        
+        <div class="converter">
+            <h2>Convert Date-Time to Unix</h2>
+            <input type="datetime-local" id="dateTimeInput" class="input">
+            <button onclick="convertDateTimeToUnix()" class="button">Convert</button>
+            <p id="unixOutput" class="output"></p>
+        </div>
+    </div>
+
+    <script>
+        function convertUnixToDateTime() {
+            const unixTimestamp = document.getElementById('unixInput').value;
+            if (unixTimestamp) {
+                const date = new Date(unixTimestamp * 1000);
+                document.getElementById('dateTimeOutput').textContent = date.toLocaleString();
+            } else {
+                document.getElementById('dateTimeOutput').textContent = "Please enter a Unix timestamp.";
+            }
+        }
+
+        function convertDateTimeToUnix() {
+            const dateTime = document.getElementById('dateTimeInput').value;
+            if (dateTime) {
+                const date = new Date(dateTime);
+                const unixTimestamp = Math.floor(date.getTime() / 1000);
+                document.getElementById('unixOutput').textContent = unixTimestamp;
+            } else {
+                document.getElementById('unixOutput').textContent = "Please enter a date-time.";
+            }
+        }
+    </script>
+</body>
+</html>
