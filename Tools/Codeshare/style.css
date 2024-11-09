@@ -42,9 +42,35 @@ body {
     font-weight: 100;
 }
 
+#codeshare_top_bar{
+    position: sticky;
+    top: 0; /* Position the top bar at the top of the viewport */
+    z-index: 1000; /* Ensures it stays above other content */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 10px 15px;
+    background-color: var(--background2);
+}
+
+/* save btn start */
+#save_btn{
+    margin: 0px;
+    padding: 5px 20px;
+    background-color: var(--built_now_background);
+    border-radius: 10px;
+    font-size: 22px;
+    border: 0px;
+}
+
+#save_btn:hover{
+    cursor: pointer;
+}
+/* save btn end */
+
 .text-block {
     margin: 10px 8px;
-    color: wheat;
+    color: var(--heading1);
     border: 1px solid rgb(80, 79, 79);
     border-radius: 10px;
     overflow: hidden;
