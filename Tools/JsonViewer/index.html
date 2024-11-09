@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive JSON Converter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="input-section">
+            <h2 class="subheading">Input JSON</h2>
+            <textarea id="jsonInput" placeholder="Enter JSON here..."></textarea>
+        </div>
+
+        <div class="button-section">
+            <button onclick="formatJson()">Format JSON</button>
+            <button onclick="minifyJson()">Minify JSON</button>
+            <button onclick="loadFromFile()">Open JSON File</button>
+            <button onclick="saveToFile()">Save output as File</button>
+        </div>
+
+        <div class="output-section">
+            <h2 class="subheading">Output</h2>
+            <pre id="jsonOutput" class="output"></pre>
+        </div>
+    </div>
+
+    <script>
+        async function loadFromFile() {
+            const file = document.getElementById('fileInput').files[0];
+            if (file) {
+                const text = await file.text();
+                document.getElementById('jsonInput').value = text;
+            } else {
+                document.getElementById('jsonOutput').textContent = "No file selected.";
+            }
+        }
+
+        function formatJson() {
+            const jsonString = document.getElementById('jsonInput').value;
+            try {
+                const jsonObject = JSON.parse(jsonString);
+                const formattedJson = JSON.stringify(jsonObject, null, 4);
+                document.getElementById('jsonOutput').textContent = formattedJson;
+            } catch (error) {
+                document.getElementById('jsonOutput').textContent = "Invalid JSON format!";
+            }
+        }
+
+        function minifyJson() {
+            const jsonString = document.getElementById('jsonInput').value;
+            try {
+                const jsonObject = JSON.parse(jsonString);
+                const minifiedJson = JSON.stringify(jsonObject);
+                document.getElementById('jsonOutput').textContent = minifiedJson;
+            } catch (error) {
+                document.getElementById('jsonOutput').textContent = "Invalid JSON format!";
+            }
+        }
+
+        function saveToFile() {
+            const output = document.getElementById('jsonOutput').textContent;
+            if (output) {
+                const blob = new Blob([output], { type: "application/json" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = "output.json";
+                a.click();
+                URL.revokeObjectURL(url);
+            } else {
+                document.getElementById('jsonOutput').textContent = "No output to save!";
+            }
+        }
+    </script>
+</body>
+</html>

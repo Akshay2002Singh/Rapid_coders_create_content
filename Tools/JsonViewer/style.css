@@ -1,0 +1,129 @@
+:root {
+    --nav_heading: rgb(110, 87, 224);
+    --nav_link_hover: wheat;
+    --background1: rgb(0, 0, 0);
+    --background2: rgb(17, 17, 17);
+    --text1: rgb(205, 205, 205);
+    --output_text: white;
+    --heading1: wheat;
+    --heading2: white;
+    --code_background: rgb(56, 56, 56);
+    --more_button: rgb(182, 168, 255);
+    --more_button_hover: rgb(201, 192, 255);
+    --card_background: rgba(45, 45, 52, 0.6);
+    --card_border: rgb(110, 87, 224);
+    --built_now_background: #A370F0;
+    --built_now_text: white;
+    --built_now_icon_background: rgb(46, 43, 43);
+    --tag_border: black;
+    --contact_image_background: #6e57e0;
+    --contact_page_icons: rgb(196, 35, 255);
+    --contact_page_input_border: purple;
+    --contact_page_input_background: hsl(250, 29%, 16%);
+    --contact_page_input_lable: white;
+    --contact_page_input_text: wheat;
+    --contact_page_form_send: royalblue;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background1);
+    color: var(--text1);
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: var(--card_background);
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px solid var(--card_border);
+    margin: 30px auto;
+    width: 90%;
+    min-width: 300px;
+    min-height: 80vh;
+    display: flex;
+}
+
+.input-section, .output-section {
+    width: 40%;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.subheading {
+    color: var(--heading2);
+    margin-bottom: 10px;
+}
+
+textarea {
+    background-color: var(--code_background);
+    color: var(--output_text);
+    border: 2px solid var(--card_border);
+    border-radius: 5px;
+    padding: 10px;
+    font-family: monospace;
+    min-height: 300px;
+    height: 100%;
+    resize: none;
+}
+
+.button-section{
+    width: 20%;
+    padding: 10px 35px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+button {
+    background-color: var(--more_button);
+    color: black;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px 0;
+    max-width: 180px;
+}
+
+button:hover {
+    background-color: var(--more_button_hover);
+}
+
+.output {
+    width: 100%;
+    min-height: 300px;
+    background-color: var(--code_background);
+    color: var(--output_text);
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid var(--card_border);
+    height: 100%;
+    overflow: auto;
+}
+
+
+/* Responsive layout */
+@media (max-width: 1000px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .input-section, .output-section {
+        width: 100%;
+    }
+
+    .button-section {
+        width: 100%;
+        flex-direction: row;
+    }
+}
