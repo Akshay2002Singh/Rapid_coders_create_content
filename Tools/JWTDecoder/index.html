@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JWT Signature Validator</title>
+    <link rel="stylesheet" href="./index.css"></link>
+</head>
+<body>
+
+<div class="container">
+    <h1>JWT Signature Validator</h1>
+
+    <label for="algo">Select Hash Algorithm</label>
+    <select id="algo">
+        <option value="HS256">HS256</option>
+        <option value="HS384">HS384</option>
+        <option value="HS512">HS512</option>
+        <option value="RS256">RS256</option>
+        <option value="RS384">RS384</option>
+        <option value="RS512">RS512</option>
+        <option value="ES256">ES256</option>
+        <option value="ES384">ES384</option>
+        <option value="ES512">ES512</option>
+        <option value="PS256">PS256</option>
+        <option value="PS384">PS384</option>
+        <option value="PS512">PS512</option>
+    </select>
+
+    <label for="secret">Enter Secret Key / Public Key</label>
+    <textarea id="secret" rows="3" cols="40" placeholder="Enter the secret or public key"></textarea>
+
+    <label for="token">Enter JWT Token</label>
+    <textarea id="token" rows="5" placeholder="Paste your JWT here"></textarea>
+
+    <button class="decode-btn" onclick="decodeJWT()">Decode JWT</button>
+
+    <div class="output-box">
+        <button class="copy-btn" onclick="copyToClipboard('header')">Copy</button>
+        <p><strong>Header:</strong></p>
+        <pre id="header"></pre>
+    </div>
+
+    <div class="output-box">
+        <button class="copy-btn" onclick="copyToClipboard('payload')">Copy</button>
+        <p><strong>Payload:</strong></p>
+        <pre id="payload"></pre>
+    </div>
+
+    <div class="output-box">
+        <button class="copy-btn" onclick="copyToClipboard('signature')">Copy</button>
+        <p><strong>Signature:</strong></p>
+        <pre id="signature"></pre>
+    </div>
+
+    <button class="verify-btn" onclick="verifySignature()">Verify Signature</button>
+    <div id="verification-result"></div>
+</div>
+
+<script>
+
+function decodeJWT() {
+        const token = document.getElementById("token").value;
+        const parts = token.split('.');
+        if (parts.length !== 3) {
+            alert("Invalid JWT token!");
+            return;
+        }
+
+        const header = JSON.parse(base64UrlDecode(parts[0]));
+        const payload = JSON.parse(base64UrlDecode(parts[1]));
+        const signature = parts[2];
+
+        document.getElementById("header").textContent = JSON.stringify(header, null, 4);
+        document.getElementById("payload").textContent = JSON.stringify(payload, null, 4);
+        document.getElementById("signature").textContent = signature;
+    }
+
+function copyToClipboard(elementId) {
+        const textToCopy = document.getElementById(elementId).textContent;
+        navigator.clipboard.writeText(textToCopy)
+            .then(() => alert('Copied to clipboard!'))
+            .catch(err => alert('Failed to copy text: ', err));
+    }
+
+    function base64UrlDecode(base64Url) {
+    try {
+        // Replace Base64 URL-safe characters with standard Base64 characters
+        let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        
+        // Add padding if necessary (Base64 length must be divisible by 4)
+        while (base64.length % 4 !== 0) {
+            base64 += '=';
+        }
+        
+        // Decode Base64 string to binary string
+        return atob(base64);
+    } catch (e) {
+        console.error("Error decoding Base64 URL string:", e);
+        throw new Error("Failed to decode Base64 URL string. Ensure your input is correctly formatted.");
+    }
+}
+
+function base64UrlToArrayBuffer(base64Url) {
+    // Replace URL-safe characters with Base64 standard equivalents
+    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+
+    // Add padding if necessary (Base64 string length must be divisible by 4)
+    while (base64.length % 4 !== 0) {
+        base64 += '=';
+    }
+
+    // Decode Base64 string to a binary string
+    const binaryString = atob(base64);
+
+    // Convert binary string to array buffer
+    const len = binaryString.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+    }
+    return bytes.buffer; // Return ArrayBuffer
+}
+
+async function verifySignature() {
+    const algo = document.getElementById("algo").value;
+    const token = document.getElementById("token").value;
+    const secretOrKey = document.getElementById("secret").value; // Secret key or Public key
+
+    if (!token || !secretOrKey) {
+        alert("Please provide both JWT token and secret/public key");
+        return;
+    }
+
+    const parts = token.split('.');
+    if (parts.length !== 3) {
+        alert("Invalid JWT token!");
+        return;
+    }
+
+    const [headerBase64, payloadBase64, signatureBase64] = parts;
+
+    // Decode JWT header and payload
+    const header = JSON.parse(base64UrlDecode(headerBase64));
+    const payload = JSON.parse(base64UrlDecode(payloadBase64));
+
+    // Convert signature to ArrayBuffer
+    const signature = base64UrlToArrayBuffer(signatureBase64);
+
+    let isValid;
+
+    try {
+        switch (algo) {
+            // HMAC algorithms
+            case 'HS256':
+            case 'HS384':
+            case 'HS512':
+                isValid = await verifyHMAC(algo, secretOrKey, `${headerBase64}.${payloadBase64}`, signature);
+                break;
+
+            // RSA algorithms
+            case 'RS256':
+            case 'RS384':
+            case 'RS512':
+                isValid = await verifyRSA(algo, secretOrKey, `${headerBase64}.${payloadBase64}`, signature);
+                break;
+
+            // RSA-PSS algorithms
+            case 'PS256':
+            case 'PS384':
+            case 'PS512':
+                isValid = await verifyRSAPSS(algo, secretOrKey, `${headerBase64}.${payloadBase64}`, signature);
+                break;
+
+            // Elliptic Curve algorithms
+            case 'ES256':
+            case 'ES384':
+            case 'ES512':
+                isValid = await verifyECDSA(algo, secretOrKey, `${headerBase64}.${payloadBase64}`, signature);
+                break;
+
+            default:
+                throw new Error(`Algorithm ${algo} is not supported.`);
+        }
+
+        document.getElementById("verification-result").textContent = isValid
+            ? "Signature is valid!"
+            : "Signature is invalid!";
+    } catch (error) {
+        document.getElementById("verification-result").textContent = `Verification failed: ${error.message}`;
+    }
+}
+
+// HMAC verification
+async function verifyHMAC(algorithm, secret, data, signature) {
+    const key = await crypto.subtle.importKey(
+        "raw",
+        new TextEncoder().encode(secret),
+        { name: "HMAC", hash: { name: algorithm.replace('HS', 'SHA-') } },
+        false,
+        ["verify"]
+    );
+
+    return crypto.subtle.verify(
+        { name: "HMAC" },
+        key,
+        signature,
+        new TextEncoder().encode(data)
+    );
+}
+
+// RSA-PKCS1 verification
+async function verifyRSA(algorithm, publicKeyPem, data, signature) {
+    const key = await importRSAPublicKey(publicKeyPem, "RSASSA-PKCS1-v1_5", algorithm);
+    return crypto.subtle.verify(
+        { name: "RSASSA-PKCS1-v1_5" },
+        key,
+        signature,
+        new TextEncoder().encode(data)
+    );
+}
+
+// RSA-PSS verification
+async function verifyRSAPSS(algorithm, publicKeyPem, data, signature) {
+    const saltLength = {
+        PS256: 32,
+        PS384: 48,
+        PS512: 64
+    }[algorithm];
+
+    if (!saltLength) {
+        throw new Error(`Unsupported algorithm: ${algorithm}`);
+    }
+    const key = await importRSAPublicKey(publicKeyPem, "RSA-PSS", algorithm.replace('PS', 'SHA-'));
+    return crypto.subtle.verify(
+        { name: "RSA-PSS", saltLength},
+        key,
+        signature,
+        new TextEncoder().encode(data)
+    );
+}
+
+// ECDSA verification
+async function verifyECDSA(algorithm, publicKeyPem, data, signature) {
+    const key = await importECDSAPublicKey(publicKeyPem, algorithm);
+    return crypto.subtle.verify(
+        { name: "ECDSA", hash: { name: algorithm.replace('ES', 'SHA-') } },
+        key,
+        signature,
+        new TextEncoder().encode(data)
+    );
+}
+
+// Import RSA Public Key
+async function importRSAPublicKey(pem, algorithm, hashAlgo) {
+    const base64Key = pem
+        .replace(/-----BEGIN PUBLIC KEY-----/g, '')
+        .replace(/-----END PUBLIC KEY-----/g, '')
+        .replace(/\n/g, '')
+        .trim();
+
+    const binaryDer = base64UrlToArrayBuffer(base64Key);
+    return await crypto.subtle.importKey(
+        "spki",
+        binaryDer,
+        { name: algorithm, hash: { name: hashAlgo.replace('RS', 'SHA-') } },
+        true,
+        ["verify"]
+    );
+}
+
+// Import ECDSA Public Key
+async function importECDSAPublicKey(pem, algorithm) {
+    const base64Key = pem
+        .replace(/-----BEGIN PUBLIC KEY-----/g, '')
+        .replace(/-----END PUBLIC KEY-----/g, '')
+        .replace(/\n/g, '')
+        .trim();
+
+    const binaryDer = base64UrlToArrayBuffer(base64Key);
+
+    const namedCurve = {
+        ES256: 'P-256',
+        ES384: 'P-384',
+        ES512: 'P-521' // Use P-521 for ES512
+    }[algorithm];
+
+    if (!namedCurve) {
+        throw new Error(`Unsupported algorithm: ${algorithm}`);
+    }
+
+    return await crypto.subtle.importKey(
+        "spki",
+        binaryDer,
+        { name: "ECDSA", namedCurve},
+        true,
+        ["verify"]
+    );
+}
+
+
+</script>
+
+</body>
+</html>

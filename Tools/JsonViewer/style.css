@@ -52,7 +52,7 @@ body {
 
 .input-section, .output-section {
     width: 40%;
-    min-width: 300px;
+    min-width: 250px;
     display: flex;
     flex-direction: column;
 }

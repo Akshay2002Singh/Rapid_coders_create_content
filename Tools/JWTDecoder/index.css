@@ -1,0 +1,102 @@
+:root {
+    --nav_heading: rgb(110, 87, 224);
+    --nav_link_hover: wheat;
+    --background1: rgb(0, 0, 0);
+    --background2: rgb(17, 17, 17);
+    --text1: rgb(205, 205, 205);
+    --output_text: white;
+    --heading1: wheat;
+    --heading2: white;
+    --code_background: rgb(56, 56, 56);
+    --more_button: rgb(182, 168, 255);
+    --more_button_hover: rgb(201, 192, 255);
+    --card_background: rgba(45, 45, 52, 0.6);
+    --card_border: rgb(110, 87, 224);
+}
+
+body {
+    background-color: var(--background1);
+    color: var(--text1);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin: 50px auto;
+    max-width: 700px;
+    background-color: var(--background2);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--card_border);
+}
+
+h1 {
+    color: var(--heading1);
+    text-align: center;
+}
+
+label {
+    color: var(--heading2);
+    font-size: 18px;
+}
+
+select, textarea, input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid var(--card_border);
+    background-color: var(--code_background);
+    color: var(--text1);
+}
+
+.decode-btn, .verify-btn {
+    width: 100%;
+    background-color: var(--more_button);
+    color: white;
+    padding: 10px;
+    margin: 20px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.decode-btn:hover, .verify-btn:hover {
+    background-color: var(--more_button_hover);
+}
+
+.output-box {
+    background-color: var(--code_background);
+    color: var(--output_text);
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+    position: relative;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--more_button);
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.copy-btn:hover {
+    background-color: var(--more_button_hover);
+}
+
+.output-box pre {
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+#verification-result {
+    color: var(--heading1);
+    font-weight: bold;
+}

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JWT Utility</title>
+    <style>
+        :root {
+            --nav_heading: rgb(110, 87, 224);
+            --nav_link_hover: wheat;
+            --background1: rgb(0, 0, 0);
+            --background2: rgb(17, 17, 17);
+            --text1: rgb(205, 205, 205);
+            --output_text: white;
+            --heading1: wheat;
+            --heading2: white;
+            --code_background: rgb(56, 56, 56);
+            --more_button: rgb(182, 168, 255);
+            --more_button_hover: rgb(201, 192, 255);
+            --card_background: rgba(45, 45, 52, 0.6);
+            --card_border: rgb(110, 87, 224);
+        }
+
+        body {
+            background-color: var(--background1);
+            color: var(--text1);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 50px auto;
+            max-width: 700px;
+            background-color: var(--background2);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--card_border);
+        }
+
+        h1 {
+            color: var(--heading1);
+            text-align: center;
+        }
+
+        label {
+            color: var(--heading2);
+            font-size: 18px;
+        }
+
+        select, textarea, input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid var(--card_border);
+            background-color: var(--code_background);
+            color: var(--text1);
+        }
+
+        .btn {
+            width: 100%;
+            background-color: var(--more_button);
+            color: white;
+            padding: 10px;
+            margin: 20px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--more_button_hover);
+        }
+
+        .output-box {
+            background-color: var(--code_background);
+            color: var(--output_text);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .output-box pre {
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .tabs button {
+            flex: 1;
+            padding: 10px;
+            background-color: var(--card_background);
+            border: none;
+            color: var(--heading1);
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .tabs button:hover {
+            background-color: var(--more_button);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JWT Utility</h1>
+        <div class="tabs">
+            <button onclick="showTab('generate')">Generate JWT</button>
+            <button onclick="showTab('decode')">Decode JWT</button>
+            <button onclick="showTab('validate')">Validate JWT</button>
+        </div>
+
+        <!-- JWT Generation -->
+        <div id="generate" class="tab-content active">
+            <h2>Generate JWT Token</h2>
+            <label for="gen-header">Header (JSON):</label>
+            <textarea id="gen-header" rows="3" placeholder='{"alg": "HS256", "typ": "JWT"}'></textarea>
+
+            <label for="gen-payload">Payload (JSON):</label>
+            <textarea id="gen-payload" rows="5" placeholder='{"sub": "1234567890", "name": "John Doe", "iat": 1516239022}'></textarea>
+
+            <label for="gen-secret">Secret Key:</label>
+            <input type="text" id="gen-secret" placeholder="Enter secret key">
+
+            <label for="gen-algo">Algorithm:</label>
+            <select id="gen-algo">
+                <option value="HS256">HS256</option>
+                <option value="HS384">HS384</option>
+                <option value="HS512">HS512</option>
+            </select>
+
+            <button class="btn" onclick="generateJWT()">Generate JWT</button>
+            <div class="output-box">
+                <p><strong>Generated Token:</strong></p>
+                <pre id="generated-token"></pre>
+            </div>
+        </div>
+
+        <!-- JWT Decode -->
+        <div id="decode" class="tab-content">
+            <h2>Decode JWT Token</h2>
+            <label for="decode-token">Enter JWT Token:</label>
+            <textarea id="decode-token" rows="5" placeholder="Paste your JWT here"></textarea>
+            <button class="btn" onclick="decodeJWT()">Decode JWT</button>
+
+            <div class="output-box">
+                <p><strong>Header:</strong></p>
+                <pre id="decoded-header"></pre>
+            </div>
+
+            <div class="output-box">
+                <p><strong>Payload:</strong></p>
+                <pre id="decoded-payload"></pre>
+            </div>
+
+            <div class="output-box">
+                <p><strong>Signature:</strong></p>
+                <pre id="decoded-signature"></pre>
+            </div>
+        </div>
+
+        <!-- JWT Validate -->
+        <div id="validate" class="tab-content">
+            <h2>Validate JWT Signature</h2>
+            <label for="validate-token">Enter JWT Token:</label>
+            <textarea id="validate-token" rows="5" placeholder="Paste your JWT here"></textarea>
+
+            <label for="validate-secret">Secret Key / Public Key:</label>
+            <textarea id="validate-secret" rows="3" placeholder="Enter the secret or public key"></textarea>
+
+            <label for="validate-algo">Algorithm:</label>
+            <select id="validate-algo">
+                <option value="HS256">HS256</option>
+                <option value="HS384">HS384</option>
+                <option value="HS512">HS512</option>
+                <option value="RS256">RS256</option>
+                <option value="RS384">RS384</option>
+                <option value="RS512">RS512</option>
+                <option value="ES256">ES256</option>
+                <option value="ES384">ES384</option>
+                <option value="ES512">ES512</option>
+                <option value="PS256">PS256</option>
+                <option value="PS384">PS384</option>
+                <option value="PS512">PS512</option>
+            </select>
+
+            <button class="btn" onclick="validateJWT()">Validate Signature</button>
+            <div class="output-box">
+                <p><strong>Validation Result:</strong></p>
+                <pre id="validation-result"></pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab Navigation
+        function showTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // Base64 Utilities
+        function base64UrlEncode(data) {
+            return btoa(data).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+        }
+
+        function base64UrlDecode(data) {
+            const base64 = data.replace(/-/g, '+').replace(/_/g, '/');
+            return atob(base64);
+        }
+
+        // Generate JWT
+        function generateJWT() {
+            const header = document.getElementById("gen-header").value;
+            const payload = document.getElementById("gen-payload").value;
+            const secret = document.getElementById("gen-secret").value;
+            const algo = document.getElementById("gen-algo").value;
+
+            try {
+                const encodedHeader = base64UrlEncode(header);
+                const encodedPayload = base64UrlEncode(payload);
+                const signature = base64UrlEncode(secret); // Simplified for now
+
+                const token = `${encodedHeader}.${encodedPayload}.${signature}`;
+                document.getElementById("generated-token").textContent = token;
+            } catch (err) {
+                alert("Error generating JWT: " + err.message);
+            }
+        }
+
+        // Decode JWT
+        function decodeJWT() {
+            const token = document.getElementById("decode-token").value;
+            const [header, payload, signature] = token.split('.');
+
+            try {
+                document.getElementById("decoded-header").textContent = JSON.stringify(JSON.parse(base64UrlDecode(header)), null, 2);
+                document.getElementById("decoded-payload").textContent = JSON.stringify(JSON.parse(base64UrlDecode(payload)), null, 2);
+                document.getElementById("decoded-signature").textContent = signature;
+            } catch (err) {
+                alert("Error decoding JWT: " + err.message);
+            }
+        }
+
+        // Validate JWT
+        function validateJWT() {
+            const token = document.getElementById("validate-token").value;
+            const secret = document.getElementById("validate-secret").value;
+            const algo = document.getElementById("validate-algo").value;
+
+            const [header, payload, signature] = token.split('.');
+            const unsignedToken = `${header}.${payload}`;
+
+            try {
+                const valid = base64UrlEncode(secret) === signature; // Simplified for demo
+                document.getElementById("validation-result").textContent = valid ? "Valid Signature" : "Invalid Signature";
+            } catch (err) {
+                alert("Error validating JWT: " + err.message);
+            }
+        }
+    </script>
+</body>
+</html>
