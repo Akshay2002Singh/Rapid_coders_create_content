@@ -9,7 +9,7 @@
 <body>
 
 <div class="container">
-    <h1>JWT Signature Validator</h1>
+    <h1 class="title">JWT Decoder</h1>
 
     <label for="algo">Select Hash Algorithm</label>
     <select id="algo">
@@ -27,11 +27,12 @@
         <option value="PS512">PS512</option>
     </select>
 
-    <label for="secret">Enter Secret Key / Public Key</label>
-    <textarea id="secret" rows="3" cols="40" placeholder="Enter the secret or public key"></textarea>
-
     <label for="token">Enter JWT Token</label>
-    <textarea id="token" rows="5" placeholder="Paste your JWT here"></textarea>
+    <textarea id="token" rows="9" placeholder="Paste your JWT here"></textarea>
+
+    <label for="secret">Enter Secret Key / Public Key</label>
+    <textarea id="secret" rows="9" cols="40" placeholder="Only required for verifying the signature"></textarea>
+
 
     <button class="decode-btn" onclick="decodeJWT()">Decode JWT</button>
 
