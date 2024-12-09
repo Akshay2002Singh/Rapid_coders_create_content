@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Editor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.7/codemirror.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.7/theme/material-darker.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.7/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.7/mode/markdown/markdown.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1 class="nav-heading">Advanced Markdown Editor</h1>
+        <button id="toggle-view" class="toggle-button">Switch to Side-by-Side</button>
+    </header>
+    <main id="editor-preview-container" class="top-bottom-view">
+        <div class="editor-container">
+            <textarea id="editor" placeholder="Write your markdown here..."></textarea>
+        </div>
+        <div class="preview-container">
+            <h2 class="heading1">Live Preview</h2>
+            <div id="preview" class="preview-output"></div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
