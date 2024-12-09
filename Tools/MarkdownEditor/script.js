@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     editor.on("change", () => {
         const markdownContent = editor.getValue();
         const renderedHTML = marked.parse(markdownContent, {
-            breaks: true, // Enable GitHub-like line breaks
+            breaks: true,
         });
         previewContainer.innerHTML = renderedHTML;
     });
@@ -31,6 +31,18 @@ document.addEventListener("DOMContentLoaded", () => {
             editorPreviewContainer.classList.remove("side-by-side-view");
             editorPreviewContainer.classList.add("top-bottom-view");
             toggleButton.textContent = "Switch to Side-by-Side";
+        }
+
+        setTimeout(() => editor.refresh(), 300); // Ensure layout changes apply before refresh
+    });
+
+    // Image upload handling
+    const imageUpload = document.getElementById("image-upload");
+    imageUpload.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const temporaryURL = URL.createObjectURL(file);
+            editor.replaceSelection(`![Alt text](${temporaryURL})`);
         }
     });
 });

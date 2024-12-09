@@ -21,11 +21,15 @@ header {
     background-color: var(--background2);
     padding: 20px;
     text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .nav-heading {
     color: var(--nav_heading);
     font-size: 2.5rem;
+    margin: 0;
 }
 
 main {
@@ -33,9 +37,11 @@ main {
     flex-direction: column;
     gap: 20px;
     padding: 20px;
+    height: calc(100vh - 80px); /* Fill viewport minus header height */
 }
 
-.editor-container {
+.editor-container,
+.preview-container {
     border: 1px solid var(--card_border);
     border-radius: 8px;
     background-color: var(--code_background);
@@ -55,48 +61,21 @@ textarea {
     outline: none;
 }
 
-.preview-container {
+input[type="file"] {
+    margin-top: 10px;
+    color: var(--output_text);
+    background: var(--background2);
     border: 1px solid var(--card_border);
-    border-radius: 8px;
-    background-color: var(--card_background);
-    padding: 20px;
-    overflow: hidden;
+    border-radius: 5px;
+    padding: 5px;
+    outline: none;
+    display: block;
 }
 
 .preview-output {
     color: var(--output_text);
     font-size: 1rem;
     line-height: 1.5;
-}
-
-footer {
-    background-color: var(--background2);
-    color: var(--text1);
-    text-align: center;
-    padding: 10px;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    color: var(--heading1);
-}
-
-/* Editor and preview container styling */
-.editor-container,
-.preview-container {
-    flex: 1;
-    height: 400px;
-    /* Default height for top-bottom view */
-}
-
-/* Adjust height dynamically in side-by-side view */
-#editor-preview-container.side-by-side-view .editor-container,
-#editor-preview-container.side-by-side-view .preview-container {
-    height: auto;
 }
 
 /* Layout for top-and-bottom view */
@@ -106,20 +85,20 @@ h6 {
     gap: 20px;
 }
 
-/* Layout for side-by-side view */
 #editor-preview-container.side-by-side-view {
     display: flex;
     flex-direction: row;
     gap: 20px;
+    height: 100%;
 }
 
 #editor-preview-container.side-by-side-view .editor-container,
 #editor-preview-container.side-by-side-view .preview-container {
     flex: 1;
-    height: auto;
+    height: 100%;
 }
 
-/* Additional styles for the toggle button */
+/* Hide toggle button on small screens */
 .toggle-button {
     margin-top: 10px;
     padding: 10px 15px;
@@ -129,8 +108,16 @@ h6 {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    display: none; /* Hidden by default */
 }
 
 .toggle-button:hover {
     background-color: var(--card_border);
+}
+
+/* Display toggle button only on large screens */
+@media (min-width: 768px) {
+    .toggle-button {
+        display: inline-block;
+    }
 }
