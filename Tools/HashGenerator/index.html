@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hash Generator Tool</title>
+    <style>
+        :root {
+            --nav_heading: rgb(110, 87, 224);
+            --nav_link_hover: wheat;
+            --background1: rgb(0, 0, 0);
+            --background2: rgb(17, 17, 17);
+            --text1: rgb(205, 205, 205);
+            --output_text: white;
+            --heading1: wheat;
+            --heading2: white;
+            --code_background: rgb(56, 56, 56);
+            --more_button: rgb(182, 168, 255);
+            --more_button_hover: rgb(201, 192, 255);
+            --card_background: rgba(45, 45, 52, 0.6);
+            --card_border: rgb(110, 87, 224);
+        }
+
+        body {
+            background-color: var(--background1);
+            color: var(--text1);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: var(--background2);
+            border-radius: 8px;
+            border: 1px solid var(--card_border);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--heading1);
+        }
+
+        label {
+            font-size: 16px;
+            color: var(--heading2);
+        }
+
+        textarea, select, .generate-btn {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid var(--card_border);
+            background-color: var(--code_background);
+            color: var(--text1);
+            font-size: 16px;
+        }
+
+        .generate-btn {
+            background-color: var(--more_button);
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .generate-btn:hover {
+            background-color: var(--more_button_hover);
+        }
+
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: var(--code_background);
+            color: var(--output_text);
+            border: 1px solid var(--card_border);
+            border-radius: 5px;
+            word-wrap: break-word;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Hash Generator Tool</h1>
+
+    <label for="input-text">Enter Text to Hash</label>
+    <textarea id="input-text" rows="4" placeholder="Type your text here..."></textarea>
+
+    <label for="algorithm">Select Hash Algorithm</label>
+    <select id="algorithm">
+        <option value="SHA-256">SHA-256</option>
+        <option value="SHA-384">SHA-384</option>
+        <option value="SHA-512">SHA-512</option>
+        <option value="MD5">MD5</option>
+        <option value="Argon2">Argon2</option>
+        <option value="RIPEMD-160">RIPEMD-160</option>
+        <option value="Whirlpool">Whirlpool</option>
+    </select>
+
+    <button class="generate-btn" onclick="generateHash()">Generate Hash</button>
+
+    <div class="output" id="hash-output">Hash will appear here...</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/spark-md5"></script>
+<script src="https://cdn.jsdelivr.net/npm/argon2-browser/dist/argon2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/crypto-js/crypto-js.js"></script>
+
+
+<script>
+    async function generateHash() {
+        const inputText = document.getElementById("input-text").value;
+        const algorithm = document.getElementById("algorithm").value;
+        const outputElement = document.getElementById("hash-output");
+
+        if (!inputText) {
+            alert("Please enter some text to hash!");
+            return;
+        }
+
+        try {
+            let hashHex;
+
+            if (algorithm === "MD5") {
+                hashHex = SparkMD5.hash(inputText); // MD5 Hash
+            } else if (algorithm === "Argon2") {
+                const hash = await argon2.hash({
+                    pass: inputText,
+                    salt: "somesalt", // Replace with a unique salt
+                    time: 1,
+                    mem: 1024,
+                    hashLen: 32,
+                    parallelism: 1,
+                    type: argon2.ArgonType.Argon2id
+                });
+                hashHex = hash.encoded;
+            } else if (algorithm === "RIPEMD-160") {
+                const hash = CryptoJS.RIPEMD160(inputText);
+                hashHex = hash.toString(CryptoJS.enc.Hex);
+            } else if (algorithm === "Whirlpool") {
+                const hash = CryptoJS.algo.Whirlpool.create().finalize(inputText);
+                hashHex = hash.toString(CryptoJS.enc.Hex);
+            } else {
+                const textEncoder = new TextEncoder();
+                const encodedText = textEncoder.encode(inputText);
+                const hashBuffer = await crypto.subtle.digest(algorithm, encodedText);
+
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+            }
+
+            outputElement.textContent = hashHex;
+        } catch (error) {
+            outputElement.textContent = `Error: ${error.message}`;
+        }
+    }
+</script>
+
+</body>
+</html>

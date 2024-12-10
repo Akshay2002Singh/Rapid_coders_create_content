@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
         lineNumbers: true,
         theme: "material-darker",
         lineWrapping: true,
+        
     });
 
     const previewContainer = document.getElementById("preview");
