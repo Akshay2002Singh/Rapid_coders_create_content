@@ -1,14 +1,34 @@
-/* Updated CSS with fixes */
 :root {
+    /* general variables */
     --nav_heading: rgb(110, 87, 224);
+    --nav_link_hover: wheat;
     --background1: rgb(0, 0, 0);
     --background2: rgb(17, 17, 17);
     --text1: rgb(205, 205, 205);
+    --text2: rgb(224 224 224);
     --output_text: white;
     --heading1: wheat;
+    --heading2: white;
     --code_background: rgb(56, 56, 56);
+    /* elements specific variables */
+    /* mare button of home  */
+    --more_button: rgb(182, 168, 255);
+    --more_button_hover: rgb(201, 192, 255);
+    /* cards  */
     --card_background: rgba(45, 45, 52, 0.6);
     --card_border: rgb(110, 87, 224);
+    --built_now_background: #A370F0;
+    --built_now_text: white;
+    --built_now_icon_background: rgb(46, 43, 43);
+    --tag_border: black;
+    /* contact page variables */
+    --contact_image_background: #6e57e0;
+    --contact_page_icons: rgb(196, 35, 255);
+    --contact_page_input_border: purple;
+    --contact_page_input_background: hsl(250, 29%, 16%);
+    --contact_page_input_lable: white;
+    --contact_page_input_text: wheat;
+    --contact_page_form_send: royalblue;
 }
 
 body {
@@ -57,6 +77,13 @@ main {
     overflow: hidden;
 }
 
+#editor-preview-container h3 {
+    color: var(--text2);
+    font-weight: 100;
+    font-size: 18px;
+    margin: 10px 8px;
+} 
+
 /* Default: Side-by-Side View */
 .side-by-side-view {
     flex-direction: row;
@@ -72,6 +99,10 @@ main {
 /* Top-and-Bottom View */
 .top-bottom-view {
     flex-direction: column;
+}
+
+.top-bottom-view  .wrappers {
+    height: 55%;
 }
 
 .editor-container,
@@ -98,9 +129,11 @@ textarea {
 }
 
 .CodeMirror {
-    height: 100%;
+    height: calc(100% - 95px);
     background-color: var(--code_background);
     color: var(--output_text);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 input[type="file"] {
