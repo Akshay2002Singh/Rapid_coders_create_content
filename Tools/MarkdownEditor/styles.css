@@ -15,6 +15,7 @@ body {
     color: var(--text1);
     font-family: Arial, sans-serif;
     margin: 0;
+    height: 80vh;
 }
 
 header {
@@ -59,7 +60,13 @@ textarea {
     padding: 10px;
     resize: none;
     outline: none;
+    overflow-y: scroll;
+
 }
+
+.CodeMirror {
+    height: 90%;
+  }
 
 input[type="file"] {
     margin-top: 10px;
@@ -83,6 +90,7 @@ input[type="file"] {
     display: flex;
     flex-direction: column;
     gap: 20px;
+
 }
 
 #editor-preview-container.side-by-side-view {
@@ -90,12 +98,15 @@ input[type="file"] {
     flex-direction: row;
     gap: 20px;
     height: 100%;
+
 }
 
 #editor-preview-container.side-by-side-view .editor-container,
 #editor-preview-container.side-by-side-view .preview-container {
     flex: 1;
     height: 100%;
+    padding: 0 1rem;
+
 }
 
 /* Hide toggle button on small screens */

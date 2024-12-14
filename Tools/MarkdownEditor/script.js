@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         theme: "material-darker",
         lineWrapping: true,
         
-    });
+    })
 
     const previewContainer = document.getElementById("preview");
 
@@ -24,14 +24,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const editorPreviewContainer = document.getElementById("editor-preview-container");
 
     toggleButton.addEventListener("click", () => {
-        if (editorPreviewContainer.classList.contains("top-bottom-view")) {
-            editorPreviewContainer.classList.remove("top-bottom-view");
-            editorPreviewContainer.classList.add("side-by-side-view");
-            toggleButton.textContent = "Switch to Top and Bottom";
-        } else {
+        if (editorPreviewContainer.classList.contains("side-by-side-view")) {
             editorPreviewContainer.classList.remove("side-by-side-view");
             editorPreviewContainer.classList.add("top-bottom-view");
             toggleButton.textContent = "Switch to Side-by-Side";
+
+            
+        } else {
+            editorPreviewContainer.classList.remove("top-bottom-view");
+            editorPreviewContainer.classList.add("side-by-side-view");
+            toggleButton.textContent = "Switch to Top and Bottom";
         }
 
         setTimeout(() => editor.refresh(), 300); // Ensure layout changes apply before refresh
