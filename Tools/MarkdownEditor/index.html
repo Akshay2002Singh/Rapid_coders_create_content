@@ -17,16 +17,21 @@
 <body>
     <header>
         <h1 class="nav-heading">Advanced Markdown Editor</h1>
-        <button id="toggle-view" class="toggle-button">Switch to Side-by-Side</button>
+        <button id="toggle-view" class="toggle-button">Switch to Top and Bottom</button>
     </header>
-    <main id="editor-preview-container" class="side-by-side-view" >
-        <div class="editor-container" >
-            <textarea id="editor" placeholder="Write your markdown here..."></textarea>
-            <input type="file" id="image-upload" accept="image/*" />
+    <main id="editor-preview-container" class="side-by-side-view">
+        <div id="editor-wrapper">
+            <h2>Markdown</h2>
+            <div class="editor-container">
+                <textarea id="editor" placeholder="Write your markdown here..."></textarea>
+                <input type="file" id="image-upload" accept="image/*" />
+            </div>
         </div>
-        <div class="preview-container">
-            <h2 class="heading1">Live Preview</h2>
-            <div id="preview" class="preview-output"></div>
+        <div id="preview-wrapper">
+            <h2>Preview</h2>
+            <div class="preview-container">
+                <div id="preview" class="preview-output"></div>
+            </div>
         </div>
     </main>
 
