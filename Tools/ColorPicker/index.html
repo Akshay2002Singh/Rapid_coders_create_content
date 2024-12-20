@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Wheel Picker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+
+    canvas {
+      cursor: crosshair;
+      position: relative;
+    }
+
+    #pointer {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border: 2px solid black;
+      background: white;
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+    }
+
+    .output {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    .output div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 10px;
+    }
+
+    .output div span {
+      margin-right: 10px;
+    }
+
+    .copy-btn {
+      padding: 5px 10px;
+      font-size: 14px;
+      border: none;
+      background: #4caf50;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .copy-btn:hover {
+      background: #45a049;
+    }
+
+    .color-display {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 2px solid #000;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <h1>Color Wheel Picker</h1>
+  <div style="position: relative; display: inline-block;">
+    <canvas id="colorWheel" width="300" height="300"></canvas>
+    <div id="pointer"></div>
+  </div>
+  <div class="output">
+    <div>
+      <span>RGB:</span> 
+      <span id="rgbOutput">None</span>
+      <button class="copy-btn" onclick="copyText('rgbOutput')">Copy</button>
+    </div>
+    <div>
+      <span>HEX:</span> 
+      <span id="hexOutput">None</span>
+      <button class="copy-btn" onclick="copyText('hexOutput')">Copy</button>
+    </div>
+    <div>
+      <span>HSL:</span> 
+      <span id="hslOutput">None</span>
+      <button class="copy-btn" onclick="copyText('hslOutput')">Copy</button>
+    </div>
+    <div class="color-display" id="colorDisplay"></div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('colorWheel');
+    const ctx = canvas.getContext('2d');
+    const pointer = document.getElementById('pointer');
+    const rgbOutput = document.getElementById('rgbOutput');
+    const hexOutput = document.getElementById('hexOutput');
+    const hslOutput = document.getElementById('hslOutput');
+    const colorDisplay = document.getElementById('colorDisplay');
+
+    const width = canvas.width;
+    const height = canvas.height;
+    const radius = Math.min(width, height) / 2;
+    const centerX = width / 2;
+    const centerY = height / 2;
+
+    let isDragging = false;
+
+    // Draw the color wheel
+    function drawColorWheel() {
+      const imageData = ctx.createImageData(width, height);
+      const data = imageData.data;
+
+      for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+          const dx = x - centerX;
+          const dy = y - centerY;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance <= radius) {
+            const angle = Math.atan2(dy, dx) + Math.PI;
+            const hue = (angle / (2 * Math.PI)) * 360;
+            const saturation = (distance / radius) * 100;
+            const [r, g, b] = hslToRgb(hue, saturation, 50);
+
+            const index = (y * width + x) * 4;
+            data[index] = r;
+            data[index + 1] = g;
+            data[index + 2] = b;
+            data[index + 3] = 255; // Alpha
+          }
+        }
+      }
+
+      ctx.putImageData(imageData, 0, 0);
+    }
+
+    // Convert HSL to RGB
+    function hslToRgb(h, s, l) {
+      s /= 100;
+      l /= 100;
+
+      const c = (1 - Math.abs(2 * l - 1)) * s;
+      const x = c * (1 - Math.abs((h / 60) % 2 - 1));
+      const m = l - c / 2;
+
+      let r = 0, g = 0, b = 0;
+
+      if (0 <= h && h < 60) { r = c; g = x; b = 0; }
+      else if (60 <= h && h < 120) { r = x; g = c; b = 0; }
+      else if (120 <= h && h < 180) { r = 0; g = c; b = x; }
+      else if (180 <= h && h < 240) { r = 0; g = x; b = c; }
+      else if (240 <= h && h < 300) { r = x; g = 0; b = c; }
+      else if (300 <= h && h < 360) { r = c; g = 0; b = x; }
+
+      r = Math.round((r + m) * 255);
+      g = Math.round((g + m) * 255);
+      b = Math.round((b + m) * 255);
+
+      return [r, g, b];
+    }
+
+    // Convert RGB to HEX
+    function rgbToHex(r, g, b) {
+      return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
+    }
+
+    // Convert RGB to HSL
+    function rgbToHsl(r, g, b) {
+      r /= 255;
+      g /= 255;
+      b /= 255;
+
+      const max = Math.max(r, g, b);
+      const min = Math.min(r, g, b);
+      const delta = max - min;
+
+      let h = 0, s = 0, l = (max + min) / 2;
+
+      if (delta !== 0) {
+        s = delta / (1 - Math.abs(2 * l - 1));
+
+        switch (max) {
+          case r: h = ((g - b) / delta + (g < b ? 6 : 0)) * 60; break;
+          case g: h = ((b - r) / delta + 2) * 60; break;
+          case b: h = ((r - g) / delta + 4) * 60; break;
+        }
+      }
+
+      return [Math.round(h), Math.round(s * 100), Math.round(l * 100)];
+    }
+
+    // Copy text to clipboard
+    function copyText(elementId) {
+      const text = document.getElementById(elementId).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert(`${text} copied to clipboard!`);
+      });
+    }
+
+    // Update pointer position and color
+    function updatePointerAndColor(x, y) {
+      const rect = canvas.getBoundingClientRect();
+      const canvasX = x - rect.left;
+      const canvasY = y - rect.top;
+
+      const dx = canvasX - centerX;
+      const dy = canvasY - centerY;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance <= radius) {
+        pointer.style.left = `${canvasX}px`;
+        pointer.style.top = `${canvasY}px`;
+
+        const pixel = ctx.getImageData(canvasX, canvasY, 1, 1).data;
+        const [r, g, b] = pixel;
+
+        rgbOutput.textContent = `rgb(${r}, ${g}, ${b})`;
+        hexOutput.textContent = rgbToHex(r, g, b);
+        const [h, s, l] = rgbToHsl(r, g, b);
+        hslOutput.textContent = `hsl(${h}, ${s}%, ${l}%)`;
+        colorDisplay.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+      }
+    }
+
+    // Mouse event listeners
+    canvas.addEventListener('mousedown', () => isDragging = true);
+    window.addEventListener('mouseup', () => isDragging = false);
+    canvas.addEventListener('mousemove', (e) => {
+      if (isDragging) {
+        updatePointerAndColor(e.clientX, e.clientY);
+      }
+    });
+
+    drawColorWheel();
+  </script>
+</body>
+</html>
