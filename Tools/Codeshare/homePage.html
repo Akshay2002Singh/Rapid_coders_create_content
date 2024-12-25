@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Share Tool</title>
+    <style>
+        :root {
+            --nav_heading: rgb(110, 87, 224);
+            --nav_link_hover: wheat;
+            --background1: rgb(0, 0, 0);
+            --background2: rgb(17, 17, 17);
+            --text1: rgb(205, 205, 205);
+            --output_text: white;
+            --heading1: wheat;
+            --heading2: white;
+            --code_background: rgb(56, 56, 56);
+            --more_button: rgb(182, 168, 255);
+            --more_button_hover: rgb(201, 192, 255);
+            --card_background: rgba(45, 45, 52, 0.6);
+            --card_border: rgb(110, 87, 224);
+            --built_now_background: #A370F0;
+            --built_now_text: white;
+            --built_now_icon_background: rgb(46, 43, 43);
+            --tag_border: black;
+            --contact_image_background: #6e57e0;
+            --contact_page_icons: rgb(196, 35, 255);
+            --contact_page_input_border: purple;
+            --contact_page_input_background: hsl(250, 29%, 16%);
+            --contact_page_input_lable: white;
+            --contact_page_input_text: wheat;
+            --contact_page_form_send: royalblue;
+        }
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .body {
+            font-family: Arial, sans-serif;
+            background: var(--background1);
+            color: var(--text1);
+        }
+
+        .header {
+            text-align: center;
+            padding: 15px 10px;
+            color: var(--heading1);
+        }
+
+        .header-title {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .description {
+            text-align: center;
+            margin: 20px 10px;
+            max-width: 700px;
+            color: var(--text1);
+            font-size: 22px;
+            line-height: 1.6;
+        }
+
+        .button-container {
+            display: flex;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-create {
+            background: var(--more_button);
+            color: var(--output_text);
+        }
+
+        .btn-create:hover {
+            background: var(--more_button_hover);
+        }
+
+        .btn-open {
+            background: var(--contact_page_icons);
+            color: var(--output_text);
+        }
+
+        .btn-open:hover {
+            background: var(--built_now_background);
+        }
+
+        .highlight{
+            font-style: italic;
+        }
+    </style>
+</head>
+<body class="body">
+    <header class="header">
+        <h1 class="header-title">Share Code</h1>
+    </header>
+    <main class="main-content">
+        <p class="description">
+            The <span class="highlight">Share code</span> makes sharing your code simple and elegant. Create visually formatted snippets that can be easily shared with others. 
+            Whether you're collaborating with a team or showcasing your work, this tool has got you covered.
+        </p>
+        <div class="button-container">
+            <button class="btn btn-open" onclick="openLast()">Start sharing</button>
+        </div>
+    </main>
+    <script>
+        function createNew() {
+            alert('Navigate to create new code page');
+            // Add navigation to create new page
+        }
+
+        function openLast() {
+            const lastUsed = localStorage.getItem('lastUsedCode');
+            if (lastUsed) {
+                alert('Opening last used code...');
+                // Logic to open last used code
+            } else {
+                alert('No last used code found');
+            }
+        }
+    </script>
+</body>
+</html>
