@@ -6,6 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Wheel Picker</title>
     <style>
+        :root {
+    --nav_heading: rgb(110, 87, 224);
+    --nav_link_hover: wheat;
+    --background1: rgb(0, 0, 0);
+    --background2: rgb(17, 17, 17);
+    --text1: rgb(205, 205, 205);
+    --output_text: white;
+    --heading1: wheat;
+    --heading2: white;
+    --code_background: rgb(56, 56, 56);
+    --more_button: rgb(182, 168, 255);
+    --more_button_hover: rgb(201, 192, 255);
+    --card_background: rgba(45, 45, 52, 0.6);
+    --card_border: rgb(110, 87, 224);
+    --built_now_background: #A370F0;
+    --built_now_text: white;
+    --built_now_icon_background: rgb(46, 43, 43);
+    --tag_border: black;
+    --contact_image_background: #6e57e0;
+    --contact_page_icons: rgb(196, 35, 255);
+    --contact_page_input_border: purple;
+    --contact_page_input_background: hsl(250, 29%, 16%);
+    --contact_page_input_lable: white;
+    --contact_page_input_text: wheat;
+    --contact_page_form_send: royalblue;
+  }
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -101,6 +127,42 @@
             background: #45a049;
         }
 
+        .opacity-slider-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    margin-left: 20px;
+}
+
+#opacitySlider {
+    writing-mode: bt-lr; /* Vertical slider */
+    transform: rotate(-90deg);
+    width: 300px;
+    height: 20px;
+    appearance: none;
+    outline: none;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+    border-radius: 5px;
+    margin: 0;
+}
+
+#opacitySlider::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--card_border);
+    cursor: pointer;
+}
+
+#opacityValue {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -120,6 +182,10 @@
             <canvas id="colorWheel" width="300" height="300"></canvas>
             <div id="pointer"></div>
         </div>
+        <div class="opacity-slider-container">
+            <input type="range" id="opacitySlider" min="0" max="1" step="0.01" value="1">
+        </div>
+        
         <div class="output-container">
             <div class="color-display" id="colorDisplay"></div>
             <div class="output">
@@ -293,6 +359,29 @@
         })
 
         drawColorWheel();
+
+        const opacitySlider = document.getElementById('opacitySlider');
+
+        opacitySlider.addEventListener('input', () => {
+            const rect = pointer.getBoundingClientRect();
+            updatePointerAndColor(rect.left, rect.top);
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            // Set default color to white
+            colorDisplay.style.backgroundColor = 'rgba(255, 255, 255, 1)';
+            rgbOutput.textContent = 'rgba(255, 255, 255, 1)';
+            hexOutput.textContent = '#FFFFFF';
+            hslOutput.textContent = 'hsl(0, 0%, 100%)';
+            opacitySlider.value = 1;
+            opacityValue.textContent = '1.0';
+
+            // Center the pointer at white (center of the canvas)
+            pointer.style.left = `${centerX}px`;
+            pointer.style.top = `${centerY}px`;
+
+        });
+
     </script>
 </body>
 
