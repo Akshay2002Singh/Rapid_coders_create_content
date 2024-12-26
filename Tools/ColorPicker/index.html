@@ -4,188 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Color Wheel Picker</title>
-    <style>
-        :root {
-    --nav_heading: rgb(110, 87, 224);
-    --nav_link_hover: wheat;
-    --background1: rgb(0, 0, 0);
-    --background2: rgb(17, 17, 17);
-    --text1: rgb(205, 205, 205);
-    --output_text: white;
-    --heading1: wheat;
-    --heading2: white;
-    --code_background: rgb(56, 56, 56);
-    --more_button: rgb(182, 168, 255);
-    --more_button_hover: rgb(201, 192, 255);
-    --card_background: rgba(45, 45, 52, 0.6);
-    --card_border: rgb(110, 87, 224);
-    --built_now_background: #A370F0;
-    --built_now_text: white;
-    --built_now_icon_background: rgb(46, 43, 43);
-    --tag_border: black;
-    --contact_image_background: #6e57e0;
-    --contact_page_icons: rgb(196, 35, 255);
-    --contact_page_input_border: purple;
-    --contact_page_input_background: hsl(250, 29%, 16%);
-    --contact_page_input_lable: white;
-    --contact_page_input_text: wheat;
-    --contact_page_form_send: royalblue;
-  }
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: #f0f0f0;
-        }
-
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            max-width: 900px;
-            width: 100%;
-        }
-
-        .color-wheel-container {
-            display: inline-block;
-            position: relative;
-        }
-
-        canvas {
-            cursor: crosshair;
-            display: block;
-            margin: 0 auto;
-        }
-
-        #pointer {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border: 2px solid black;
-            background: white;
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-        }
-
-        .output-container {
-            flex: 1;
-            min-width: 300px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .color-display {
-            width: 100%;
-            max-width: 300px;
-            height: 50px;
-            border-radius: 5px;
-            border: 2px solid black;
-            margin-bottom: 20px;
-        }
-
-        .output {
-            width: 100%;
-            max-width: 300px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .output div {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .output span {
-            flex: 1;
-        }
-
-        .copy-btn {
-            padding: 5px 10px;
-            font-size: 14px;
-            border: none;
-            background: #4caf50;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .copy-btn:hover {
-            background: #45a049;
-        }
-
-        .opacity-slider-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 300px;
-    margin-left: 20px;
-}
-
-#opacitySlider {
-    writing-mode: bt-lr; /* Vertical slider */
-    transform: rotate(-90deg);
-    width: 300px;
-    height: 20px;
-    appearance: none;
-    outline: none;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
-    border-radius: 5px;
-    margin: 0;
-}
-
-#opacitySlider::-webkit-slider-thumb {
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: var(--card_border);
-    cursor: pointer;
-}
-
-#opacityValue {
-    margin-top: 10px;
-    font-size: 14px;
-}
-
-
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .output-container {
-                align-items: stretch;
-            }
-        }
-    </style>
 </head>
 
 <body>
     <div class="container">
-        <div class="color-wheel-container">
-            <canvas id="colorWheel" width="300" height="300"></canvas>
-            <div id="pointer"></div>
+        <div id="inputElements">
+            <div class="color-wheel-container">
+                <canvas id="colorWheel" width="300" height="300"></canvas>
+                <div id="pointer"></div>
+            </div>
+            <div class="opacity-slider-container">
+                <input type="range" id="opacitySlider" min="0" max="1" step="0.01" value="1">
+            </div>
         </div>
-        <div class="opacity-slider-container">
-            <input type="range" id="opacitySlider" min="0" max="1" step="0.01" value="1">
-        </div>
-        
+
         <div class="output-container">
             <div class="color-display" id="colorDisplay"></div>
             <div class="output">
@@ -216,6 +50,7 @@
         const hexOutput = document.getElementById('hexOutput');
         const hslOutput = document.getElementById('hslOutput');
         const colorDisplay = document.getElementById('colorDisplay');
+        const opacitySlider = document.getElementById('opacitySlider');
 
         const width = canvas.width;
         const height = canvas.height;
@@ -346,6 +181,11 @@
             }
         }
 
+        function updateOpacity() {
+            const currentOpacityValue = opacitySlider.value;
+            const currentColor = rgbOutput.textContent;
+        }
+
         // Mouse event listeners
         canvas.addEventListener('mousedown', () => isDragging = true);
         window.addEventListener('mouseup', () => isDragging = false);
@@ -360,26 +200,19 @@
 
         drawColorWheel();
 
-        const opacitySlider = document.getElementById('opacitySlider');
-
-        opacitySlider.addEventListener('input', () => {
-            const rect = pointer.getBoundingClientRect();
-            updatePointerAndColor(rect.left, rect.top);
-        });
+        opacitySlider.addEventListener('input', updateOpacity);
 
         window.addEventListener('DOMContentLoaded', () => {
             // Set default color to white
-            colorDisplay.style.backgroundColor = 'rgba(255, 255, 255, 1)';
-            rgbOutput.textContent = 'rgba(255, 255, 255, 1)';
+            colorDisplay.style.backgroundColor = 'rgb(255, 255, 255)';
+            rgbOutput.textContent = 'rgb(255, 255, 255)';
             hexOutput.textContent = '#FFFFFF';
             hslOutput.textContent = 'hsl(0, 0%, 100%)';
             opacitySlider.value = 1;
-            opacityValue.textContent = '1.0';
 
             // Center the pointer at white (center of the canvas)
             pointer.style.left = `${centerX}px`;
             pointer.style.top = `${centerY}px`;
-
         });
 
     </script>
