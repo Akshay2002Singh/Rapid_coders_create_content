@@ -41,7 +41,6 @@
             </div>
         </div>
     </div>
-
     <script>
         const canvas = document.getElementById('colorWheel');
         const ctx = canvas.getContext('2d');
@@ -123,6 +122,12 @@
             return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
         }
 
+        // Convert RGBA to HEX with opacity
+        function rgbaToHex(r, g, b, a) {
+            const alpha = Math.round(a * 255).toString(16).padStart(2, '0').toUpperCase();
+            return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}${alpha}`;
+        }
+
         // Convert RGB to HSL
         function rgbToHsl(r, g, b) {
             r /= 255;
@@ -172,18 +177,50 @@
 
                 const pixel = ctx.getImageData(canvasX, canvasY, 1, 1).data;
                 const [r, g, b] = pixel;
-
-                rgbOutput.textContent = `rgb(${r}, ${g}, ${b})`;
-                hexOutput.textContent = rgbToHex(r, g, b);
-                const [h, s, l] = rgbToHsl(r, g, b);
-                hslOutput.textContent = `hsl(${h}, ${s}%, ${l}%)`;
-                colorDisplay.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+                const opacity = parseFloat(opacitySlider.value);
+                if (opacity === 1) {
+                    rgbOutput.textContent = `rgb(${r}, ${g}, ${b})`;
+                    hexOutput.textContent = rgbToHex(r, g, b);
+                    const [h, s, l] = rgbToHsl(r, g, b);
+                    hslOutput.textContent = `hsl(${h}, ${s}%, ${l}%)`;
+                    colorDisplay.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+                } else {
+                    rgbOutput.textContent = `rgba(${r}, ${g}, ${b}, ${opacity})`;
+                    hexOutput.textContent = rgbaToHex(r, g, b, opacity);
+                    const [h, s, l] = rgbToHsl(r, g, b);
+                    hslOutput.textContent = `hsla(${h}, ${s}%, ${l}%, ${opacity})`;
+                    colorDisplay.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${opacity})`;
+                }
             }
         }
 
         function updateOpacity() {
             const currentOpacityValue = opacitySlider.value;
             const currentColor = rgbOutput.textContent;
+            console.log("Current Color:", currentColor); // Debugging: Check the actual value
+            // Extract RGB(A) values from the current color
+            const match = currentColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
+            console.log("Match Result:", match); // Debugging: Check the regex result
+            if (match) {
+                const r = parseInt(match[1], 10);
+                const g = parseInt(match[2], 10);
+                const b = parseInt(match[3], 10);
+
+                if (currentOpacityValue == 1) {
+                    rgbOutput.textContent = `rgb(${r}, ${g}, ${b})`;
+                    hexOutput.textContent = rgbToHex(r, g, b);
+                    const [h, s, l] = rgbToHsl(r, g, b);
+                    hslOutput.textContent = `hsl(${h}, ${s}%, ${l}%})`;
+                    colorDisplay.style.backgroundColor = `rgb(${r}, ${g}, ${b}})`;
+                } else {
+                    // Update outputs with the new opacity
+                    rgbOutput.textContent = `rgba(${r}, ${g}, ${b}, ${currentOpacityValue})`;
+                    hexOutput.textContent = rgbaToHex(r, g, b, currentOpacityValue);
+                    const [h, s, l] = rgbToHsl(r, g, b);
+                    hslOutput.textContent = `hsla(${h}, ${s}%, ${l}%, ${currentOpacityValue})`;
+                    colorDisplay.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${currentOpacityValue})`;
+                }
+            }
         }
 
         // Mouse event listeners
