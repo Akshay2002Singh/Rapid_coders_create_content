@@ -43,7 +43,7 @@
     </div>
     <script>
         const canvas = document.getElementById('colorWheel');
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext('2d', { willReadFrequently: true });
         const pointer = document.getElementById('pointer');
         const rgbOutput = document.getElementById('rgbOutput');
         const hexOutput = document.getElementById('hexOutput');
@@ -58,6 +58,84 @@
         const centerY = height / 2;
 
         let isDragging = false;
+
+        // Helper Functions
+        function hslToRgb(h, s, l) {
+            s /= 100;
+            l /= 100;
+            const c = (1 - Math.abs(2 * l - 1)) * s;
+            const x = c * (1 - Math.abs((h / 60) % 2 - 1));
+            const m = l - c / 2;
+
+            const [r, g, b] =
+                h < 60 ? [c, x, 0] :
+                    h < 120 ? [x, c, 0] :
+                        h < 180 ? [0, c, x] :
+                            h < 240 ? [0, x, c] :
+                                h < 300 ? [x, 0, c] : [c, 0, x];
+
+            return [Math.round((r + m) * 255), Math.round((g + m) * 255), Math.round((b + m) * 255)];
+        }
+
+        function rgbToHex(r, g, b) {
+            return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
+        }
+
+        function rgbaToHex(r, g, b, a) {
+            const alpha = Math.round(a * 255).toString(16).padStart(2, '0').toUpperCase();
+            return `${rgbToHex(r, g, b)}${alpha}`;
+        }
+
+        function rgbToHsl(r, g, b) {
+            r /= 255; g /= 255; b /= 255;
+            const max = Math.max(r, g, b), min = Math.min(r, g, b);
+            const delta = max - min;
+
+            const l = (max + min) / 2;
+            const s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+            const h =
+                delta === 0 ? 0 :
+                    max === r ? ((g - b) / delta + (g < b ? 6 : 0)) * 60 :
+                        max === g ? ((b - r) / delta + 2) * 60 :
+                            ((r - g) / delta + 4) * 60;
+
+            return [Math.round(h), Math.round(s * 100), Math.round(l * 100)];
+        }
+
+        function updateOutput(r, g, b, opacity) {
+            const rgb = opacity === 1 ? `rgb(${r}, ${g}, ${b})` : `rgba(${r}, ${g}, ${b}, ${opacity})`;
+            const hex = opacity === 1 ? rgbToHex(r, g, b) : rgbaToHex(r, g, b, opacity);
+            const [h, s, l] = rgbToHsl(r, g, b);
+            const hsl = opacity === 1 ? `hsl(${h}, ${s}%, ${l}%)` : `hsla(${h}, ${s}%, ${l}%, ${opacity})`;
+
+            rgbOutput.textContent = rgb;
+            hexOutput.textContent = hex;
+            hslOutput.textContent = hsl;
+            colorDisplay.style.backgroundColor = rgb;
+        }
+
+        function getPointerColor(x, y) {
+            const dx = x - centerX;
+            const dy = y - centerY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance > radius) return null;
+
+            const pixel = ctx.getImageData(x, y, 1, 1).data;
+            return [pixel[0], pixel[1], pixel[2]];
+        }
+
+        function updatePointerAndColor(x, y) {
+            const rect = canvas.getBoundingClientRect();
+            const canvasX = x - rect.left;
+            const canvasY = y - rect.top;
+            const color = getPointerColor(canvasX, canvasY);
+            if (color) {
+                pointer.style.left = `${canvasX}px`;
+                pointer.style.top = `${canvasY}px`;
+                const [r, g, b] = color;
+                updateOutput(r, g, b, parseFloat(opacitySlider.value));
+            }
+        }
 
         // Draw the color wheel
         function drawColorWheel() {
@@ -92,67 +170,6 @@
             updatePointerAndColor(centerX, centerY);
         }
 
-        // Convert HSL to RGB
-        function hslToRgb(h, s, l) {
-            s /= 100;
-            l /= 100;
-
-            const c = (1 - Math.abs(2 * l - 1)) * s;
-            const x = c * (1 - Math.abs((h / 60) % 2 - 1));
-            const m = l - c / 2;
-
-            let r = 0, g = 0, b = 0;
-
-            if (0 <= h && h < 60) { r = c; g = x; b = 0; }
-            else if (60 <= h && h < 120) { r = x; g = c; b = 0; }
-            else if (120 <= h && h < 180) { r = 0; g = c; b = x; }
-            else if (180 <= h && h < 240) { r = 0; g = x; b = c; }
-            else if (240 <= h && h < 300) { r = x; g = 0; b = c; }
-            else if (300 <= h && h < 360) { r = c; g = 0; b = x; }
-
-            r = Math.round((r + m) * 255);
-            g = Math.round((g + m) * 255);
-            b = Math.round((b + m) * 255);
-
-            return [r, g, b];
-        }
-
-        // Convert RGB to HEX
-        function rgbToHex(r, g, b) {
-            return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
-        }
-
-        // Convert RGBA to HEX with opacity
-        function rgbaToHex(r, g, b, a) {
-            const alpha = Math.round(a * 255).toString(16).padStart(2, '0').toUpperCase();
-            return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}${alpha}`;
-        }
-
-        // Convert RGB to HSL
-        function rgbToHsl(r, g, b) {
-            r /= 255;
-            g /= 255;
-            b /= 255;
-
-            const max = Math.max(r, g, b);
-            const min = Math.min(r, g, b);
-            const delta = max - min;
-
-            let h = 0, s = 0, l = (max + min) / 2;
-
-            if (delta !== 0) {
-                s = delta / (1 - Math.abs(2 * l - 1));
-
-                switch (max) {
-                    case r: h = ((g - b) / delta + (g < b ? 6 : 0)) * 60; break;
-                    case g: h = ((b - r) / delta + 2) * 60; break;
-                    case b: h = ((r - g) / delta + 4) * 60; break;
-                }
-            }
-
-            return [Math.round(h), Math.round(s * 100), Math.round(l * 100)];
-        }
-
         // Copy text to clipboard
         function copyText(elementId) {
             const text = document.getElementById(elementId).textContent;
@@ -161,69 +178,7 @@
             });
         }
 
-        // Update pointer position and color
-        function updatePointerAndColor(x, y) {
-            const rect = canvas.getBoundingClientRect();
-            const canvasX = x - rect.left;
-            const canvasY = y - rect.top;
-
-            const dx = canvasX - centerX;
-            const dy = canvasY - centerY;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-
-            if (distance <= radius) {
-                pointer.style.left = `${canvasX}px`;
-                pointer.style.top = `${canvasY}px`;
-
-                const pixel = ctx.getImageData(canvasX, canvasY, 1, 1).data;
-                const [r, g, b] = pixel;
-                const opacity = parseFloat(opacitySlider.value);
-                if (opacity === 1) {
-                    rgbOutput.textContent = `rgb(${r}, ${g}, ${b})`;
-                    hexOutput.textContent = rgbToHex(r, g, b);
-                    const [h, s, l] = rgbToHsl(r, g, b);
-                    hslOutput.textContent = `hsl(${h}, ${s}%, ${l}%)`;
-                    colorDisplay.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
-                } else {
-                    rgbOutput.textContent = `rgba(${r}, ${g}, ${b}, ${opacity})`;
-                    hexOutput.textContent = rgbaToHex(r, g, b, opacity);
-                    const [h, s, l] = rgbToHsl(r, g, b);
-                    hslOutput.textContent = `hsla(${h}, ${s}%, ${l}%, ${opacity})`;
-                    colorDisplay.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${opacity})`;
-                }
-            }
-        }
-
-        function updateOpacity() {
-            const currentOpacityValue = opacitySlider.value;
-            const currentColor = rgbOutput.textContent;
-            console.log("Current Color:", currentColor); // Debugging: Check the actual value
-            // Extract RGB(A) values from the current color
-            const match = currentColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
-            console.log("Match Result:", match); // Debugging: Check the regex result
-            if (match) {
-                const r = parseInt(match[1], 10);
-                const g = parseInt(match[2], 10);
-                const b = parseInt(match[3], 10);
-
-                if (currentOpacityValue == 1) {
-                    rgbOutput.textContent = `rgb(${r}, ${g}, ${b})`;
-                    hexOutput.textContent = rgbToHex(r, g, b);
-                    const [h, s, l] = rgbToHsl(r, g, b);
-                    hslOutput.textContent = `hsl(${h}, ${s}%, ${l}%})`;
-                    colorDisplay.style.backgroundColor = `rgb(${r}, ${g}, ${b}})`;
-                } else {
-                    // Update outputs with the new opacity
-                    rgbOutput.textContent = `rgba(${r}, ${g}, ${b}, ${currentOpacityValue})`;
-                    hexOutput.textContent = rgbaToHex(r, g, b, currentOpacityValue);
-                    const [h, s, l] = rgbToHsl(r, g, b);
-                    hslOutput.textContent = `hsla(${h}, ${s}%, ${l}%, ${currentOpacityValue})`;
-                    colorDisplay.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${currentOpacityValue})`;
-                }
-            }
-        }
-
-        // Mouse event listeners
+        //  event listeners
         canvas.addEventListener('mousedown', () => isDragging = true);
         window.addEventListener('mouseup', () => isDragging = false);
         canvas.addEventListener('mousemove', (e) => {
@@ -235,21 +190,21 @@
             updatePointerAndColor(e.clientX, e.clientY);
         })
 
-        drawColorWheel();
+        opacitySlider.addEventListener('input', () => {
+            const currentOpacity = parseFloat(opacitySlider.value);
+            const match = rgbOutput.textContent.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
+            if (match) {
+                const r = parseInt(match[1]);
+                const g = parseInt(match[2]);
+                const b = parseInt(match[3]);
+                updateOutput(r, g, b, currentOpacity);
+            }
+        });
 
-        opacitySlider.addEventListener('input', updateOpacity);
-
+        // Initial Setup
         window.addEventListener('DOMContentLoaded', () => {
-            // Set default color to white
-            colorDisplay.style.backgroundColor = 'rgb(255, 255, 255)';
-            rgbOutput.textContent = 'rgb(255, 255, 255)';
-            hexOutput.textContent = '#FFFFFF';
-            hslOutput.textContent = 'hsl(0, 0%, 100%)';
-            opacitySlider.value = 1;
-
-            // Center the pointer at white (center of the canvas)
-            pointer.style.left = `${centerX}px`;
-            pointer.style.top = `${centerY}px`;
+            drawColorWheel();
+            updateOutput(255, 255, 255, 1); // Default white color  
         });
 
     </script>
