@@ -30,14 +30,14 @@
                     <input type="number" id="rgbB" min="0" max="255" placeholder="B">
                     <input type="number" id="rgbA" min="0" max="1" step="0.01" placeholder="Opacity">
 
-                    <button class="copy-btn" onclick="copyText('rgbOutput')">Copy</button>
+                    <button id="rgb-copy-btn" class="copy-btn" onclick="copyColor('rgb')">Copy</button>
                 </div>
                 <div>
                     <span>HEX:</span>
                     <input type="text" id="hexInput" placeholder="#FFFFFF">
-                    <button class="copy-btn" onclick="copyText('hexOutput')">Copy</button>
+                    <button id="hex-copy-btn" class="copy-btn" onclick="copyColor('hex')">Copy</button>
                 </div>
-               
+
             </div>
         </div>
     </div>
@@ -53,7 +53,7 @@
         const rgbB = document.getElementById('rgbB');
         const rgbA = document.getElementById('rgbA');
         const hexInput = document.getElementById('hexInput');
-        
+
         const width = canvas.width;
         const height = canvas.height;
         const radius = Math.min(width, height) / 2;
@@ -99,11 +99,11 @@
             rgbB.value = b;
             rgbA.value = opacity;
             hexInput.value = hex;
-           
+
             colorDisplay.style.backgroundColor = rgb;
         }
 
-        function updateOpacity(currentOpacity){
+        function updateOpacity(currentOpacity) {
             const r = parseInt(rgbR.value) || 0;
             const g = parseInt(rgbG.value) || 0;
             const b = parseInt(rgbB.value) || 0;
@@ -125,7 +125,6 @@
             const canvasX = x - rect.left;
             const canvasY = y - rect.top;
             const color = getPointerColor(canvasX, canvasY);
-            console.log(color)
             if (color) {
                 pointer.style.left = `${canvasX}px`;
                 pointer.style.top = `${canvasY}px`;
@@ -162,14 +161,30 @@
 
             pointer.style.left = `${centerX}px`;
             pointer.style.top = `${centerY}px`;
-        //    updatePointerAndColor(centerX, centerY);
+            updatePointerAndColor(centerX, centerY);
         }
 
-        function copyText(elementId) {
-            const text = document.getElementById(elementId).textContent;
-            navigator.clipboard.writeText(text).then(() => {
-                alert(`${text} copied to clipboard!`);
-            });
+        function copyColor(colorType) {
+            if (colorType === 'rgb') {
+                const r = rgbR.value;
+                const g = rgbG.value;
+                const b = rgbB.value;
+                const a = rgbA.value;
+                navigator.clipboard.writeText(a == 1 ? `rgb(${r},${g},${b})` : `rgba(${r},${g},${b},${a})`).then(() => {
+                    document.getElementById('rgb-copy-btn').innerText = 'Copied';
+                    setTimeout(() => {
+                        document.getElementById('rgb-copy-btn').innerText = 'Copy';
+                    }, 1200);
+                });
+            } else if (colorType === 'hex') {
+                const hexColor = hexInput.value;
+                navigator.clipboard.writeText(hexColor).then(() => {
+                    document.getElementById('hex-copy-btn').innerText = 'Copied';
+                    setTimeout(() => {
+                        document.getElementById('hex-copy-btn').innerText = 'Copy';
+                    }, 1200);
+                });
+            }
         }
 
         rgbR.addEventListener('input', () => {
@@ -200,12 +215,21 @@
 
         hexInput.addEventListener('input', () => {
             const hex = hexInput.value;
-            const match = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-            if (match) {
-                const r = parseInt(match[1], 16);
-                const g = parseInt(match[2], 16);
-                const b = parseInt(match[3], 16);
-                updateOutput(r, g, b, parseFloat(opacitySlider.value));
+            if (hex.length === 7 && hex.startsWith("#")) {
+                const match = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})?$/i.exec(hex);
+                if (match) {
+                    const r = parseInt(match[1], 16);
+                    const g = parseInt(match[2], 16);
+                    const b = parseInt(match[3], 16);
+                    if (match[4]) {
+                        const a = parseInt(match[4], 16);
+                        opacity = (a / 100).toFixed(2);
+                        opacitySlider.value = opacity;
+                    }
+                    updateOutput(r, g, b, match[4] ?? parseFloat(opacitySlider.value));
+                }
+            } else if(hex?.length === 8){
+                opacitySlider.value=1;
             }
         });
 

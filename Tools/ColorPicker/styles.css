@@ -93,7 +93,7 @@ canvas {
 
 .output {
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -106,8 +106,8 @@ padding-right: 0px;
 border-radius: 5px;
 }
 
-.output:nth-child(2) input{
-  width: 100%;
+.output > div:nth-child(2) > input{
+  flex-grow: 1;
 }
 
 .output div {
@@ -123,13 +123,14 @@ border-radius: 5px;
 
 .copy-btn {
   padding: 5px 10px;
-  margin-left: 25px;
+  margin-left: 10px;
   font-size: 14px;
   border: none;
   background: #4caf50;
   color: white;
   border-radius: 5px;
   cursor: pointer;
+  width: 80px;
 }
 
 .copy-btn:hover {
