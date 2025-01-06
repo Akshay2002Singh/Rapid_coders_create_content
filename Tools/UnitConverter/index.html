@@ -1,658 +1,617 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Unit Converter</title>
     <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      :root {
-        --nav_heading: rgb(110, 87, 224);
-        --nav_link_hover: wheat;
-        --background1: rgb(0, 0, 0);
-        --background2: rgb(17, 17, 17);
-        --text1: rgb(205, 205, 205);
-        --output_text: white;
-        --heading1: wheat;
-        --heading2: white;
-        --tag_border: black;
-        --code_background: rgb(56, 56, 56);
-        --more_button: rgb(182, 168, 255);
-        --more_button_hover: rgb(201, 192, 255);
-        --card_background: rgba(45, 45, 52, 0.6);
-        --card_border: rgb(110, 87, 224);
-      }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-      body {
-        background-color: var(--background1);
-        color: var(--text1);
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-      }
+        :root {
+            --nav_heading: rgb(110, 87, 224);
+            --nav_link_hover: wheat;
+            --background1: rgb(0, 0, 0);
+            --background2: rgb(17, 17, 17);
+            --text1: rgb(205, 205, 205);
+            --output_text: white;
+            --heading1: wheat;
+            --heading2: white;
+            --tag_border: black;
+            --code_background: rgb(56, 56, 56);
+            --more_button: rgb(182, 168, 255);
+            --more_button_hover: rgb(201, 192, 255);
+            --card_background: rgba(45, 45, 52, 0.6);
+            --card_border: rgb(110, 87, 224);
+        }
 
-      .container {
-        width: 100%;
-        max-width: 600px;
-        padding: 20px;
-        background-color: var(--background2);
-        border-radius: 8px;
-        border: 1px solid var(--card_border);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      }
+        body {
+            background-color: var(--background1);
+            color: var(--text1);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-      h1 {
-        text-align: center;
-        color: var(--heading1);
-        margin-bottom: 20px;
-      }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: var(--background2);
+            border-radius: 8px;
+            border: 1px solid var(--card_border);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
 
-      #menu {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-        margin-bottom: 20px;
-      }
+        h1 {
+            text-align: center;
+            color: var(--heading1);
+            margin-bottom: 20px;
+        }
 
-      #menu button {
-        padding: 10px 15px;
-        font-size: 14px;
-        color: var(--tag_border);
-        background-color: var(--more_button);
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
+        #menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        #menu button {
+            padding: 10px 15px;
+            font-size: 14px;
+            color: var(--tag_border);
+            background-color: var(--more_button);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
       #menu button.active {
         background-color: var(--more_button_hover);
       }
 
-      #menu button:hover {
-        background-color: var(--more_button_hover);
-      }
+        #menu button:hover {
+            background-color: var(--more_button_hover);
+        }
 
-      label {
-        display: block;
-        margin-top: 10px;
-        font-size: 16px;
-        color: var(--heading2);
-      }
-
-      select,
-      input {
-        width: 100%;
-        padding: 10px;
-        margin-top: 5px;
-        border-radius: 5px;
-        border: 1px solid var(--card_border);
-        background-color: var(--code_background);
-        color: var(--text1);
-        font-size: 14px;
-      }
-
-      .generate-btn {
-        width: 100%;
-        margin-top: 20px;
-        padding: 10px;
-        background-color: var(--more_button);
-        border: none;
-        border-radius: 5px;
-        color: var(--text1);
-        font-weight: bold;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-
-      .generate-btn:hover {
-        background-color: var(--more_button_hover);
-      }
-
-      .output {
-        margin-top: 20px;
-        padding: 10px;
-        background-color: var(--code_background);
-        color: var(--output_text);
-        border: 1px solid var(--card_border);
-        border-radius: 5px;
-        word-wrap: break-word;
-        font-size: 14px;
-        text-align: center;
-      }
-
-      @media (max-width: 600px) {
-        #menu button {
-          font-size: 12px;
-          padding: 8px 10px;
+        label {
+            display: block;
+            margin-top: 10px;
+            font-size: 16px;
+            color: var(--heading2);
         }
 
         select,
         input {
-          font-size: 12px;
-          padding: 8px;
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid var(--card_border);
+            background-color: var(--code_background);
+            color: var(--text1);
+            font-size: 14px;
+            text-transform: capitalize;
         }
 
         .generate-btn {
-          font-size: 14px;
-          padding: 8px;
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: var(--more_button);
+            border: none;
+            border-radius: 5px;
+            color: var(--text1);
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
-      }
 
-      #convert {
-        width: 100%;
-        margin-top: 20px;
-        padding: 10px;
-        background-color: var(--more_button);
-        border: none;
-        border-radius: 5px;
-        color: var(--text1);
-        font-weight: bold;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
+        .generate-btn:hover {
+            background-color: var(--more_button_hover);
+        }
 
-      #convert:hover {
-        background-color: var(--more_button_hover);
-      }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: var(--code_background);
+            color: var(--output_text);
+            border: 1px solid var(--card_border);
+            border-radius: 5px;
+            word-wrap: break-word;
+            font-size: 14px;
+            text-align: center;
+        }
 
-      #convert:active {
-        background-color: var(--more_button_hover);
-        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
-      }
+        #convert {
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: var(--more_button);
+            border: none;
+            border-radius: 5px;
+            color: var(--text1);
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            color: var(--tag_border)
+        }
+
+        #convert:hover {
+            background-color: var(--more_button_hover);
+        }
+
+        #convert:active {
+            background-color: var(--more_button_hover);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        #result{
+            color: var(--text1);
+            margin-top: 18px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            #menu button {
+                font-size: 12px;
+                padding: 8px 10px;
+            }
+
+            select,
+            input {
+                font-size: 12px;
+                padding: 8px;
+            }
+
+            .generate-btn {
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
     </style>
-  </head>
+</head>
 
-  <body>
+<body>
     <div class="container">
-      <header>
-        <h1>Unit Converter</h1>
-      </header>
-      <div id="menu">
-        <!-- <button class="active" data-unit="length" onclick="showUnits('length')">
-          Length
-        </button>
-        <button data-unit="weight" onclick="showUnits('weight')">Weight</button>
-        <button data-unit="area" onclick="showUnits('area')">Area</button>
-        <button data-unit="volume" onclick="showUnits('volume')">Volume</button>
-        <button data-unit="temperature" onclick="showUnits('temperature')">
-          Temperature
-        </button>
-        <button data-unit="time" onclick="showUnits('time')">Time</button> -->
-      </div>
-      <div class="converter">
-        <label for="source-value">Source Value:</label>
-        <input type="number" id="source-value" placeholder="Enter value" />
+        <header>
+            <h1>Unit Converter</h1>
+        </header>
+        <div id="menu">
+        </div>
+        <div class="converter">
+            <label for="source-value">Source Value:</label>
+            <input type="number" id="source-value" placeholder="Enter value" />
 
-        <label for="source-unit">From:</label>
-        <select id="source-unit"></select>
+            <label for="source-unit">From:</label>
+            <select id="source-unit"></select>
 
-        <label for="destination-unit">To:</label>
-        <select id="destination-unit"></select>
+            <label for="destination-unit">To:</label>
+            <select id="destination-unit"></select>
 
-        <button id="convert" onclick="convert()">Convert</button>
+            <button id="convert" onclick="convert()">Convert</button>
 
-        <h2 id="result"></h2>
-      </div>
+            <p id="result"></p>
+        </div>
     </div>
 
     <script>
-      let currentCategory = "length";
-
-      function showUnits(category) {
-        currentCategory = category;
-        const sourceUnitSelect = document.getElementById("source-unit");
-        const destinationUnitSelect =
-          document.getElementById("destination-unit");
-
-        sourceUnitSelect.innerHTML = "";
-        destinationUnitSelect.innerHTML = "";
-
-        if (category === "length") {
-          sourceUnitSelect.innerHTML = `
-                          <option value="millimeter">Millimeter</option>
-                          <option value="centimeter">Centimeter</option>
-                          <option value="meter">Meter</option>
-                          <option value="kilometer">Kilometer</option>
-                          <option value="inch">Inch</option>
-                          <option value="foot">Foot</option>
-                          <option value="yard">Yard</option>
-                          <option value="mile">Mile</option>`;
-          destinationUnitSelect.innerHTML = sourceUnitSelect.innerHTML;
-        } else if (category === "weight") {
-          sourceUnitSelect.innerHTML = `
-                          <option value="milligram">Milligram</option>
-                          <option value="gram">Gram</option>
-                          <option value="kilogram">Kilogram</option>
-                          <option value="ounce">Ounce</option>
-                          <option value="pound">Pound</option>
-                          <option value="ton">Ton</option>`;
-          destinationUnitSelect.innerHTML = sourceUnitSelect.innerHTML;
-        } else if (category === "area") {
-          sourceUnitSelect.innerHTML = `
-                          <option value="square meter">Square Meter</option>
-                          <option value="square kilometer">Square Kilometer</option>
-                          <option value="square mile">Square Mile</option>
-                          <option value="acre">Acre</option>
-                          <option value="hectare">Hectare</option>`;
-          destinationUnitSelect.innerHTML = sourceUnitSelect.innerHTML;
-        } else if (category === "volume") {
-          sourceUnitSelect.innerHTML = `
-                          <option value="milliliter">Milliliter</option>
-                          <option value="liter">Liter</option>
-                          <option value="cubic meter">Cubic Meter</option>
-                          <option value="cubic centimeter">Cubic Centimeter</option>
-                          <option value="gallon">Gallon</option>
-                          <option value="quart">Quart</option>
-                          <option value="pint">Pint</option>
-                          <option value="cup">Cup</option>`;
-          destinationUnitSelect.innerHTML = sourceUnitSelect.innerHTML;
-        } else if (category === "temperature") {
-          sourceUnitSelect.innerHTML = `
-                      <option value="celsius">Celsius</option>
-                      <option value="fahrenheit">Fahrenheit</option>
-                      <option value="kelvin">Kelvin</option>`;
-          destinationUnitSelect.innerHTML = sourceUnitSelect.innerHTML;
-        } else if (category === "time") {
-          sourceUnitSelect.innerHTML = `
-                      <option value="second">Second</option>
-                      <option value="minute">Minute</option>
-                      <option value="hour">Hour</option>
-                      <option value="day">Day</option>
-                      <option value="week">Week</option>
-                      <option value="month">Month</option>
-                      <option value="year">Year</option>`;
-          destinationUnitSelect.innerHTML = sourceUnitSelect.innerHTML;
-        }
-
-        // Update active button
-        document.querySelectorAll(".menu button").forEach((button) => {
-          button.classList.remove("active");
-        });
-        document
-          .querySelector(`.menu button[data-unit="${category}"]`)
-          .classList.add("active");
-      }
-
-      function convert() {
-        // Get input values
-        const inputValue = parseFloat(
-          document.getElementById("source-value").value
-        );
-        const sourceUnit = document.getElementById("source-unit").value;
-        const destinationUnit =
-          document.getElementById("destination-unit").value;
-        const resultDisplay = document.getElementById("result");
-
-        if (isNaN(inputValue)) {
-          resultDisplay.textContent = "Please enter a valid number.";
-          return;
-        }
-
+        let currentCategory = "length";
         const conversionFactors = {
-          length: {
-            meter: {
-              meter: 1,
-              kilometer: 0.001,
-              centimeter: 100,
-              millimeter: 1000,
-              inch: 39.3701,
-              foot: 3.28084,
-              yard: 1.09361,
-              mile: 0.000621371,
+            length: {
+                meter: {
+                    meter: 1,
+                    kilometer: 0.001,
+                    centimeter: 100,
+                    millimeter: 1000,
+                    inch: 39.3701,
+                    foot: 3.28084,
+                    yard: 1.09361,
+                    mile: 0.000621371,
+                },
+                kilometer: {
+                    meter: 1000,
+                    kilometer: 1,
+                    centimeter: 100000,
+                    millimeter: 1000000,
+                    inch: 39370.1,
+                    foot: 3280.84,
+                    yard: 1093.61,
+                    mile: 0.621371,
+                },
+                centimeter: {
+                    meter: 0.01,
+                    kilometer: 0.00001,
+                    centimeter: 1,
+                    millimeter: 10,
+                    inch: 0.393701,
+                    foot: 0.0328084,
+                    yard: 0.0109361,
+                    mile: 0.0000062137,
+                },
+                millimeter: {
+                    meter: 0.001,
+                    kilometer: 0.000001,
+                    centimeter: 0.1,
+                    millimeter: 1,
+                    inch: 0.0393701,
+                    foot: 0.00328084,
+                    yard: 0.00109361,
+                    mile: 0.000000621371,
+                },
+                inch: {
+                    meter: 0.0254,
+                    kilometer: 0.0000254,
+                    centimeter: 2.54,
+                    millimeter: 25.4,
+                    inch: 1,
+                    foot: 0.0833333,
+                    yard: 0.0277778,
+                    mile: 0.0000157828,
+                },
+                foot: {
+                    meter: 0.3048,
+                    kilometer: 0.0003048,
+                    centimeter: 30.48,
+                    millimeter: 304.8,
+                    inch: 12,
+                    foot: 1,
+                    yard: 0.333333,
+                    mile: 0.000189394,
+                },
+                yard: {
+                    meter: 0.9144,
+                    kilometer: 0.0009144,
+                    centimeter: 91.44,
+                    millimeter: 914.4,
+                    inch: 36,
+                    foot: 3,
+                    yard: 1,
+                    mile: 0.000568182,
+                },
+                mile: {
+                    meter: 1609.34,
+                    kilometer: 1.60934,
+                    centimeter: 160934,
+                    millimeter: 1609344,
+                    inch: 63360,
+                    foot: 5280,
+                    yard: 1760,
+                    mile: 1,
+                },
             },
-            kilometer: {
-              meter: 1000,
-              kilometer: 1,
-              centimeter: 100000,
-              millimeter: 1000000,
-              inch: 39370.1,
-              foot: 3280.84,
-              yard: 1093.61,
-              mile: 0.621371,
+            weight: {
+                gram: {
+                    gram: 1,
+                    kilogram: 0.001,
+                    milligram: 1000,
+                    pound: 0.00220462,
+                    ounce: 0.035274,
+                    ton: 0.000001,
+                },
+                kilogram: {
+                    gram: 1000,
+                    kilogram: 1,
+                    milligram: 1000000,
+                    pound: 2.20462,
+                    ounce: 35.274,
+                    ton: 0.001,
+                },
+                milligram: {
+                    gram: 0.001,
+                    kilogram: 0.000001,
+                    milligram: 1,
+                    pound: 0.00000220462,
+                    ounce: 0.000035274,
+                    ton: 0.000000001,
+                },
+                pound: {
+                    gram: 453.592,
+                    kilogram: 0.453592,
+                    milligram: 453592,
+                    pound: 1,
+                    ounce: 16,
+                    ton: 0.0005,
+                },
+                ounce: {
+                    gram: 28.3495,
+                    kilogram: 0.0283495,
+                    milligram: 28349.5,
+                    pound: 0.0625,
+                    ounce: 1,
+                    ton: 0.00003125,
+                },
+                ton: {
+                    gram: 1000000,
+                    kilogram: 1000,
+                    milligram: 1000000000,
+                    pound: 2000,
+                    ounce: 32000,
+                    ton: 1,
+                },
             },
-            centimeter: {
-              meter: 0.01,
-              kilometer: 0.00001,
-              centimeter: 1,
-              millimeter: 10,
-              inch: 0.393701,
-              foot: 0.0328084,
-              yard: 0.0109361,
-              mile: 0.0000062137,
-            },
-            millimeter: {
-              meter: 0.001,
-              kilometer: 0.000001,
-              centimeter: 0.1,
-              millimeter: 1,
-              inch: 0.0393701,
-              foot: 0.00328084,
-              yard: 0.00109361,
-              mile: 0.000000621371,
-            },
-            inch: {
-              meter: 0.0254,
-              kilometer: 0.0000254,
-              centimeter: 2.54,
-              millimeter: 25.4,
-              inch: 1,
-              foot: 0.0833333,
-              yard: 0.0277778,
-              mile: 0.0000157828,
-            },
-            foot: {
-              meter: 0.3048,
-              kilometer: 0.0003048,
-              centimeter: 30.48,
-              millimeter: 304.8,
-              inch: 12,
-              foot: 1,
-              yard: 0.333333,
-              mile: 0.000189394,
-            },
-            yard: {
-              meter: 0.9144,
-              kilometer: 0.0009144,
-              centimeter: 91.44,
-              millimeter: 914.4,
-              inch: 36,
-              foot: 3,
-              yard: 1,
-              mile: 0.000568182,
-            },
-            mile: {
-              meter: 1609.34,
-              kilometer: 1.60934,
-              centimeter: 160934,
-              millimeter: 1609344,
-              inch: 63360,
-              foot: 5280,
-              yard: 1760,
-              mile: 1,
-            },
-          },
-          weight: {
-            gram: {
-              gram: 1,
-              kilogram: 0.001,
-              milligram: 1000,
-              pound: 0.00220462,
-              ounce: 0.035274,
-              ton: 0.000001,
-            },
-            kilogram: {
-              gram: 1000,
-              kilogram: 1,
-              milligram: 1000000,
-              pound: 2.20462,
-              ounce: 35.274,
-              ton: 0.001,
-            },
-            milligram: {
-              gram: 0.001,
-              kilogram: 0.000001,
-              milligram: 1,
-              pound: 0.00000220462,
-              ounce: 0.000035274,
-              ton: 0.000000001,
-            },
-            pound: {
-              gram: 453.592,
-              kilogram: 0.453592,
-              milligram: 453592,
-              pound: 1,
-              ounce: 16,
-              ton: 0.0005,
-            },
-            ounce: {
-              gram: 28.3495,
-              kilogram: 0.0283495,
-              milligram: 28349.5,
-              pound: 0.0625,
-              ounce: 1,
-              ton: 0.00003125,
-            },
-            ton: {
-              gram: 1000000,
-              kilogram: 1000,
-              milligram: 1000000000,
-              pound: 2000,
-              ounce: 32000,
-              ton: 1,
-            },
-          },
 
-          area: {
-            "square meter": {
-              "square meter": 1,
-              "square kilometer": 0.000001,
-              "square centimeter": 10000,
-              "square millimeter": 1000000,
-              "square inch": 1550.0031,
-              "square foot": 10.7639,
-              "square yard": 1.19599,
-              acre: 0.000247105,
-              hectare: 0.0001,
+            area: {
+                "square meter": {
+                    "square meter": 1,
+                    "square kilometer": 0.000001,
+                    "square centimeter": 10000,
+                    "square millimeter": 1000000,
+                    "square inch": 1550.0031,
+                    "square foot": 10.7639,
+                    "square yard": 1.19599,
+                    acre: 0.000247105,
+                    hectare: 0.0001,
+                },
+                "square kilometer": {
+                    "square meter": 1000000,
+                    "square kilometer": 1,
+                    "square centimeter": 100000000,
+                    "square millimeter": 1000000000,
+                    "square inch": 1550003100,
+                    "square foot": 10763910.4,
+                    "square yard": 1195990.05,
+                    acre: 247.105,
+                    hectare: 100,
+                },
+                "square centimeter": {
+                    "square meter": 0.0001,
+                    "square kilometer": 0.0000000001,
+                    "square centimeter": 1,
+                    "square millimeter": 100,
+                    "square inch": 0.15500031,
+                    "square foot": 0.00107639,
+                    "square yard": 0.000119599,
+                    acre: 0.0000000247105,
+                    hectare: 0.00000001,
+                },
+                "square millimeter": {
+                    "square meter": 0.000001,
+                    "square kilometer": 0.000000000001,
+                    "square centimeter": 0.01,
+                    "square millimeter": 1,
+                    "square inch": 0.0015500031,
+                    "square foot": 0.0000107639,
+                    "square yard": 0.00000119599,
+                    acre: 0.000000000247105,
+                    hectare: 0.0000000001,
+                },
+                "square inch": {
+                    "square meter": 0.00064516,
+                    "square kilometer": 0.00000000064516,
+                    "square centimeter": 6.4516,
+                    "square millimeter": 645.16,
+                    "square inch": 1,
+                    "square foot": 0.00694444,
+                    "square yard": 0.000771605,
+                    acre: 0.00000015942,
+                    hectare: 0.000000064516,
+                },
+                "square foot": {
+                    "square meter": 0.092903,
+                    "square kilometer": 0.000000092903,
+                    "square centimeter": 929.03,
+                    "square millimeter": 92903,
+                    "square inch": 144,
+                    "square foot": 1,
+                    "square yard": 0.111111,
+                    acre: 0.0000229568,
+                    hectare: 0.0000092903,
+                },
+                "square yard": {
+                    "square meter": 0.836127,
+                    "square kilometer": 0.000000836127,
+                    "square centimeter": 8361.27,
+                    "square millimeter": 836127,
+                    "square inch": 1296,
+                    "square foot": 9,
+                    "square yard": 1,
+                    acre: 0.000206612,
+                    hectare: 0.0000836127,
+                },
+                acre: {
+                    "square meter": 4046.86,
+                    "square kilometer": 0.00404686,
+                    "square centimeter": 40468600,
+                    "square millimeter": 40468600000,
+                    "square inch": 6272640,
+                    "square foot": 43560,
+                    "square yard": 4840,
+                    acre: 1,
+                    hectare: 0.404686,
+                },
+                hectare: {
+                    "square meter": 10000,
+                    "square kilometer": 0.01,
+                    "square centimeter": 100000000,
+                    "square millimeter": 10000000000,
+                    "square inch": 15500031,
+                    "square foot": 107639,
+                    "square yard": 11959.9,
+                    acre: 2.47105,
+                    hectare: 1,
+                },
             },
-            "square kilometer": {
-              "square meter": 1000000,
-              "square kilometer": 1,
-              "square centimeter": 100000000,
-              "square millimeter": 1000000000,
-              "square inch": 1550003100,
-              "square foot": 10763910.4,
-              "square yard": 1195990.05,
-              acre: 247.105,
-              hectare: 100,
-            },
-            "square centimeter": {
-              "square meter": 0.0001,
-              "square kilometer": 0.0000000001,
-              "square centimeter": 1,
-              "square millimeter": 100,
-              "square inch": 0.15500031,
-              "square foot": 0.00107639,
-              "square yard": 0.000119599,
-              acre: 0.0000000247105,
-              hectare: 0.00000001,
-            },
-            "square millimeter": {
-              "square meter": 0.000001,
-              "square kilometer": 0.000000000001,
-              "square centimeter": 0.01,
-              "square millimeter": 1,
-              "square inch": 0.0015500031,
-              "square foot": 0.0000107639,
-              "square yard": 0.00000119599,
-              acre: 0.000000000247105,
-              hectare: 0.0000000001,
-            },
-            "square inch": {
-              "square meter": 0.00064516,
-              "square kilometer": 0.00000000064516,
-              "square centimeter": 6.4516,
-              "square millimeter": 645.16,
-              "square inch": 1,
-              "square foot": 0.00694444,
-              "square yard": 0.000771605,
-              acre: 0.00000015942,
-              hectare: 0.000000064516,
-            },
-            "square foot": {
-              "square meter": 0.092903,
-              "square kilometer": 0.000000092903,
-              "square centimeter": 929.03,
-              "square millimeter": 92903,
-              "square inch": 144,
-              "square foot": 1,
-              "square yard": 0.111111,
-              acre: 0.0000229568,
-              hectare: 0.0000092903,
-            },
-            "square yard": {
-              "square meter": 0.836127,
-              "square kilometer": 0.000000836127,
-              "square centimeter": 8361.27,
-              "square millimeter": 836127,
-              "square inch": 1296,
-              "square foot": 9,
-              "square yard": 1,
-              acre: 0.000206612,
-              hectare: 0.0000836127,
-            },
-            acre: {
-              "square meter": 4046.86,
-              "square kilometer": 0.00404686,
-              "square centimeter": 40468600,
-              "square millimeter": 40468600000,
-              "square inch": 6272640,
-              "square foot": 43560,
-              "square yard": 4840,
-              acre: 1,
-              hectare: 0.404686,
-            },
-            hectare: {
-              "square meter": 10000,
-              "square kilometer": 0.01,
-              "square centimeter": 100000000,
-              "square millimeter": 10000000000,
-              "square inch": 15500031,
-              "square foot": 107639,
-              "square yard": 11959.9,
-              acre: 2.47105,
-              hectare: 1,
-            },
-          },
 
-          temperature: {
-            celsius: {
-              celsius: (x) => x,
-              fahrenheit: (x) => (x * 9) / 5 + 32,
-              kelvin: (x) => x + 273.15,
+            temperature: {
+                celsius: {
+                    celsius: (x) => x,
+                    fahrenheit: (x) => (x * 9) / 5 + 32,
+                    kelvin: (x) => x + 273.15,
+                },
+                fahrenheit: {
+                    celsius: (x) => ((x - 32) * 5) / 9,
+                    fahrenheit: (x) => x,
+                    kelvin: (x) => ((x - 32) * 5) / 9 + 273.15,
+                },
+                kelvin: {
+                    celsius: (x) => x - 273.15,
+                    fahrenheit: (x) => ((x - 273.15) * 9) / 5 + 32,
+                    kelvin: (x) => x,
+                },
             },
-            fahrenheit: {
-              celsius: (x) => ((x - 32) * 5) / 9,
-              fahrenheit: (x) => x,
-              kelvin: (x) => ((x - 32) * 5) / 9 + 273.15,
+            time: {
+                second: {
+                    second: 1,
+                    minute: 1 / 60,
+                    hour: 1 / 3600,
+                    day: 1 / 86400,
+                    week: 1 / 604800,
+                    month: 1 / 2592000,
+                    year: 1 / 31536000,
+                },
+                minute: {
+                    second: 60,
+                    minute: 1,
+                    hour: 1 / 60,
+                    day: 1 / 1440,
+                    week: 1 / 10080,
+                    month: 1 / 43200,
+                    year: 1 / 525600,
+                },
+                hour: {
+                    second: 3600,
+                    minute: 60,
+                    hour: 1,
+                    day: 1 / 24,
+                    week: 1 / 168,
+                    month: 1 / 720,
+                    year: 1 / 8760,
+                },
+                day: {
+                    second: 86400,
+                    minute: 1440,
+                    hour: 24,
+                    day: 1,
+                    week: 1 / 7,
+                    month: 1 / 30,
+                    year: 1 / 365,
+                },
+                week: {
+                    second: 604800,
+                    minute: 10080,
+                    hour: 168,
+                    day: 7,
+                    week: 1,
+                    month: 1 / 4.34524,
+                    year: 1 / 52.1775,
+                },
+                month: {
+                    second: 2592000,
+                    minute: 43200,
+                    hour: 720,
+                    day: 30,
+                    week: 4.34524,
+                    month: 1,
+                    year: 1 / 12,
+                },
+                year: {
+                    second: 31536000,
+                    minute: 525600,
+                    hour: 8760,
+                    day: 365,
+                    week: 52.1775,
+                    month: 12,
+                    year: 1,
+                },
             },
-            kelvin: {
-              celsius: (x) => x - 273.15,
-              fahrenheit: (x) => ((x - 273.15) * 9) / 5 + 32,
-              kelvin: (x) => x,
-            },
-          },
-          time: {
-            second: {
-              second: 1,
-              minute: 1 / 60,
-              hour: 1 / 3600,
-              day: 1 / 86400,
-              week: 1 / 604800,
-              month: 1 / 2592000,
-              year: 1 / 31536000,
-            },
-            minute: {
-              second: 60,
-              minute: 1,
-              hour: 1 / 60,
-              day: 1 / 1440,
-              week: 1 / 10080,
-              month: 1 / 43200,
-              year: 1 / 525600,
-            },
-            hour: {
-              second: 3600,
-              minute: 60,
-              hour: 1,
-              day: 1 / 24,
-              week: 1 / 168,
-              month: 1 / 720,
-              year: 1 / 8760,
-            },
-            day: {
-              second: 86400,
-              minute: 1440,
-              hour: 24,
-              day: 1,
-              week: 1 / 7,
-              month: 1 / 30,
-              year: 1 / 365,
-            },
-            week: {
-              second: 604800,
-              minute: 10080,
-              hour: 168,
-              day: 7,
-              week: 1,
-              month: 1 / 4.34524,
-              year: 1 / 52.1775,
-            },
-            month: {
-              second: 2592000,
-              minute: 43200,
-              hour: 720,
-              day: 30,
-              week: 4.34524,
-              month: 1,
-              year: 1 / 12,
-            },
-            year: {
-              second: 31536000,
-              minute: 525600,
-              hour: 8760,
-              day: 365,
-              week: 52.1775,
-              month: 12,
-              year: 1,
-            },
-          },
         };
 
-        // Conversion logic
-        if (sourceUnit === destinationUnit) {
-          resultDisplay.textContent = `Result: ${inputValue} ${destinationUnit}`;
-          return;
+        // Dynamically render menu from object keys
+        const menu = document.getElementById("menu");
+        Object.keys(conversionFactors).forEach((category) => {
+            const button = document.createElement("button");
+            button.textContent = category[0].toUpperCase() + category.slice(1);
+            if (category === currentCategory) {
+                button.classList.add('active');
+            }
+            button.dataset.unit = category;
+            button.onclick = () => showUnits(category);
+            menu.appendChild(button);
+        });
+
+        function showUnits(category) {
+            // update active class 
+            const parentDiv = document.getElementById('menu');
+            const buttons = parentDiv.getElementsByTagName('button');
+            for (const button of buttons) {
+                if (button.classList.contains('active')) {
+                    button.classList.remove('active');
+                }
+                if (button.dataset.unit === category) {
+                    button.classList.add('active');
+                }
+            }
+
+
+            const sourceUnitSelect = document.getElementById("source-unit");
+            const destinationUnitSelect = document.getElementById("destination-unit");
+
+            // Clear existing options
+            sourceUnitSelect.innerHTML = "";
+            destinationUnitSelect.innerHTML = "";
+
+            const units = Object.keys(conversionFactors[category]);
+
+            units.forEach((unit) => {
+                const sourceOption = document.createElement("option");
+                sourceOption.value = unit;
+                sourceOption.textContent = unit;
+
+                const destinationOption = sourceOption.cloneNode(true);
+
+                sourceUnitSelect.appendChild(sourceOption);
+                destinationUnitSelect.appendChild(destinationOption);
+            });
         }
 
-        const category = Object.keys(conversionFactors).find(
-          (cat) => conversionFactors[cat][sourceUnit]
-        );
-        const factors = conversionFactors[category];
+        function convert() {
+            const inputValue = parseFloat(document.getElementById("source-value").value);
+            const sourceUnit = document.getElementById("source-unit").value;
+            const destinationUnit = document.getElementById("destination-unit").value;
+            const resultDisplay = document.getElementById("result");
 
-        if (category === "temperature") {
-          const result = factors[sourceUnit][destinationUnit](inputValue);
-          resultDisplay.textContent = `Result: ${result.toFixed(
-            2
-          )} ${destinationUnit}`;
-        } else if (
-          factors &&
-          factors[sourceUnit] &&
-          factors[sourceUnit][destinationUnit] !== undefined
-        ) {
-          const factor = factors[sourceUnit][destinationUnit];
-          const result = inputValue * factor;
-          resultDisplay.textContent = `Result: ${result.toFixed(
-            4
-          )} ${destinationUnit}`;
-        } else {
-          resultDisplay.textContent = "Conversion not supported.";
+            if (isNaN(inputValue)) {
+                resultDisplay.textContent = "Please enter a valid number.";
+                return;
+            }
+
+            const category = Object.keys(conversionFactors).find((key) =>
+                conversionFactors[key].hasOwnProperty(sourceUnit)
+            );
+            const factor = conversionFactors[category][sourceUnit][destinationUnit];
+            if (category === "temperature") {
+                if (typeof factor === "function") {
+                    const celsiusValue = factor(inputValue);
+                    resultDisplay.textContent = `Result: ${celsiusValue.toFixed(2)} ${destinationUnit}`;
+                } else {
+                    resultDisplay.textContent = "Conversion not supported.";
+                }
+            } else {
+                if (factor) {
+                    const result = (inputValue * factor);
+                    resultDisplay.textContent = `Result: ${result.toFixed(4)} ${destinationUnit}`;
+                } else {
+                    resultDisplay.textContent = "Conversion not supported.";
+                }
+            }
         }
-      }
 
-      // Initialize with default category
-      showUnits("length");
+        // Initialize with default category
+        showUnits("length");
     </script>
-  </body>
+</body>
+
 </html>
